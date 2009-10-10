@@ -29,52 +29,38 @@
 require_once(t3lib_extMgm::extPath('direct_mail_userfunc') . 'res/scripts/class.tx_directmailuserfunc_static.php');
 
 /**
- * This class extends EXT:direct_mail to let recipient lists to be
- * defined by a user function.
+ * Static class with a few helper functions.
  *
  * $Id$
  */
-class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
+class tx_directmailuserfunc_static {
 
 	/**
-	 * Puts all recipients uid from all table into an array.
-	 *
-	 * @param integer $group_uid: uid of the group
-	 * @return array list of the uid in an array
+	 * Returns the TSconfig of a given DirectMail sysfolder as an array of key/value pairs.
+	 *  
+	 * @param $pObj
+	 * @return array
 	 */
-	public function cmd_compileMailGroup($group_uid) {
-		$id_lists = array(
-			'tt_address' => array(),
-			'fe_users'   => array(),
-			'PLAINLIST'  => array(),
-		);
-		if ($group_uid)	{
-			$mailGroup = t3lib_BEfunc::getRecord('sys_dmail_group', $group_uid);
-			if (is_array($mailGroup) && $mailGroup['pid'] == $this->id) {
-				switch ($mailGroup['type']) {
-					case 5:
-						$itemsProcFunc = $mailGroup['tx_directmailuserfunc_itemsprocfunc'];
-						if ($itemsProcFunc) {
-							$params = array(
-								'groupUid'  => $group_uid,
-								'TSconfig'  => tx_directmailuserfunc_static::getTSconfig($this),
-								'PLAINLIST' => &$id_lists['PLAINLIST'],
-							);
-							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);
-						}
-						break;
-					default:
-						return parent::cmd_compileMailGroup($group_uid);
-				}
+	public static function getTSconfig($pObj) {
+		$pageTS = $pObj->pageinfo['TSconfig'];
+		$lines = explode("\n", $pageTS);
+		$config = array();
+
+		foreach ($lines as $line) {
+			$line = trim($line);
+			if (empty($line) || $line{0} === '#') {
+				continue;
 			}
+			list($key, $value) = t3lib_div::trimExplode('=', $line);
+			$config[$key] = $value;
 		}
-
-		$outputArray = array(
-			'queryInfo' => array('id_lists' => $id_lists)
-		);
-		return $outputArray;  
+		return $config;
 	}
+	
+}
 
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/res/scripts/class.tx_directmailuserfunc_static.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/res/scripts/class.tx_directmailuserfunc_static.php']);
 }
 
 ?>

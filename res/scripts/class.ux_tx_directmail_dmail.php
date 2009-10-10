@@ -53,7 +53,8 @@ class ux_tx_directmail_dmail extends tx_directmail_dmail {
 						$itemsProcFunc = $mailGroup['tx_directmailuserfunc_itemsprocfunc'];
 						if ($itemsProcFunc) {
 							$params = array(
-								'groupUid' => $group_uid,
+								'groupUid'  => $group_uid,
+								'TSconfig'  => tx_directmailuserfunc_static::getTSconfig($this),
 								'PLAINLIST' => &$id_lists['PLAINLIST'],
 							);
 							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);

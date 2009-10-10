@@ -8,7 +8,7 @@
  * $Id$
  */
 class user_testList {
-	
+
 	/**
 	 * Returns a list of recipients.
 	 * 
@@ -17,9 +17,11 @@ class user_testList {
 	 * @return array
 	 */
 	function myRecipientList($params, $pObj) {
+		//$pageTS = $params['TSconfig'];
 		$params['PLAINLIST'][] = array('name' => 'John Doo', 'email' => 'john.doo@hotmail.com');
 		$params['PLAINLIST'][] = array('name' => 'Foo Bar', 'email' => 'foo.bar@yahoo.fr');
 	}
-	
+
 }
+
 ?>

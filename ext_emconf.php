@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "direct_mail_userfunc".
 #
-# Auto generated 10-10-2009 19:45
+# Auto generated 10-10-2009 21:05
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
-	'state' => 'alpha',
+	'state' => 'beta',
 	'internal' => '',
 	'uploadfolder' => 0,
 	'createDirs' => '',
@@ -29,7 +29,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '0.0.0',
+	'version' => '0.0.1',
+	'doNotLoadInFE' => 1,
 	'constraints' => array(
 		'depends' => array(
 			'php' => '5.2.0-0.0.0',
@@ -41,7 +42,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
-	'_md5_values_when_last_written' => 'a:11:{s:9:"ChangeLog";s:4:"d097";s:10:"README.txt";s:4:"ee2d";s:28:"class.tx_directmail_hook.php";s:4:"46fe";s:41:"class.ux_tx_directmail_recipient_list.php";s:4:"fe07";s:12:"ext_icon.gif";s:4:"a143";s:17:"ext_localconf.php";s:4:"9c3c";s:14:"ext_tables.php";s:4:"72ba";s:14:"ext_tables.sql";s:4:"2f3f";s:16:"locallang_db.xml";s:4:"284e";s:17:"locallang_tca.xml";s:4:"9a64";s:25:"samples/user_testlist.php";s:4:"5d93";}',
+	'_md5_values_when_last_written' => 'a:11:{s:9:"ChangeLog";s:4:"d097";s:10:"README.txt";s:4:"ee2d";s:12:"ext_icon.gif";s:4:"a143";s:17:"ext_localconf.php";s:4:"5d48";s:14:"ext_tables.php";s:4:"72ba";s:14:"ext_tables.sql";s:4:"2f3f";s:16:"locallang_db.xml";s:4:"284e";s:17:"locallang_tca.xml";s:4:"9a64";s:44:"res/scripts/class.ux_tx_directmail_dmail.php";s:4:"cdc0";s:53:"res/scripts/class.ux_tx_directmail_recipient_list.php";s:4:"98a3";s:25:"samples/user_testlist.php";s:4:"7e55";}',
 	'suggests' => array(
 	),
 );

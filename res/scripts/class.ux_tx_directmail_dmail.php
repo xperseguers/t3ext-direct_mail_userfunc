@@ -25,6 +25,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+
+require_once(t3lib_extMgm::extPath('direct_mail_userfunc') . 'res/scripts/class.tx_directmailuserfunc_static.php');
+
 /**
  * This class extends EXT:direct_mail to let recipient lists to be
  * defined by a user function.

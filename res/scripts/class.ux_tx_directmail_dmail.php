@@ -56,6 +56,7 @@ class ux_tx_directmail_dmail extends tx_directmail_dmail {
 							$params = array(
 								'groupUid'  => $group_uid,
 								'PLAINLIST' => &$id_lists['PLAINLIST'],
+								'userParams' => $mailGroup['tx_directmailuserfunc_params'],
 							);
 							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);
 							$id_lists['PLAINLIST'] = tx_directmail_static::cleanPlainList($id_lists['PLAINLIST']);

@@ -43,24 +43,42 @@ class tx_directmailuserfunc_wizard {
 	 */
 	public function user_TCAform_procWizard($PA, $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-
 		if (!$itemsProcFunc) {
 				// Show the required icon
 			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
 			return;
 		}
 
-		list($className, $method) = explode('->', $itemsProcFunc);
+		list($className, $methodName) = explode('->', $itemsProcFunc);
 
-		if (!($className && $method) || !(class_exists($className) && method_exists($className, $method))) {
+		if (!($className && $methodName) || !(class_exists($className) && method_exists($className, $methodName))) {
 			return self::getIcon('gfx/icon_warning.gif') . ' Unknown class and/or method';
 		}
 		if (!method_exists($className, 'getWizard')) {
 			return self::getIcon('gfx/icon_ok.gif');
 		}
 
-		// TODO: add code to show the wizard
-		$output = self::getIcon('gfx/options.gif');
+		$paramsItemName = 'data[sys_dmail_group][1][tx_directmailuserfunc_params]';
+		$currentParams = $PA['row']['tx_directmailuserfunc_params'];
+		$wizardJS = trim(call_user_func_array(
+			array($className, 'getWizard'),
+			array($methodName, $currentParams, $PA['formName'], $paramsItemName)
+		));
+
+		if (!$wizardJS) {
+			return self::getIcon('gfx/icon_ok.gif');
+		}
+
+		if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
+			$wizardJS .= ';';
+		}
+		$wizardJS .= 'return false;';
+
+		$output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="Click here to update user parameters">';
+		$output .= self::getIcon('gfx/options.gif');
+		$output .= '</a>';
+		$output .= '<input type="hidden" name="' . $paramsItemName . '" value="' . htmlspecialchars($currentParams) . '" />';
+
 		return $output;
 	}
 

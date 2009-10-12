@@ -1,2 +1,1 @@
-
-Feel free to add some documentation or simply add a link to the online manual.
+Documentation is available in file doc/manual.sxw.

@@ -43,16 +43,24 @@ class tx_directmailuserfunc_wizard {
 	 */
 	public function user_TCAform_procWizard($PA, $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
+
+		if (!$itemsProcFunc) {
+				// Show the required icon
+			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
+			return;
+		}
+
 		list($className, $method) = explode('->', $itemsProcFunc);
 
-		if (!($className && $method) || !class_exists($className)) {
+		if (!($className && $method) || !(class_exists($className) && method_exists($className, $method))) {
 			return self::getIcon('gfx/icon_warning.gif') . ' Unknown class and/or method';
 		}
 		if (!method_exists($className, 'getWizard')) {
 			return self::getIcon('gfx/icon_ok.gif');
 		}
 
-		$output = 'TODO: show wizard';
+		// TODO: add code to show the wizard
+		$output = self::getIcon('gfx/options.gif');
 		return $output;
 	}
 

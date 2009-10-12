@@ -26,8 +26,6 @@
 ***************************************************************/
 
 
-require_once(t3lib_extMgm::extPath('direct_mail_userfunc') . 'res/scripts/class.tx_directmailuserfunc_static.php');
-
 /**
  * This class extends EXT:direct_mail to let recipient lists to be
  * defined by a user function.
@@ -57,7 +55,6 @@ class ux_tx_directmail_dmail extends tx_directmail_dmail {
 						if ($itemsProcFunc) {
 							$params = array(
 								'groupUid'  => $group_uid,
-								'TSconfig'  => tx_directmailuserfunc_static::getTSconfig($this),
 								'PLAINLIST' => &$id_lists['PLAINLIST'],
 							);
 							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);

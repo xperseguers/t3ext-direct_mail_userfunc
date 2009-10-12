@@ -16,10 +16,20 @@ class user_testList {
 	 * @param $pObj
 	 * @return array
 	 */
-	function myRecipientList($params, $pObj) {
+	public function myRecipientList($params, $pObj) {
 		//$pageTS = $params['TSconfig'];
 		$params['PLAINLIST'][] = array('name' => 'John Doo', 'email' => 'john.doo@hotmail.com');
 		$params['PLAINLIST'][] = array('name' => 'Foo Bar', 'email' => 'foo.bar@yahoo.fr');
+	}
+	
+	/**
+	 * 
+	 * @param $params
+	 * @param $pObj
+	 * @return unknown_type
+	 */
+	public function getWizard($params, $pObj) {
+		
 	}
 
 }

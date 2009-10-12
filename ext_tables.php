@@ -10,6 +10,13 @@ $tempColumns = array(
 		'config' => array(
 			'type' => 'input',
 			'size' => '30',
+			'wizards' => array(
+				'uproc' => array(
+					'type' => 'userFunc',
+					'userFunc' => 'tx_directmailuserfunc_wizard->user_TCAform_procWizard',
+					'params' => array(),
+				),
+			),
 		)
 	),
 );

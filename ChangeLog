@@ -1,5 +1,11 @@
 2009-10-13  Xavier Perseguers  <typo3@perseguers.ch>
 
+	* Fixed mix-up from styles in documentation
+	* Version set to 0.2.1
+	* Uploaded to TER
+
+2009-10-12  Xavier Perseguers  <typo3@perseguers.ch>
+
 	* Added support for user parameters
 	* Version set to 0.2.0
 	* Uploaded to TER

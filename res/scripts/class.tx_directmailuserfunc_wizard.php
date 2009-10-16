@@ -75,7 +75,7 @@ class tx_directmailuserfunc_wizard {
 
 		$wizardJS = trim(call_user_func_array(
 			array($className, 'getWizard'),
-			array($methodName, $PA['formName'], $PA['itemName'])
+			array($methodName, &$PA, $pObj)
 		));
 
 		if (!$wizardJS) {
@@ -85,8 +85,6 @@ class tx_directmailuserfunc_wizard {
 		if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
 			$wizardJS .= ';';
 		}
-			// TODO: detect wether value was changed actually before informing TCEforms
-		$wizardJS .= implode('', $PA['fieldChangeFunc']);	// Necessary to tell TCEforms that the value is updated.
 		$wizardJS .= 'return false;';
 
 		$output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="Click here to update user parameters">';

@@ -1,6 +1,7 @@
 2009-10-16  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Always showing parameter field
+	* Changed the way user's wizard is being invoked
 
 2009-10-13  Xavier Perseguers  <typo3@perseguers.ch>
 

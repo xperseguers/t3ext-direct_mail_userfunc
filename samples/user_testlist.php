@@ -28,19 +28,20 @@ class user_testList {
 	/**
 	 * Returns a JavaScript wizard that lets user choose additional parameters to be passed
 	 * during the itemsProcFunc call. The wizard should store any new parameters back to
-	 * $formName[$paramsFieldName] upon closing. 
+	 * $PA[$'formName']['itemName'] upon closing and do not forget to call $PA['fieldChangeFunc']
+	 * in order to tell TCEforms that the value is updated.
 	 * 
-	 * @param string $itemsProcFunc 
-	 * @param string $formName
-	 * @param string $paramsFieldName
+	 * @param string $methodName 
+	 * @param array $PA TCA configuration passed by reference
+	 * @param $pObj
 	 * @return string JavaScript code to be executed upon icon click
 	 */
-	public function getWizard($itemsProcFunc, $formName, $paramsFieldName) {
+	public function getWizard($itemsProcFunc, $PA, $pObj) {
 		$js = '';
 
 		if ($itemsProcFunc === 'myRecipientList') {
 			$js = '
-				var params = document.' . $formName . '[\'' . $paramsFieldName . '\'].value;
+				var params = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value;
 				if (empty(params)) params = 2;
 			';
 
@@ -49,8 +50,8 @@ class user_testList {
 			$js .= '
 				var r = prompt("How many items do you want in your list?", params);
 				if (r != null) {
-					document.' . $formName . '[\'' . $paramsFieldName . '\'].value = parseInt(r);
-					alert("Do not forget to save your changes!");
+					document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = parseInt(r);'.
+					implode('', $PA['fieldChangeFunc']) .';
 				}
 			';
 		}

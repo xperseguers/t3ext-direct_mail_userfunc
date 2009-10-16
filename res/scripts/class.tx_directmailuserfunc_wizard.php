@@ -54,10 +54,12 @@ class tx_directmailuserfunc_wizard {
 			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
 			return;
 		}
-		if (self::isValid($itemsProcFunc)) {
+		if (self::isClassValid($itemsProcFunc) && self::isMethodValid($itemsProcFunc)) {
 			return self::getIcon('gfx/icon_ok.gif');
+		} elseif (!self::isClassValid($itemsProcFunc)) {
+			return self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass');
 		} else {
-			return self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalid');
+			return self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod');
 		}
 	}
 
@@ -71,7 +73,7 @@ class tx_directmailuserfunc_wizard {
 	 */
 	public function params_procWizard($PA, $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-		if (!self::isValid($itemsProcFunc)) {
+		if (!self::isMethodValid($itemsProcFunc)) {
 			return '';
 		}
 
@@ -109,18 +111,37 @@ class tx_directmailuserfunc_wizard {
 	}
 
 	/**
-	 * Checks whether an itemsProcFunc definition is valid.
+	 * Checks whether the class part of a given itemsProcFunc definition is valid.
 	 * 
 	 * @param string $itemsProcFunc
 	 * @return boolean
 	 */
-	protected static function isValid($itemsProcFunc) {
+	protected static function isClassValid($itemsProcFunc) {
 		list($className, $methodName) = explode('->', $itemsProcFunc);
 
-		if (!($className && $methodName) || !(class_exists($className) && method_exists($className, $methodName))) {
+		if ($className && class_exists($className)) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	/**
+	 * Checks whether the method part of a given itemsProcFunc definition is valid.
+	 * 
+	 * @param string $itemsProcFunc
+	 * @return boolean
+	 */
+	protected static function isMethodValid($itemsProcFunc) {
+		if (!self::isClassValid($itemsProcFunc)) {
 			return FALSE;
 		}
-		return TRUE;
+
+		list($className, $methodName) = explode('->', $itemsProcFunc);
+
+		if ($methodName && method_exists($className, $methodName)) {
+			return TRUE;
+		}
+		return FALSE;
 	}
 
 	/**

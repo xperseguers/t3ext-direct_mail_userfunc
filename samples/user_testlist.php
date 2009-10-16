@@ -12,8 +12,8 @@ class user_testList {
 	/**
 	 * Returns a list of recipients.
 	 * 
-	 * @param array $params
-	 * @param $pObj
+	 * @param array $params User parameters
+	 * @param t3lib_TCEforms $pObj Parent object
 	 * @return array
 	 */
 	public function myRecipientList($params, $pObj) {
@@ -38,14 +38,14 @@ class user_testList {
 	 * 
 	 * @param string $methodName 
 	 * @param array $PA TCA configuration passed by reference
-	 * @param $pObj
+	 * @param t3lib_TCEforms $pObj Parent object
 	 * @param boolean $autoJS Set to TRUE if you wish to fully generate your own code for calling your wizard 
 	 * @return string JavaScript code to be executed upon icon click
 	 */
-	public function getWizard($itemsProcFunc, $PA, $pObj, $autoJS) {
+	public function getWizard($methodName, $PA, $pObj, $autoJS) {
 		$js = '';
 
-		if ($itemsProcFunc === 'myRecipientList') {
+		if ($methodName === 'myRecipientList') {
 			$js = '
 				var params = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value;
 				if (empty(params)) params = 2;

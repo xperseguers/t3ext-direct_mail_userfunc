@@ -68,7 +68,7 @@ class tx_directmailuserfunc_wizard {
 	 * itemsProcFunc value.
 	 * 
 	 * @param array $PA TCA configuration passed by reference
-	 * @param $pObj
+	 * @param t3lib_TCEforms $pObj Parent object
 	 * @return string HTML snippet to be put after the params field 
 	 */
 	public function params_procWizard($PA, $pObj) {

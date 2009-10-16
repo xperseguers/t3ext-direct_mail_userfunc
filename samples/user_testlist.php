@@ -31,23 +31,23 @@ class user_testList {
 	 * $formName[$paramsFieldName] upon closing. 
 	 * 
 	 * @param string $itemsProcFunc 
-	 * @param string $params previously stored parameters
 	 * @param string $formName
 	 * @param string $paramsFieldName
 	 * @return string JavaScript code to be executed upon icon click
 	 */
-	public function getWizard($itemsProcFunc, $params, $formName, $paramsFieldName) {
+	public function getWizard($itemsProcFunc, $formName, $paramsFieldName) {
 		$js = '';
 
 		if ($itemsProcFunc === 'myRecipientList') {
-			if (!$params) {
-				$params = 2;
-			}
+			$js = '
+				var params = document.' . $formName . '[\'' . $paramsFieldName . '\'].value;
+				if (empty(params)) params = 2;
+			';
 
 				// Show a standard javascript prompt and assign result to the parameters field
 				// This information will be saved with form and available in myRecipientList
-			$js = '
-				var r = prompt("How many items do you want in your list?", "' . $params . '");
+			$js .= '
+				var r = prompt("How many items do you want in your list?", params);
 				if (r != null) {
 					document.' . $formName . '[\'' . $paramsFieldName . '\'].value = parseInt(r);
 					alert("Do not forget to save your changes!");

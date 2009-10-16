@@ -34,52 +34,81 @@
 class tx_directmailuserfunc_wizard {
 	
 	/**
-	 * Returns code to show a user-handled wizard associated to current
-	 * itemsProcFunc value.
+	 * Returns code to show whether the itemsProcFunc definition is valid.
 	 * 
 	 * @param array $PA TCA configuration passed by reference
 	 * @param $pObj
-	 * @return string HTML snippet to be put after the itemsProcFunc field 
+	 * @return string HTML snippet to be put after the itemsProcFunc field
 	 */
-	public function user_TCAform_procWizard($PA, $pObj) {
+	public function itemsprocfunc_procWizard($PA, $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!$itemsProcFunc) {
 				// Show the required icon
 			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
 			return;
 		}
-
-		list($className, $methodName) = explode('->', $itemsProcFunc);
-
-		if (!($className && $methodName) || !(class_exists($className) && method_exists($className, $methodName))) {
+		if (self::isValid($itemsProcFunc)) {
+			return self::getIcon('gfx/icon_ok.gif');
+		} else {
 			return self::getIcon('gfx/icon_warning.gif') . ' Unknown class and/or method';
 		}
-		if (!method_exists($className, 'getWizard')) {
-			return self::getIcon('gfx/icon_ok.gif');
+	}
+
+	/**
+	 * Returns code to show a user-handled wizard associated to current
+	 * itemsProcFunc value.
+	 * 
+	 * @param array $PA TCA configuration passed by reference
+	 * @param $pObj
+	 * @return string HTML snippet to be put after the params field 
+	 */
+	public function params_procWizard($PA, $pObj) {
+		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
+		if (!self::isValid($itemsProcFunc)) {
+			return '';
 		}
 
-		$paramsItemName = 'data[sys_dmail_group][1][tx_directmailuserfunc_params]';
-		$currentParams = $PA['row']['tx_directmailuserfunc_params'];
+		list($className, $methodName) = explode('->', $itemsProcFunc);
+		if (!method_exists($className, 'getWizard')) {
+			return '';
+		}
+
 		$wizardJS = trim(call_user_func_array(
 			array($className, 'getWizard'),
-			array($methodName, $currentParams, $PA['formName'], $paramsItemName)
+			array($methodName, $PA['formName'], $PA['itemName'])
 		));
 
 		if (!$wizardJS) {
-			return self::getIcon('gfx/icon_ok.gif');
+			return '';
 		}
 
 		if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
 			$wizardJS .= ';';
 		}
+			// TODO: detect wether value was changed actually before informing TCEforms
+		$wizardJS .= implode('', $PA['fieldChangeFunc']);	// Necessary to tell TCEforms that the value is updated.
 		$wizardJS .= 'return false;';
 
 		$output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="Click here to update user parameters">';
 		$output .= self::getIcon('gfx/options.gif');
 		$output .= '</a>';
-		$output .= '<input type="hidden" name="' . $paramsItemName . '" value="' . htmlspecialchars($currentParams) . '" />';
 
 		return $output;
+	}
+
+	/**
+	 * Checks whether an itemsProcFunc definition is valid.
+	 * 
+	 * @param string $itemsProcFunc
+	 * @return boolean
+	 */
+	protected static function isValid($itemsProcFunc) {
+		list($className, $methodName) = explode('->', $itemsProcFunc);
+
+		if (!($className && $methodName) || !(class_exists($className) && method_exists($className, $methodName))) {
+			return FALSE;
+		}
+		return TRUE;
 	}
 
 	/**

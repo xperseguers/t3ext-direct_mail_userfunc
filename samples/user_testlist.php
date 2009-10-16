@@ -17,11 +17,16 @@ class user_testList {
 	 * @return array
 	 */
 	public function myRecipientList($params, $pObj) {
-			// Retrieve user parameters
-		$sizeOfRecipientList = $params['userParams'] ? $params['userParams'] : 2; 
+			// Add tt_address #4 to the recipient list
+		$params['lists']['tt_address'][] = 4;
 
+			// Add frontend user #1 to the recipient list
+		$params['lists']['fe_users'][] = 1;
+
+			// Retrieve user parameters
+		$sizeOfRecipientList = $params['userParams'] ? $params['userParams'] : 2;
 		for ($i = 0; $i < $sizeOfRecipientList; $i++) {
-			$params['PLAINLIST'][] = array('name' => 'John Doo #' . $i, 'email' => 'john.doo-' . $i . '@hotmail.com');
+			$params['lists']['PLAINLIST'][] = array('name' => 'John Doo #' . $i, 'email' => 'john.doo-' . $i . '@hotmail.com');
 		}
 	}
 

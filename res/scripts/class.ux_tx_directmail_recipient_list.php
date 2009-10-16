@@ -55,7 +55,7 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 						if ($itemsProcFunc) {
 							$params = array(
 								'groupUid'  => $group_uid,
-								'PLAINLIST' => &$id_lists['PLAINLIST'],
+								'lists' => &$id_lists,
 								'userParams' => $mailGroup['tx_directmailuserfunc_params'],
 							);
 							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);

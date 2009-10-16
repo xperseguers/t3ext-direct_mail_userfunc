@@ -3,6 +3,9 @@
 	* Always showing parameter field
 	* Changed the way user's wizard is being invoked
 	* Removed hard-coded texts
+	* Updated documentation
+	* Version bumped to 1.0.0 (stable)
+	* Uploaded to TER
 
 2009-10-13  Xavier Perseguers  <typo3@perseguers.ch>
 

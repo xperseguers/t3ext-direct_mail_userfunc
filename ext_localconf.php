@@ -12,4 +12,6 @@ include(t3lib_extMgm::extPath($_EXTKEY) . 'res/scripts/class.tx_directmailuserfu
 
 // Uncomment next line to get a sample userfunction to be used with "user_testlist->myRecipientList" as itemsProcFunc value
 //include(t3lib_extMgm::extPath($_EXTKEY) . 'samples/user_testlist.php');
+// If you run TYPO3 4.3, ExtJS is available and you may uncomment next line instead
+//include(t3lib_extMgm::extPath($_EXTKEY) . 'samples/user_testlist_extjs.php');
 ?>

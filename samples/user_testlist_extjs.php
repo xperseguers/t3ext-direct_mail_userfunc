@@ -7,7 +7,7 @@
  *
  * $Id$
  */
-class user_testList {
+class user_testList_extjs {
 
 	/**
 	 * Returns a list of recipients.
@@ -41,20 +41,14 @@ class user_testList {
 		$js = '';
 
 		if ($itemsProcFunc === 'myRecipientList') {
-			$js = '
-				var params = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value;
-				if (empty(params)) params = 2;
-			';
-
-				// Show a standard javascript prompt and assign result to the parameters field
-				// This information will be saved with form and available in myRecipientList
-			$js .= '
-				var r = prompt("How many items do you want in your list?", params);
-				if (r != null) {
-					document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = parseInt(r);'.
+			$js = '<script type="text/javascript" src="' . t3lib_extMgm::extRelPath('direct_mail_userfunc') . 'samples/parameters.js' . '"></script>';
+			$js .= '<script type="text/javascript"><!--
+				function updateParameters(params) {
+					document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = params;'.
 					implode('', $PA['fieldChangeFunc']) .';
 				}
-			';
+				--></script>';
+			$autoJS = FALSE;
 		}
 
 		return $js;

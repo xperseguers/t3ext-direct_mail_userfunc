@@ -73,23 +73,31 @@ class tx_directmailuserfunc_wizard {
 			return '';
 		}
 
+		$autoJS = TRUE;
 		$wizardJS = trim(call_user_func_array(
 			array($className, 'getWizard'),
-			array($methodName, &$PA, $pObj)
+			array($methodName, &$PA, $pObj, &$autoJS)
 		));
 
 		if (!$wizardJS) {
 			return '';
 		}
 
-		if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
-			$wizardJS .= ';';
-		}
-		$wizardJS .= 'return false;';
+			// TODO: Translate this
+		$altIcon = 'Click here to update user parameters';
+		if ($autoJS) {
+			if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
+				$wizardJS .= ';';
+			}
+			$wizardJS .= 'return false;';
 
-		$output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="Click here to update user parameters">';
-		$output .= self::getIcon('gfx/options.gif');
-		$output .= '</a>';
+			$output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="' . $altIcon . '">';
+			$output .= self::getIcon('gfx/options.gif');
+			$output .= '</a>';
+		} else {
+			$output = self::getIcon('gfx/options.gif', $altIcon, 'id="params-btn" style="cursor:pointer"');
+			$output .= $wizardJS;
+		}
 
 		return $output;
 	}
@@ -112,11 +120,14 @@ class tx_directmailuserfunc_wizard {
 	/**
 	 * Returns a HTML image tag with a given icon (taking t3skin into account).
 	 * 
-	 * @param $src
+	 * @param string $src Image source
+	 * @param string $alt Alternate text
+	 * @param string $params Additional parameters for the img tag
 	 * @return string
 	 */
-	protected static function getIcon($src) {
-		return '<img ' . t3lib_iconWorks::skinImg($GLOBALS['BACKPATH'], $src) . ' alt="" vspace="4" align="absmiddle" />';
+	protected static function getIcon($src, $alt = '', $params = '') {
+		return '<img ' . t3lib_iconWorks::skinImg($GLOBALS['BACKPATH'], $src) .
+			' alt="' . $alt . '" title="' . $alt . '" vspace="4" align="absmiddle" ' . $params .'/>';
 	}
 
 }

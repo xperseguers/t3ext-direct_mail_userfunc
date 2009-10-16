@@ -7,6 +7,8 @@
     <data type="array">
         <languageKey index="default" type="array">
 	   		<label index="sys_dmail_group.type.I.5">User function</label>
+	   		<label index="wizard.itemsProcFunc.invalid">Unknown class and/or method</label>
+	   		<label index="wizard.parameters.title">Click here to update user parameters</label>
         </languageKey>
     </data>
 </T3locallang>

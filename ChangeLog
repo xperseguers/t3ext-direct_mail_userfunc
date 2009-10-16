@@ -2,6 +2,7 @@
 
 	* Always showing parameter field
 	* Changed the way user's wizard is being invoked
+	* Removed hard-coded texts
 
 2009-10-13  Xavier Perseguers  <typo3@perseguers.ch>
 

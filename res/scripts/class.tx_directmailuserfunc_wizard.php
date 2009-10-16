@@ -32,7 +32,14 @@
  * $Id$
  */
 class tx_directmailuserfunc_wizard {
-	
+
+	/**
+	 * Default constructor.
+	 */
+	public function __construct() {
+		$GLOBALS['LANG']->includeLLFile('EXT:direct_mail_userfunc/locallang_tca.xml');
+	}
+
 	/**
 	 * Returns code to show whether the itemsProcFunc definition is valid.
 	 * 
@@ -50,7 +57,7 @@ class tx_directmailuserfunc_wizard {
 		if (self::isValid($itemsProcFunc)) {
 			return self::getIcon('gfx/icon_ok.gif');
 		} else {
-			return self::getIcon('gfx/icon_warning.gif') . ' Unknown class and/or method';
+			return self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalid');
 		}
 	}
 
@@ -83,8 +90,7 @@ class tx_directmailuserfunc_wizard {
 			return '';
 		}
 
-			// TODO: Translate this
-		$altIcon = 'Click here to update user parameters';
+		$altIcon = $GLOBALS['LANG']->getLL('wizard.parameters.title');
 		if ($autoJS) {
 			if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
 				$wizardJS .= ';';

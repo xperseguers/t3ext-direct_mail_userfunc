@@ -3,6 +3,8 @@
 	* Added extension configuration option to enable/disable sample user functions
 	* Implemented feature #5022: List all available user functions
 	* Reorganized files
+	* Version set to 1.1.0
+	* Uploaded to TER
 
 2009-10-16  Xavier Perseguers  <typo3@perseguers.ch>
 

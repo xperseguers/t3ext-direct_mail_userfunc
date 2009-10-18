@@ -52,14 +52,19 @@ class tx_directmailuserfunc_wizard {
 		if (!$itemsProcFunc) {
 				// Show the required icon
 			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
-			return;
 		}
-		if (self::isClassValid($itemsProcFunc) && self::isMethodValid($itemsProcFunc)) {
-			return self::getIcon('gfx/icon_ok.gif');
+
+			// Show the user function provider selector
+		self::addUserFunctionProviders($PA);
+
+		if (!$itemsProcFunc) {
+			return;
+		} elseif (self::isClassValid($itemsProcFunc) && self::isMethodValid($itemsProcFunc)) {
+			$PA['item'] .= self::getIcon('gfx/icon_ok.gif');
 		} elseif (!self::isClassValid($itemsProcFunc)) {
-			return self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass');
+			$PA['item'] .= self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass');
 		} else {
-			return self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod');
+			$PA['item'] .= self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod');
 		}
 	}
 
@@ -155,6 +160,78 @@ class tx_directmailuserfunc_wizard {
 	protected static function getIcon($src, $alt = '', $params = '') {
 		return '<img ' . t3lib_iconWorks::skinImg($GLOBALS['BACKPATH'], $src) .
 			' alt="' . $alt . '" title="' . $alt . '" vspace="4" align="absmiddle" ' . $params .'/>';
+	}
+
+	/**
+	 * Prepends a user function provider selector to the itemsProcFunc field.
+	 * 
+	 * @param array $PA TCA configuration passed by reference
+	 * @return void
+	 */
+	protected static function AddUserFunctionProviders($PA) {
+		if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
+			return;
+		}
+
+			// Sort list of providers
+		$providers = array();
+		foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] as $provider) {
+			$itemsProcFunc = $provider['class'] .'->' . $provider['method'];
+			$providers[$itemsProcFunc] = self::getLL($provider['label']);
+		}
+		asort($providers);
+
+		$options = array();
+		foreach ($providers as $itemsProcFunc => $label) {
+			$options[] = sprintf('<option value="%s">%s</option>', $itemsProcFunc, $label);
+		}
+
+		$updateJS = 'var itemsProcFunc = document.' . $PA['formName'] . '[\'userfunc_provider\'].value;';
+		$updateJS .= 'document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = itemsProcFunc;';
+		$updateJS .= implode('', $PA['fieldChangeFunc']) . ';return false;';
+
+		$selector = '
+			<select name="userfunc_provider" onchange="' . $updateJS . '">
+				<option value=""></option>' .
+				join('', $options) . '
+			</select>
+		';
+
+			// Prepend the provider selector
+		$PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector . '<br />' . $PA['item'];
+	}
+
+	/**
+	 * Returns the label with key $index for current backend language.
+	 *
+	 * @param string $label Label/key reference
+	 * @return string
+	 */
+	public static function getLL($label) {
+		if (strcmp(substr($label, 0, 8), 'LLL:EXT:')) {
+				// Non-localizable string provided
+			return $label;
+		}
+
+		$label = substr($label, 8);	// Remove 'LLL:EXT:' at the beginning
+		$extension = substr($label, 0, strpos($label, '/'));
+		$references = explode(':', substr($label, strlen($extension) + 1));
+		if (!($extension && count($references))) {
+			return $label;
+		}
+
+		$file = t3lib_extMgm::extPath($extension) . $references[0];
+		$index = $references[1];
+		$LOCAL_LANG = t3lib_div::readLLfile($file, $GLOBALS['LANG']->lang);
+
+		$ret = $label;
+		if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index], '')) {
+			$ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index];
+		} else {
+			$ret = $LOCAL_LANG['default'][$index];
+		}
+
+		return $ret;
 	}
 
 }

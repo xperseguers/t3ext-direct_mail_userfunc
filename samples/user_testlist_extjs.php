@@ -48,8 +48,9 @@ class user_testList_extjs {
 		if ($methodName === 'myRecipientList') {
 			$js = '<script type="text/javascript" src="' . t3lib_extMgm::extRelPath('direct_mail_userfunc') . 'samples/parameters.js' . '"></script>';
 			$js .= '<script type="text/javascript"><!--
+				var dmuf_parameters = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'];
 				function updateParameters(params) {
-					document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = params;'.
+					dmuf_parameters.value = params;'.
 					implode('', $PA['fieldChangeFunc']) .';
 				}
 				--></script>';

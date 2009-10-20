@@ -62,4 +62,8 @@ class user_testList_extjs {
 
 }
 
+
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist_extjs.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist_extjs.php']);
+}
 ?>

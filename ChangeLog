@@ -1,3 +1,12 @@
+2009-10-20  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Fixed XCLASS definitions
+
+2009-10-19  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Fixed sporadic JS errors
+	* Fixed documentation style rendering issues
+
 2009-10-18  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Added extension configuration option to enable/disable sample user functions

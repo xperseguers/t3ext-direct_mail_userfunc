@@ -2,6 +2,8 @@
 
 	* Changed parameter DB field from tinytext to mediumtext
 	* Updated extension icon to by adding "fx" in lower-right corner
+	* Version set to 1.2.0
+	* Uploaded to TER
 
 2009-10-20  Xavier Perseguers  <typo3@perseguers.ch>
 

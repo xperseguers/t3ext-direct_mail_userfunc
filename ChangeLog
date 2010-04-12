@@ -1,3 +1,7 @@
+2010-04-12  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Fixed bug #7212: Install Tool update wizard gives error (thanks to Stefan Neufeind)
+
 2009-10-28  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Changed parameter DB field from tinytext to mediumtext

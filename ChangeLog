@@ -1,3 +1,8 @@
+2010-07-24  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Version set to 1.2.1
+	* Updated compatibility range for TYPO3 4.4
+
 2010-04-12  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Fixed bug #7212: Install Tool update wizard gives error (thanks to Stefan Neufeind)

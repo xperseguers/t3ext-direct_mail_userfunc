@@ -1,29 +1,30 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2009 Xavier Perseguers (typo3@perseguers.ch)
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*  A copy is found in the textfile GPL.txt and important notices to the license
-*  from the author is found in LICENSE.txt distributed with these scripts.
-*
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2009-2012 Xavier Perseguers (xavier@causal.ch)
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *  A copy is found in the textfile GPL.txt and important notices to the license
+ *  from the author is found in LICENSE.txt distributed with these scripts.
+ *
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 
 /**
@@ -42,7 +43,7 @@ class tx_directmailuserfunc_wizard {
 
 	/**
 	 * Returns code to show whether the itemsProcFunc definition is valid.
-	 * 
+	 *
 	 * @param array $PA TCA configuration passed by reference
 	 * @param $pObj
 	 * @return string HTML snippet to be put after the itemsProcFunc field
@@ -71,10 +72,10 @@ class tx_directmailuserfunc_wizard {
 	/**
 	 * Returns code to show a user-handled wizard associated to current
 	 * itemsProcFunc value.
-	 * 
+	 *
 	 * @param array $PA TCA configuration passed by reference
 	 * @param t3lib_TCEforms $pObj Parent object
-	 * @return string HTML snippet to be put after the params field 
+	 * @return string HTML snippet to be put after the params field
 	 */
 	public function params_procWizard($PA, $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
@@ -117,7 +118,7 @@ class tx_directmailuserfunc_wizard {
 
 	/**
 	 * Checks whether the class part of a given itemsProcFunc definition is valid.
-	 * 
+	 *
 	 * @param string $itemsProcFunc
 	 * @return boolean
 	 */
@@ -132,7 +133,7 @@ class tx_directmailuserfunc_wizard {
 
 	/**
 	 * Checks whether the method part of a given itemsProcFunc definition is valid.
-	 * 
+	 *
 	 * @param string $itemsProcFunc
 	 * @return boolean
 	 */
@@ -151,7 +152,7 @@ class tx_directmailuserfunc_wizard {
 
 	/**
 	 * Returns a HTML image tag with a given icon (taking t3skin into account).
-	 * 
+	 *
 	 * @param string $src Image source
 	 * @param string $alt Alternate text
 	 * @param string $params Additional parameters for the img tag
@@ -164,7 +165,7 @@ class tx_directmailuserfunc_wizard {
 
 	/**
 	 * Prepends a user function provider selector to the itemsProcFunc field.
-	 * 
+	 *
 	 * @param array $PA TCA configuration passed by reference
 	 * @return void
 	 */
@@ -225,10 +226,21 @@ class tx_directmailuserfunc_wizard {
 		$LOCAL_LANG = t3lib_div::readLLfile($file, $GLOBALS['LANG']->lang);
 
 		$ret = $label;
-		if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index], '')) {
-			$ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index];
+		$version = class_exists('t3lib_utility_VersionNumber')
+			? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version)
+			: t3lib_div::int_from_ver(TYPO3_version);
+		if ($version < 4006000) {
+			if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index], '')) {
+				$ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index];
+			} else {
+				$ret = $LOCAL_LANG['default'][$index];
+			}
 		} else {
-			$ret = $LOCAL_LANG['default'][$index];
+			if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'], '')) {
+				$ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'];
+			} else {
+				$ret = $LOCAL_LANG['default'][$index][0]['target'];
+			}
 		}
 
 		return $ret;

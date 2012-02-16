@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Adds support for user functions to Direct Mail. Currently allows recipient lists to be defined using a user function.',
 	'category' => 'module',
 	'author' => 'Xavier Perseguers',
-	'author_email' => 'typo3@perseguers.ch',
+	'author_email' => 'xavier@causal.ch',
 	'shy' => '',
 	'dependencies' => 'direct_mail',
 	'conflicts' => '',
@@ -35,7 +35,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'php' => '5.2.0-0.0.0',
 			'typo3' => '4.2.0-4.6.99',
-			'direct_mail' => '2.6.3-0.0.0',
+			'direct_mail' => '2.7.0-0.0.0',
 		),
 		'conflicts' => array(
 		),

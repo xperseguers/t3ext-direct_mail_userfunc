@@ -1,3 +1,7 @@
+2012-02-16  Xavier Perseguers  <xavier@causal.ch>
+
+	* [BUGFIX] Fix compatibility with direct_mail 2.7.0
+
 2012-02-15  Xavier Perseguers  <xavier@causal.ch>
 
 	* [TASK] Fix compatibility with TYPO3 4.6

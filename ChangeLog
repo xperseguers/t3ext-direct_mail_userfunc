@@ -1,3 +1,7 @@
+2012-09-22  Xavier Perseguers  <xavier@causal.ch>
+
+	* [BUGFIX] Invalid userFunc crashes the Backend
+
 2012-02-16  Xavier Perseguers  <xavier@causal.ch>
 
 	* [BUGFIX] Fix compatibility with direct_mail 2.7.0

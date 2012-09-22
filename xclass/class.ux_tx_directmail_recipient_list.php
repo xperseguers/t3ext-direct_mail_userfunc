@@ -54,7 +54,7 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 				switch ($mailGroup['type']) {
 					case 5:
 						$itemsProcFunc = $mailGroup['tx_directmailuserfunc_itemsprocfunc'];
-						if ($itemsProcFunc) {
+						if (preg_match('/^[a-zA-z0-9_:]+->[a-zA-z0-9_]+$/', $itemsProcFunc)) {
 							$params = array(
 								'groupUid'  => $group_uid,
 								'lists' => &$id_lists,

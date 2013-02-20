@@ -7,7 +7,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="config.enableSamples">Enable samples: Provides sample user functions to show how it works</label>
-			
+
 			<!--  Labels for sample user functions -->
 			<label index="userfunction.myRecipientList">[Sample] Recipient List</label>
 			<label index="userfunction.myRecipientListExtJS">[Sample] Recipient List (ExtJS wizard)</label>

@@ -2,7 +2,8 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2009-2012 Xavier Perseguers (xavier@causal.ch)
+ *  (c) 2012-2013 Xavier Perseguers (xavier@causal.ch)
+ *  (c) 2009-2011 Xavier Perseguers (typo3@perseguers.ch)
  *
  *  All rights reserved
  *

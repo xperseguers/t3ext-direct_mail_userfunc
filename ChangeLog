@@ -1,69 +1,73 @@
+2013-02-20  Xavier Perseguers  <xavier@causal.ch>
+
+	* [TASK][CLEANUP] Update copyright year and rewrite ChangeLog with prefix
+
 2012-09-22  Xavier Perseguers  <xavier@causal.ch>
 
 	* [BUGFIX] Invalid userFunc crashes the Backend
 
 2012-02-16  Xavier Perseguers  <xavier@causal.ch>
 
-	* [BUGFIX] Fix compatibility with direct_mail 2.7.0
+	* [BUGFIX] #33809: Compatibility with direct_mail 2.7.0
 
 2012-02-15  Xavier Perseguers  <xavier@causal.ch>
 
-	* [TASK] Fix compatibility with TYPO3 4.6
+	* [TASK] Compatibility with TYPO3 4.6
 
 2010-07-24  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Version set to 1.2.1
-	* Updated compatibility range for TYPO3 4.4
+	* [TASK] Raise version to 1.2.1
+	* [TASK] Update compatibility range for TYPO3 4.4
 
 2010-04-12  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Fixed bug #7212: Install Tool update wizard gives error (thanks to Stefan Neufeind)
+	* [BUGFIX] #7212: Install Tool update wizard gives error (thanks to Stefan Neufeind)
 
 2009-10-28  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Changed parameter DB field from tinytext to mediumtext
-	* Updated extension icon to by adding "fx" in lower-right corner
-	* Version set to 1.2.0
-	* Uploaded to TER
+	* [!!][TASK] Change parameter DB field from tinytext to mediumtext
+	* [TASK] Update extension icon to by adding "fx" in lower-right corner
+	* [TASK] Raise version to 1.2.0
+	* [TASK] Upload to TER
 
 2009-10-20  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Fixed XCLASS definitions
+	* [BUGFIX] Invalid XCLASS definitions
 
 2009-10-19  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Fixed sporadic JS errors
-	* Fixed documentation style rendering issues
+	* [BUGFIX] Sporadic JS errors
+	* [BUGFIX][DOC] Documentation style rendering issues
 
 2009-10-18  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Added extension configuration option to enable/disable sample user functions
-	* Implemented feature #5022: List all available user functions
-	* Reorganized files
-	* Version set to 1.1.0
-	* Uploaded to TER
+	* [FEATURE] Extension configuration option to enable/disable sample user functions
+	* [FEATURE] #5022: List all available user functions
+	* [TASK] Reorganize files
+	* [TAKS] Raise version to 1.1.0
+	* [TASK] Upload to TER
 
 2009-10-16  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Always showing parameter field
-	* Changed the way user's wizard is being invoked
-	* Removed hard-coded texts
-	* Updated documentation
-	* Version bumped to 1.0.0 (stable)
-	* Uploaded to TER
+	* [TASK] Always showing parameter field
+	* [TASK] Change the way user's wizard is being invoked
+	* [TASK][CLEANUP] Remove hard-coded texts
+	* [TASK][DOC] Update documentation
+	* [TASK] Bump version to 1.0.0 (stable)
+	* [TASK] Upload to TER
 
 2009-10-13  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Fixed mix-up from styles in documentation
-	* Version set to 0.2.1
-	* Uploaded to TER
+	* [BUGFIX][DOC] Mix-up from styles in documentation
+	* [TASK] Raise version to 0.2.1
+	* [TASK] Upload to TER
 
 2009-10-12  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Added support for user parameters
-	* Version set to 0.2.0
-	* Uploaded to TER
+	* [FEATURE] Add support for user parameters
+	* [TASK] Raise version to 0.2.0
+	* [TASK] Upload to TER
 
 2009-10-10  Xavier Perseguers  <typo3@perseguers.ch>
 
-	* Initial code
+	* [TASK] Initial code

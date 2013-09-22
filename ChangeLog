@@ -1,3 +1,7 @@
+2013-09-22  Xavier Perseguers  <xavier@causal.ch>
+
+	* [BUGFIX] #52172: XCLASS does not work in TYPO3 6.x
+
 2013-02-22  Xavier Perseguers  <xavier@causal.ch>
 
 	* [TASK] Raise version to 1.3.0

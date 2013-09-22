@@ -33,8 +33,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'doNotLoadInFE' => 1,
 	'constraints' => array(
 		'depends' => array(
-			'php' => '5.2.0-0.0.0',
-			'typo3' => '4.2.0-4.7.99',
+			'php' => '5.3.7-5.4.99',
+			'typo3' => '4.5.0-6.1.99',
 			'direct_mail' => '2.7.0-0.0.0',
 		),
 		'conflicts' => array(

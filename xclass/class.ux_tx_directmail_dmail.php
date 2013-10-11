@@ -37,12 +37,19 @@
 class ux_tx_directmail_dmail extends tx_directmail_dmail {
 
 	/**
-	 * Gets the recipient IDs given only the group ID
+	 * Gets the recipient IDs given only the group ID.
+	 *
+	 * Invoked when reaching step 4 of sending a Direct Mail (number of recipients by list)
+	 * from method "cmd_finalmail" and then when clicking on "send" (to schedule the delivery)
+	 * from method "cmd_send_mail".
 	 *
 	 * @param array $groups array of recipient group ID
 	 * @return array list of the recipient ID
 	 */
 	public function cmd_compileMailGroup(array $groups) {
+		//$callers = debug_backtrace();
+		//$caller = $callers[1]['function'];
+
 		// If supplied with an empty array, quit instantly as there is nothing to do
 		if (!count($groups)) {
 			return;

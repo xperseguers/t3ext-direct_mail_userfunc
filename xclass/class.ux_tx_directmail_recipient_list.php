@@ -39,6 +39,8 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 	/**
 	 * Puts all recipients uid from all table into an array.
 	 *
+	 * Invoked when browsing Direct Mail > Recipients Lists.
+	 *
 	 * @param integer $group_uid: uid of the group
 	 * @return array list of the uid in an array
 	 */

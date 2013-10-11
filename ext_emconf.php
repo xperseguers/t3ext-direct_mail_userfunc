@@ -25,7 +25,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'internal' => '',
 	'uploadfolder' => 0,
 	'createDirs' => '',
-	'modify_tables' => 'sys_dmail_group',
+	'modify_tables' => 'sys_dmail,sys_dmail_group',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
@@ -35,7 +35,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'php' => '5.3.7-5.4.99',
 			'typo3' => '4.5.0-6.1.99',
-			'direct_mail' => '2.7.0-0.0.0',
+			'direct_mail' => '3.0.0-0.0.0',
 		),
 		'conflicts' => array(
 		),

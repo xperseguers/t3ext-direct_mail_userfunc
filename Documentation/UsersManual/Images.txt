@@ -1,0 +1,5 @@
+﻿.. |number_of_recipients| image:: ../Images/number_of_recipients.png
+	:alt: Number of recipients
+
+.. |supported_types| image:: ../Images/supported_types.png
+	:alt: Supported types of dynamic lists

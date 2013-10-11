@@ -1,0 +1,20 @@
+﻿.. |type_userfunc| image:: ../Images/type_userfunc.png
+	:alt: List of recipient prepared with a user function
+
+.. |userfunc_overview| image:: ../Images/userfunc_overview.png
+	:alt: Overview of the configuration of a dynamic list of recipients
+
+.. |valid| image:: ../Images/valid.png
+	:alt: Valid user function
+
+.. |wizard| image:: ../Images/wizard.png
+	:alt: Wizard available
+
+.. |invalid_class| image:: ../Images/invalid_class.png
+	:alt: Invalid or not loaded class
+
+.. |invalid_method| image:: ../Images/invalid_method.png
+	:alt: Invalid method
+
+.. |registered_providers| image:: ../Images/registered_providers.png
+	:alt: Registered providers

@@ -1,0 +1,11 @@
+﻿.. |wizard| image:: ../../Images/wizard.png
+	:alt: Wizard available
+
+.. |additional_parameters| image:: ../../Images/additional_parameters.png
+	:alt: Additional parameters
+
+.. |alert_basic| image:: ../../Images/alert_basic.png
+	:alt: Standard alert box
+
+.. |alert_extjs| image:: ../../Images/alert_extjs.png
+	:alt: Alert box based on ExtJS

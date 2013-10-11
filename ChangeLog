@@ -1,5 +1,6 @@
 2013-10-11  Xavier Perseguers  <xavier@causal.ch>
 
+	* [TASK][DOC] Migrate OpenOffice manual to Sphinx
 	* [BUGFIX] #6269: Dealing with big quantities (100'000+)
 	* [BUGFIX] userFuncs are emptied if this ext is loaded afterwards
 	* [TASK] Some cleanup for upcoming release

@@ -1,0 +1,5 @@
+﻿.. |registered_providers| image:: ../../Images/registered_providers.png
+	:alt: Registered providers
+
+.. |new_provider| image:: ../../Images/new_provider.png
+	:alt: New provider

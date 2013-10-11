@@ -19,6 +19,8 @@ The following is a very high level overview of the changes in this extension. Fo
 =======  ===========================================================================
 Version  Changes
 =======  ===========================================================================
+1.3.0    - Fix compatibility with EXT:direct_mail
+         - Support for TYPO3 6.x
 1.2.0    - Changed parameter field to mediumtext instead of tinytext to better accommodate parameter serialization
          - Updated extension icon
          - Fixed mix up of styles in TER HTML-generated documentation

@@ -61,6 +61,14 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 								'userParams' => $mailGroup['tx_directmailuserfunc_params'],
 							);
 							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);
+
+							$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
+							if (!isset($extConf['makeEntriesUnique']) || $extConf['makeEntriesUnique'] == 1) {
+								// Make unique entries
+								$id_lists['tt_address'] = array_unique($id_lists['tt_address']);
+								$id_lists['fe_users'] = array_unique($id_lists['fe_users']);
+								$id_lists['PLAINLIST'] = tx_directmail_static::cleanPlainList($id_lists['PLAINLIST']);
+							}
 						}
 						break;
 					default:

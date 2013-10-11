@@ -6,6 +6,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="config.makeEntriesUnique">Make entries unique: Makes sure entries with the same e-mail address will only appear once.</label>
 			<label index="config.enableSamples">Enable samples: Provides sample user functions to show how it works</label>
 
 			<!--  Labels for sample user functions -->

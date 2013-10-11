@@ -45,8 +45,10 @@ t3lib_extMgm::addTCAcolumns('sys_dmail_group', $tempColumns, 1);
 $TCA['sys_dmail_group']['columns']['type']['config']['items'][] = array('LLL:EXT:direct_mail_userfunc/locallang_tca.xml:sys_dmail_group.type.I.5', '5');
 $TCA['sys_dmail_group']['types']['5'] = array('showitem' => 'type;;;;1-1-1, title;;;;3-3-3, description, tx_directmailuserfunc_itemsprocfunc;;;;5-5-5, tx_directmailuserfunc_params;;;;7-7-7');
 
-// Allow extensions to register themselves as userfunc providers
-$TYPO3_CONF_VARS['EXTCONF']['direct_mail_userfunc']['userFunc'] = array();
+if (!isset($TYPO3_CONF_VARS['EXTCONF']['direct_mail_userfunc'])) {
+	// Allow extensions to register themselves as userfunc providers
+	$TYPO3_CONF_VARS['EXTCONF']['direct_mail_userfunc']['userFunc'] = array();
+}
 
 // Register sample user functions if needed
 if (TYPO3_MODE === 'BE') {

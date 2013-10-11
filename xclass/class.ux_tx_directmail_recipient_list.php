@@ -84,5 +84,3 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 	}
 
 }
-
-?>

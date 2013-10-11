@@ -108,5 +108,3 @@ class ux_tx_directmail_dmail extends tx_directmail_dmail {
 	}
 
 }
-
-?>

@@ -11,7 +11,7 @@ class user_testList {
 
 	/**
 	 * Returns a list of recipients.
-	 * 
+	 *
 	 * @param array $params User parameters
 	 * @param t3lib_TCEforms $pObj Parent object
 	 * @return array
@@ -35,11 +35,11 @@ class user_testList {
 	 * during the itemsProcFunc call. The wizard should store any new parameters back to
 	 * $PA[$'formName']['itemName'] upon closing and do not forget to call $PA['fieldChangeFunc']
 	 * in order to tell TCEforms that the value is updated.
-	 * 
-	 * @param string $methodName 
+	 *
+	 * @param string $methodName
 	 * @param array $PA TCA configuration passed by reference
 	 * @param t3lib_TCEforms $pObj Parent object
-	 * @param boolean $autoJS Set to TRUE if you wish to fully generate your own code for calling your wizard 
+	 * @param boolean $autoJS Set to TRUE if you wish to fully generate your own code for calling your wizard
 	 * @return string JavaScript code to be executed upon icon click
 	 */
 	public function getWizard($methodName, $PA, $pObj, $autoJS) {
@@ -68,7 +68,6 @@ class user_testList {
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist.php']);
+if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist.php'])) {
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist.php']);
 }
-?>

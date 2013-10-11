@@ -52,11 +52,11 @@ class tx_directmailuserfunc_wizard {
 	public function itemsprocfunc_procWizard($PA, $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!$itemsProcFunc) {
-				// Show the required icon
+			// Show the required icon
 			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
 		}
 
-			// Show the user function provider selector
+		// Show the user function provider selector
 		self::addUserFunctionProviders($PA);
 
 		if (!$itemsProcFunc) {
@@ -175,7 +175,7 @@ class tx_directmailuserfunc_wizard {
 			return;
 		}
 
-			// Sort list of providers
+		// Sort list of providers
 		$providers = array();
 		foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] as $provider) {
 			$itemsProcFunc = $provider['class'] .'->' . $provider['method'];
@@ -199,7 +199,7 @@ class tx_directmailuserfunc_wizard {
 			</select>
 		';
 
-			// Prepend the provider selector
+		// Prepend the provider selector
 		$PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector . '<br />' . $PA['item'];
 	}
 
@@ -211,7 +211,7 @@ class tx_directmailuserfunc_wizard {
 	 */
 	public static function getLL($label) {
 		if (strcmp(substr($label, 0, 8), 'LLL:EXT:')) {
-				// Non-localizable string provided
+			// Non-localizable string provided
 			return $label;
 		}
 
@@ -227,10 +227,7 @@ class tx_directmailuserfunc_wizard {
 		$LOCAL_LANG = t3lib_div::readLLfile($file, $GLOBALS['LANG']->lang);
 
 		$ret = $label;
-		$version = class_exists('t3lib_utility_VersionNumber')
-			? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version)
-			: t3lib_div::int_from_ver(TYPO3_version);
-		if ($version < 4006000) {
+		if (version_compare(TYPO3_version, '4.6.0', '<')) {
 			if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index], '')) {
 				$ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index];
 			} else {
@@ -250,7 +247,6 @@ class tx_directmailuserfunc_wizard {
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/controller/class.tx_directmailuserfunc_wizard.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/controller/class.tx_directmailuserfunc_wizard.php']);
+if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/controller/class.tx_directmailuserfunc_wizard.php'])) {
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/controller/class.tx_directmailuserfunc_wizard.php']);
 }
-?>

@@ -22,10 +22,7 @@ if (TYPO3_MODE === 'BE') {
 	$extConf = unserialize($TYPO3_CONF_VARS['EXT']['extConf']['direct_mail_userfunc']);
 	if ($extConf['enableSamples']) {
 		include_once(t3lib_extMgm::extPath($_EXTKEY) . 'samples/user_testlist.php');
-
-		if (strcmp(substr(TYPO3_version, 0, 3), '4.3') >= 0) {
-			include_once(t3lib_extMgm::extPath($_EXTKEY) . 'samples/user_testlist_extjs.php');
-		}
+		include_once(t3lib_extMgm::extPath($_EXTKEY) . 'samples/user_testlist_extjs.php');
 	}
 }
 

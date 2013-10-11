@@ -29,13 +29,13 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '1.3.1-dev',
+	'version' => '1.3.1',
 	'doNotLoadInFE' => 1,
 	'constraints' => array(
 		'depends' => array(
 			'php' => '5.3.7-5.4.99',
 			'typo3' => '4.5.0-6.1.99',
-			'direct_mail' => '3.0.0-0.0.0',
+			'direct_mail' => '3.0.0-3.1.99',
 		),
 		'conflicts' => array(
 		),

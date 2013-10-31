@@ -1,5 +1,6 @@
 2013-10-31  Xavier Perseguers  <xavier@causal.ch>
 
+	* [TASK][!!!] Extbase directory structure
 	* [BUGFIX] #53256: ExtJS wizard is broken with PHP 5.4
 
 2013-10-11  Xavier Perseguers  <xavier@causal.ch>

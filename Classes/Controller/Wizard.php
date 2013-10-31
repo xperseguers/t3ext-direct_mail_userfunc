@@ -33,13 +33,13 @@
  *
  * $Id$
  */
-class tx_directmailuserfunc_wizard {
+class Tx_DirectMailUserfunc_Controller_Wizard {
 
 	/**
 	 * Default constructor.
 	 */
 	public function __construct() {
-		$GLOBALS['LANG']->includeLLFile('EXT:direct_mail_userfunc/locallang_tca.xml');
+		$GLOBALS['LANG']->includeLLFile('EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xml');
 	}
 
 	/**
@@ -244,9 +244,4 @@ class tx_directmailuserfunc_wizard {
 		return $ret;
 	}
 
-}
-
-
-if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/controller/class.tx_directmailuserfunc_wizard.php'])) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/controller/class.tx_directmailuserfunc_wizard.php']);
 }

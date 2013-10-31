@@ -7,7 +7,7 @@
  *
  * $Id$
  */
-class user_testList_extjs {
+class user_testList {
 
 	/**
 	 * Returns a list of recipients.
@@ -17,13 +17,13 @@ class user_testList_extjs {
 	 * @return array
 	 */
 	public function myRecipientList($params, $pObj) {
-			// Add tt_address #4 to the recipient list
+		// Add tt_address #4 to the recipient list
 		$params['lists']['tt_address'][] = 4;
 
-			// Add frontend user #1 to the recipient list
+		// Add frontend user #1 to the recipient list
 		$params['lists']['fe_users'][] = 1;
 
-			// Retrieve user parameters
+		// Retrieve user parameters
 		$sizeOfRecipientList = $params['userParams'] ? $params['userParams'] : 2;
 		for ($i = 0; $i < $sizeOfRecipientList; $i++) {
 			$params['lists']['PLAINLIST'][] = array('name' => 'John Doo #' . $i, 'email' => 'john.doo-' . $i . '@hotmail.com');
@@ -46,23 +46,23 @@ class user_testList_extjs {
 		$js = '';
 
 		if ($methodName === 'myRecipientList') {
-			$js = '<script type="text/javascript" src="' . t3lib_extMgm::extRelPath('direct_mail_userfunc') . 'samples/parameters.js' . '"></script>';
-			$js .= '<script type="text/javascript"><!--
-				var dmuf_parameters = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'];
-				function updateParameters(params) {
-					dmuf_parameters.value = params;'.
+			$js = '
+				var params = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value;
+				if (empty(params)) params = 2;
+			';
+
+			// Show a standard javascript prompt and assign result to the parameters field
+			// This information will be saved with form and available in myRecipientList
+			$js .= '
+				var r = prompt("How many items do you want in your list?", params);
+				if (r != null) {
+					document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = parseInt(r);'.
 					implode('', $PA['fieldChangeFunc']) .';
 				}
-				--></script>';
-			$autoJS = FALSE;
+			';
 		}
 
 		return $js;
 	}
 
-}
-
-
-if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist_extjs.php'])) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/direct_mail_userfunc/samples/user_testlist_extjs.php']);
 }

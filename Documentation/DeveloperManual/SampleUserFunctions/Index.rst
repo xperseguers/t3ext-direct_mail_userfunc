@@ -12,7 +12,7 @@
 Sample User Functions
 ---------------------
 
-Two wizards are provided in directory ``samples`` of the extension. To
+Two wizards are provided in directory :file:`Samples` of the extension. To
 activate them, go to Extension Manager, click on extension Direct Mail
 User Functions, tick the corresponding checkbox and click on Update
 button:

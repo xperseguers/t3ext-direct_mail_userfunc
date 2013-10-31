@@ -19,10 +19,10 @@ button:
 
 |enable_samples|
 
-Once activated, you may use ``user_testList->myRecipientList`` as
+Once activated, you may use :php:`user_testList->myRecipientList` as
 itemsProcFunc. This user function has a simple user parameter wizard
 using standard JavaScript.
 
-Another user function ``user_testList_extjs->myRecipientList`` is available. This is
+Another user function :php:`user_testList_extjs->myRecipientList` is available. This is
 basically the same user function as the previous one except that the
 user parameter wizard is using ExtJS framework.

@@ -50,7 +50,7 @@ Direct Mail User Functions
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
 
 
-	**Other versions of this document**
+	**Other version of this document**
 
 	:PDF:
 		http://docs.typo3.org/typo3cms/extensions/direct_mail_userfunc/1.3.1/_pdf/

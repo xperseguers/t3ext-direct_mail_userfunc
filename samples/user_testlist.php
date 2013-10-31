@@ -42,7 +42,7 @@ class user_testList {
 	 * @param boolean $autoJS Set to TRUE if you wish to fully generate your own code for calling your wizard
 	 * @return string JavaScript code to be executed upon icon click
 	 */
-	public function getWizard($methodName, $PA, $pObj, $autoJS) {
+	public function getWizard($methodName, &$PA, $pObj, &$autoJS) {
 		$js = '';
 
 		if ($methodName === 'myRecipientList') {

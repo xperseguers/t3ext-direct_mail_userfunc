@@ -37,7 +37,7 @@ HTML snippet to be included after the field:
 
 .. code-block:: php
 
-	public function getWizard($methodName, $PA, $pObj, $autoJS) {
+	public function getWizard($methodName, &$PA, $pObj, &$autoJS) {
 	    $js = '';
 
 	    if ($$methodName === 'myRecipientList') {

@@ -25,7 +25,7 @@ able to process it the way it likes:
 .. code-block:: php
 
 	function myRecipientList($params, $pObj) {
-	    // Retrieve user parameters (will get “18”)
+	    // Retrieve user parameters (will get "18")
 	    $sizeOfRecipientList = $params['userParams'];
 
 	    // snip

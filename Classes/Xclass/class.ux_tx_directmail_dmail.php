@@ -27,12 +27,15 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
 /**
  * This class extends EXT:direct_mail to let recipient lists to be
  * defined by a user function.
  *
- * $Id$
+ * @category    XCLASS
+ * @package     direct_mail_userfunc
+ * @author      Xavier Perseguers <xavier@causal.ch>
+ * @copyright   2012-2013 Causal Sàrl
+ * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class ux_tx_directmail_dmail extends tx_directmail_dmail {
 

@@ -5,7 +5,8 @@
  * returning a list of recipients. To use it, put 'user_testList->myRecipientList' as
  * itemsProcFunc value when creating a Recipient List of type "User function".
  *
- * $Id$
+ * @author      Xavier Perseguers <xavier@causal.ch>
+ * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class user_testList {
 

@@ -27,11 +27,14 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
 /**
  * This class encapsulates display of a user wizard.
  *
- * $Id$
+ * @category    Controller
+ * @package     direct_mail_userfunc
+ * @author      Xavier Perseguers <xavier@causal.ch>
+ * @copyright   2012-2013 Causal Sàrl
+ * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class Tx_DirectMailUserfunc_Controller_Wizard {
 

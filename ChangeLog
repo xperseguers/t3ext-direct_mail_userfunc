@@ -1,5 +1,6 @@
 2013-10-31  Xavier Perseguers  <xavier@causal.ch>
 
+	* [TASK] Update PHPdoc
 	* [TASK] Proper type-hints
 	* [TASK][!!!] Extbase directory structure
 	* [BUGFIX] #53256: ExtJS wizard is broken with PHP 5.4

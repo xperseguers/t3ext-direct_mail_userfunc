@@ -46,10 +46,10 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * Returns code to show whether the itemsProcFunc definition is valid.
 	 *
 	 * @param array $PA TCA configuration passed by reference
-	 * @param $pObj
+	 * @param t3lib_TCEforms $pObj
 	 * @return string HTML snippet to be put after the itemsProcFunc field
 	 */
-	public function itemsprocfunc_procWizard($PA, $pObj) {
+	public function itemsprocfunc_procWizard(array $PA, t3lib_TCEforms $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!$itemsProcFunc) {
 			// Show the required icon
@@ -78,7 +78,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param t3lib_TCEforms $pObj Parent object
 	 * @return string HTML snippet to be put after the params field
 	 */
-	public function params_procWizard($PA, $pObj) {
+	public function params_procWizard(array $PA, t3lib_TCEforms $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!self::isMethodValid($itemsProcFunc)) {
 			return '';

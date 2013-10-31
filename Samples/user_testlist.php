@@ -13,10 +13,10 @@ class user_testList {
 	 * Returns a list of recipients.
 	 *
 	 * @param array $params User parameters
-	 * @param t3lib_TCEforms $pObj Parent object
+	 * @param ux_tx_directmail_recipient_list $pObj Parent object
 	 * @return array
 	 */
-	public function myRecipientList($params, $pObj) {
+	public function myRecipientList(array $params, ux_tx_directmail_recipient_list $pObj) {
 		// Add tt_address #4 to the recipient list
 		$params['lists']['tt_address'][] = 4;
 
@@ -42,7 +42,7 @@ class user_testList {
 	 * @param boolean $autoJS Set to TRUE if you wish to fully generate your own code for calling your wizard
 	 * @return string JavaScript code to be executed upon icon click
 	 */
-	public function getWizard($methodName, &$PA, $pObj, &$autoJS) {
+	public function getWizard($methodName, array &$PA, t3lib_TCEforms $pObj, &$autoJS) {
 		$js = '';
 
 		if ($methodName === 'myRecipientList') {

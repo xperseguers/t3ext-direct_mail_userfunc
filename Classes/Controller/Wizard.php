@@ -126,7 +126,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param string $itemsProcFunc
 	 * @return boolean
 	 */
-	protected static function isClassValid($itemsProcFunc) {
+	static protected function isClassValid($itemsProcFunc) {
 		list($className, $methodName) = explode('->', $itemsProcFunc);
 
 		if ($className && class_exists($className)) {
@@ -140,8 +140,9 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 *
 	 * @param string $itemsProcFunc
 	 * @return boolean
+	 * @api
 	 */
-	protected static function isMethodValid($itemsProcFunc) {
+	static public function isMethodValid($itemsProcFunc) {
 		if (!self::isClassValid($itemsProcFunc)) {
 			return FALSE;
 		}
@@ -162,7 +163,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param string $params Additional parameters for the img tag
 	 * @return string
 	 */
-	protected static function getIcon($src, $alt = '', $params = '') {
+	static protected function getIcon($src, $alt = '', $params = '') {
 		return '<img ' . t3lib_iconWorks::skinImg($GLOBALS['BACKPATH'], $src) .
 			' alt="' . $alt . '" title="' . $alt . '" vspace="4" align="absmiddle" ' . $params .'/>';
 	}
@@ -173,7 +174,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param array $PA TCA configuration passed by reference
 	 * @return void
 	 */
-	protected static function AddUserFunctionProviders($PA) {
+	static protected function AddUserFunctionProviders($PA) {
 		if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
 			return;
 		}
@@ -212,7 +213,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param string $label Label/key reference
 	 * @return string
 	 */
-	public static function getLL($label) {
+	static public function getLL($label) {
 		if (strcmp(substr($label, 0, 8), 'LLL:EXT:')) {
 			// Non-localizable string provided
 			return $label;

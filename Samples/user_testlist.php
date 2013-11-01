@@ -17,7 +17,7 @@ class user_testList {
 	 * @param ux_tx_directmail_recipient_list $pObj Parent object
 	 * @return array
 	 */
-	public function myRecipientList(array $params, ux_tx_directmail_recipient_list $pObj) {
+	public function myRecipientList(array &$params, ux_tx_directmail_recipient_list $pObj) {
 		// Add tt_address #4 to the recipient list
 		$params['lists']['tt_address'][] = 4;
 

@@ -1,2 +1,0 @@
-﻿.. |enable_samples| image:: ../../Images/enable_samples.png
-	:alt: Enable samples

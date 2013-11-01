@@ -53,7 +53,7 @@ Direct Mail User Functions
 	**Other version of this document**
 
 	:PDF:
-		http://docs.typo3.org/typo3cms/extensions/direct_mail_userfunc/1.3.1/_pdf/
+		http://docs.typo3.org/typo3cms/extensions/direct_mail_userfunc/1.4.0/_pdf/
 
 
 	**Table of Contents**

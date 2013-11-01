@@ -4,7 +4,6 @@
 .. -*- coding: utf-8 -*- with BOM.
 
 .. include:: ../Includes.txt
-.. include:: Images.txt
 
 
 .. _introduction:
@@ -21,7 +20,8 @@ What does it do?
 This extension adds an entry "User function" to the drop-down list of
 Direct Mail's recipient list definition:
 
-|type_userfunc|
+.. figure:: ../Images/type_userfunc.png
+	:alt: List of recipient prepared with a user function
 
 This special type of recipient list lets you dynamically generate the
 list of recipients.
@@ -39,7 +39,8 @@ and use it as a source to feed the recipient list.
 Screenshots
 -----------
 
-|userfunc_overview|
+.. figure:: ../Images/userfunc_overview.png
+	:alt: Overview of the configuration of a dynamic list of recipients
 
 #. Icon |valid| confirms that the itemsProcFunc definition is valid
    (class ``user_testlist`` was found and method "myRecipientList"
@@ -49,18 +50,27 @@ Screenshots
    additional parameters. Simply click on it to invoke a user-generated
    script.
 
+.. |valid| image:: ../Images/valid.png
+	:alt: Valid user function
+
+.. |wizard| image:: ../Images/wizard.png
+	:alt: Wizard available
+
 In case either the class or the method was not found, an warning
 message is shown that explains what is wrong with the itemsProcFunc
 definition.
 
 User specified an invalid or not included class:
 
-|invalid_class|
+.. figure:: ../Images/invalid_class.png
+	:alt: Invalid or not loaded class
 
 User specified a valid class but an invalid method:
 
-|invalid_method|
+.. figure:: ../Images/invalid_method.png
+	:alt: Invalid method
 
 User functions may be registered to enhance the user experience:
 
-|registered_providers|
+.. figure:: ../Images/registered_providers.png
+	:alt: Registered providers

@@ -12,6 +12,7 @@
 			<!--  Labels for sample user functions -->
 			<label index="userfunction.myRecipientList">[Sample] Recipient List</label>
 			<label index="userfunction.myRecipientListExtJS">[Sample] Recipient List (ExtJS wizard)</label>
+			<label index="userfunction.myRecipientListTca">[Sample] Recipient List (TCA wizard)</label>
 		</languageKey>
 	</data>
 </T3locallang>

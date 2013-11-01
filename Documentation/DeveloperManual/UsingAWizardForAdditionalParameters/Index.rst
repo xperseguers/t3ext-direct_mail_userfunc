@@ -4,7 +4,6 @@
 .. -*- coding: utf-8 -*- with BOM.
 
 .. include:: ../../Includes.txt
-.. include:: Images.txt
 
 
 .. _wizard-additional-parameters:
@@ -28,12 +27,16 @@ for more information).
 
 Screenshot below shows an additional icon next to the parameter field:
 
-|additional_parameters|
+.. figure:: ../../Images/additional_parameters.png
+	:alt: Additional parameters
 
 In order to display the parameter wizard icon (|wizard|), you have to
 write a method ``getWizard()`` in your class that returns either the
 JavaScript code to be executed when user clicks on the icon or a full
 HTML snippet to be included after the field:
+
+.. |wizard| image:: ../../Images/wizard.png
+	:alt: Wizard available
 
 .. code-block:: php
 
@@ -86,9 +89,11 @@ If you run code written in method ``getWizard()`` above, you will get a
 standard JavaScript prompt that asks you the number of recipients you
 want to get in your recipient list:
 
-|alert_basic|
+.. figure:: ../../Images/alert_basic.png
+	:alt: Standard alert box
 
 As TYPO3 comes with the ExtJS framework, you may show
 a prettier dialog (code is provided in Samples):
 
-|alert_extjs|
+.. figure:: ../../Images/alert_extjs.png
+	:alt: Alert box based on ExtJS

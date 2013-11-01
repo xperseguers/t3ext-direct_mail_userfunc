@@ -4,4 +4,5 @@ $extensionClassesPath = $extensionPath . 'Classes/';
 return array(
 	// Compatibility with TYPO3 4.5
 	'tx_directmailuserfunc_controller_wizard' => $extensionClassesPath . 'Controller/Wizard.php',
+	'tx_directmailuserfunc_tca_parameters' => $extensionClassesPath . 'Tca/Parameters.php',
 );

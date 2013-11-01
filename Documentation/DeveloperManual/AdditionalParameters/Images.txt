@@ -1,2 +1,0 @@
-﻿.. |itemsprocfunc| image:: ../../Images/itemsprocfunc.png
-	:alt: itemsProcFunc

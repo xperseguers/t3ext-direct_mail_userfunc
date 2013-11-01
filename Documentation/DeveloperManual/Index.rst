@@ -18,7 +18,7 @@ recipient list.
 
 	class user_testList {
 
-	    function myRecipientList($params, $pObj) {
+	    function myRecipientList(array &$params, $pObj) {
 	        $params['lists']['PLAINLIST'][] = array(
 	            'name' => 'John Doo',
 	            'email' => 'john.doo@hotmail.com',

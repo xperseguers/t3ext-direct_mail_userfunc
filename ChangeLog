@@ -1,3 +1,7 @@
+2013-11-01  Xavier Perseguers  <xavier@causal.ch>
+
+	* [FEATURE] #53252: TCA-like wizard for additional parameters
+
 2013-10-31  Xavier Perseguers  <xavier@causal.ch>
 
 	* [TASK] Update PHPdoc

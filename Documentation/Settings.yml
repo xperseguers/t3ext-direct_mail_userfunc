@@ -6,8 +6,8 @@
 conf.py:
   copyright: 2009-2013
   project: Direct Mail User Functions
-  version: 1.3
-  release: 1.3.2-dev
+  version: 1.4
+  release: 1.4.0-dev
   latex_documents:
   - - Index
     - direct_mail_userfunc.tex

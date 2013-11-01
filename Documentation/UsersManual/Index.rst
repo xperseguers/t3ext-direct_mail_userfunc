@@ -4,7 +4,6 @@
 .. -*- coding: utf-8 -*- with BOM.
 
 .. include:: ../Includes.txt
-.. include:: Images.txt
 
 
 .. _users-manual:
@@ -16,7 +15,8 @@ This chapter describes how to use the extension from a user point of view.
 
 Your lists show the number of records, as with any other recipient list:
 
-|number_of_recipients|
+.. figure:: ../Images/number_of_recipients.png
+	:alt: Number of recipients
 
 As you see, dynamic lists are fully integrated with Direct Mail.
 
@@ -40,4 +40,5 @@ any of these types of items. Screenshot below shows a dynamic list
 with 1 record coming from table tt_address, 1 record coming from
 table fe_users and 18 records given as plain email addresses:
 
-|supported_types|
+.. figure:: ../Images/supported_types.png
+	:alt: Supported types of dynamic lists

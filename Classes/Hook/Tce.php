@@ -27,7 +27,7 @@
  ***************************************************************/
 
 /**
- * This class hooks into t3lib_TCEforms to process the virtual fields.
+ * This class hooks into t3lib_TCEforms and t3lib_TCEmain to process the virtual fields.
  *
  * @category    Hook
  * @package     direct_mail_userfunc
@@ -35,10 +35,11 @@
  * @copyright   2013 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfuncTceforms {
+class Tx_DirectMailUserfunc_Hook_Tce {
 
 	/**
 	 * Pre-processes the TCA of table sys_dmail_group.
+	 * Hook in t3lib_TCEforms
 	 *
 	 * @param string $table
 	 * @param array $row
@@ -65,13 +66,87 @@ class Tx_DirectMailUserfuncTceforms {
 	}
 
 	/**
+	 * Reconfigures TCA as in getMainFields_preProcess() to let field evaluation take place.
+	 * Hook in t3lib_TCEmain
+	 *
+	 * @param array $incomingFieldArray
+	 * @param string $table
+	 * @param integer|string $id
+	 * @param t3lib_TCEmain $pObj
+	 * @return void
+	 */
+	public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, $table, $id, t3lib_TCEmain $pObj) {
+		if ($table !== 'sys_dmail_group') {
+			return;
+		}
+
+		$itemsProcFunc = $incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'];
+		if (!empty($itemsProcFunc) && Tx_DirectMailUserfunc_Controller_Wizard::isMethodValid($itemsProcFunc)) {
+			list($className, $methodName) = explode('->', $itemsProcFunc);
+			if (method_exists($className, 'getWizardFields')) {
+				$wizardFields = call_user_func_array(
+					array($className, 'getWizardFields'),
+					array($methodName, $pObj)
+				);
+				$this->reconfigureTCA($wizardFields, $incomingFieldArray);
+			}
+		}
+	}
+
+	/**
+	 * Stores virtual field values into column tx_directmailuserfunc_params.
+	 * Hook in t3lib_TCEmain
+	 *
+	 * @param string $status
+	 * @param string $table
+	 * @param integer|string $id
+	 * @param array $fieldArray
+	 * @param t3lib_TCEmain $pObj
+	 * @return void
+	 */
+	public function processDatamap_postProcessFieldArray($status, $table, $id, array &$fieldArray, t3lib_TCEmain $pObj) {
+		if ($table !== 'sys_dmail_group') {
+			return;
+		}
+
+		$virtualValues = array();
+		foreach ($fieldArray as $field => $value) {
+			if (t3lib_div::isFirstPartOfStr($field, 'tx_directmailuserfunc_virtual_')) {
+				$virtualField = substr($field, strlen('tx_directmailuserfunc_virtual_'));
+				$virtualValues[$virtualField] = $value;
+				unset($fieldArray[$field]);
+			}
+		}
+
+		if (count($virtualValues) > 0) {
+			$row = t3lib_BEfunc::getRecord($table, $id);
+			$currentValues = !empty($row['tx_directmailuserfunc_params'])
+				? json_decode($row['tx_directmailuserfunc_params'], TRUE)
+				: array();
+			if (!is_array($currentValues)) {
+				$currentValues = array();
+			}
+
+			$newValues = array_merge($currentValues, $virtualValues);
+			$fieldArray['tx_directmailuserfunc_params'] = json_encode($newValues);
+		}
+	}
+
+	/**
 	 * Reconfigures the TCA with custom fields.
 	 *
-	 * @param array $fields
+	 * @param array|NULL $fields
 	 * @param array $row
 	 * @return void
 	 */
-	protected function reconfigureTCA(array $fields, array &$row) {
+	protected function reconfigureTCA(array $fields = NULL, array &$row) {
+		// Remove standard textarea
+		unset($GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']);
+
+		if ($fields === NULL) {
+			return;
+		}
+
 		$currentValues = !empty($row['tx_directmailuserfunc_params'])
 			? json_decode($row['tx_directmailuserfunc_params'], TRUE)
 			: array();
@@ -111,16 +186,15 @@ class Tx_DirectMailUserfuncTceforms {
 			}
 		}
 
-		// Remove standard textarea
-		unset($GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']);
-
 		// Reconfigure TCA with virtual fields
 		foreach ($prefixedFields['columns'] as $field => $fieldInfo) {
 			$GLOBALS['TCA']['sys_dmail_group']['columns'][$field] = $fieldInfo;
 		}
 
 		foreach ($prefixedFields['types'] as $type => $typeInfo) {
-			$GLOBALS['TCA']['sys_dmail_group']['types'][$type]['showitem'] .= ',' . $typeInfo['showitem'];
+			if (substr($GLOBALS['TCA']['sys_dmail_group']['types'][$type]['showitem'], -strlen($typeInfo['showitem'])) !== $typeInfo['showitem']) {
+				$GLOBALS['TCA']['sys_dmail_group']['types'][$type]['showitem'] .= ',' . $typeInfo['showitem'];
+			}
 		}
 
 		// sys_dmail_group has no initial palettes

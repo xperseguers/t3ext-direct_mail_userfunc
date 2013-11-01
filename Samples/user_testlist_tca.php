@@ -48,10 +48,10 @@ class user_testList_tca {
 	 * Returns an array of field definitions for additional parameters.
 	 *
 	 * @param string $methodName
-	 * @param t3lib_TCEforms $pObj Parent object
+	 * @param t3lib_TCEforms|t3lib_TCEmain $pObj Parent object
 	 * @return array|NULL TCA or NULL if no additional parameters are needed
 	 */
-	public function getWizardFields($methodName, t3lib_TCEforms $pObj) {
+	public function getWizardFields($methodName, $pObj) {
 		$additionalParameters = array(
 			'columns' => array(
 				'size' => array(
@@ -61,6 +61,9 @@ class user_testList_tca {
 						'size' => '5',
 						'max' => '5',
 						'eval' => 'int',
+						'range' => array(
+							'lower' => 1,
+						)
 					)
 				),
 				'name' => array(

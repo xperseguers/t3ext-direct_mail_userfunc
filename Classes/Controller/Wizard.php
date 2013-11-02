@@ -206,7 +206,9 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 
 		$updateJS = 'var itemsProcFunc = document.' . $PA['formName'] . '[\'userfunc_provider\'].value;';
 		$updateJS .= 'document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = itemsProcFunc;';
-		$updateJS .= implode('', $PA['fieldChangeFunc']) . ';return false;';
+		$updateJS .= implode('', $PA['fieldChangeFunc']);
+		// Automatically reload edit form
+		$updateJS .= 'if (confirm(TBE_EDITOR.labels.onChangeAlert) &amp;&amp; TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm() };';
 
 		$selector = '
 			<select name="userfunc_provider" onchange="' . $updateJS . '">

@@ -198,9 +198,14 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 		}
 		asort($providers);
 
+		$hasOptionSelected = FALSE;
 		$options = array();
 		foreach ($providers as $itemsProcFunc => $label) {
-			$selected = $PA['row']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc ? ' selected="selected"' : '';
+			$selected = '';
+			if ($PA['row']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc) {
+				$hasOptionSelected = TRUE;
+				$selected = ' selected="selected"';
+			}
 			$options[] = sprintf('<option value="%s"%s>%s</option>', $itemsProcFunc, $selected, $label);
 		}
 
@@ -217,8 +222,13 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 			</select>
 		';
 
+		$hideInput = $hasOptionSelected
+			&& static::isClassValid($PA['row']['tx_directmailuserfunc_itemsprocfunc'])
+			&& static::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
+
 		// Prepend the provider selector
-		$PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector . '<br />' . $PA['item'];
+		$PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector .
+			($hideInput ? '<div style="display:none">' : '') . '<br />' . $PA['item'] . ($hideInput ? '</div>' : '');
 	}
 
 	/**

@@ -159,6 +159,7 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 			'columns' => array(),
 			'types' => $fields['types'],
 			'palettes' => isset($fields['palettes']) ? $fields['palettes'] : array(),
+			'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : array(),
 		);
 		foreach ($fields['columns'] as $field => $fieldInfo) {
 			$virtualField = 'tx_directmailuserfunc_virtual_' . $field;
@@ -184,6 +185,14 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 					$paletteInfo['showitem']
 				);
 			}
+
+			if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
+				$prefixedFields['ctrl']['requestUpdate'] = preg_replace(
+					'/(^|[, ])' . preg_quote($field) . '([,; ]|$)/',
+					'$1' . $virtualField . '$2',
+					$prefixedFields['ctrl']['requestUpdate']
+				);
+			}
 		}
 
 		// Reconfigure TCA with virtual fields
@@ -199,6 +208,10 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 
 		// sys_dmail_group has no initial palettes
 		$GLOBALS['TCA']['sys_dmail_group']['palettes'] = $prefixedFields['palettes'];
+
+		if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
+			$GLOBALS['TCA']['sys_dmail_group']['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];
+		}
 	}
 
 }

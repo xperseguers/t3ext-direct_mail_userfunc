@@ -200,7 +200,8 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 
 		$options = array();
 		foreach ($providers as $itemsProcFunc => $label) {
-			$options[] = sprintf('<option value="%s">%s</option>', $itemsProcFunc, $label);
+			$selected = $PA['row']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc ? ' selected="selected"' : '';
+			$options[] = sprintf('<option value="%s"%s>%s</option>', $itemsProcFunc, $selected, $label);
 		}
 
 		$updateJS = 'var itemsProcFunc = document.' . $PA['formName'] . '[\'userfunc_provider\'].value;';

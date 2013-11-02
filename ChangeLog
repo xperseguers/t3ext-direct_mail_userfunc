@@ -1,5 +1,6 @@
 2013-11-02  Xavier Perseguers  <xavier@causal.ch>
 
+	* [TASK] #53278: itemsProcFunc should show selected item
 	* [TASK][DOC] TCA-based additional parameters
 	* [BUGFIX] #53277: Userfunc check icon should stick to input field
 

@@ -1,3 +1,7 @@
+2013-11-02  Xavier Perseguers  <xavier@causal.ch>
+
+	* [BUGFIX] #53277: Userfunc check icon should stick to input field
+
 2013-11-01  Xavier Perseguers  <xavier@causal.ch>
 
 	* [BUGFIX] #53274: Field evaluation is not taken into account

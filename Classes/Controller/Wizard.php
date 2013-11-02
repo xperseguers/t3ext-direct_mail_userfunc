@@ -52,25 +52,36 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param t3lib_TCEforms $pObj
 	 * @return string HTML snippet to be put after the itemsProcFunc field
 	 */
-	public function itemsprocfunc_procWizard(array $PA, t3lib_TCEforms $pObj) {
+	public function itemsprocfunc_procWizard(array &$PA, t3lib_TCEforms $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!$itemsProcFunc) {
 			// Show the required icon
-			$PA['item'] = self::getIcon('gfx/required_h.gif') . $PA['item'];
+			$PA['item'] = static::getIcon('gfx/required_h.gif') . $PA['item'];
 		}
 
 		// Show the user function provider selector
-		self::addUserFunctionProviders($PA);
+		static::addUserFunctionProviders($PA);
 
 		if (!$itemsProcFunc) {
 			return;
-		} elseif (self::isClassValid($itemsProcFunc) && self::isMethodValid($itemsProcFunc)) {
-			$PA['item'] .= self::getIcon('gfx/icon_ok.gif');
-		} elseif (!self::isClassValid($itemsProcFunc)) {
-			$PA['item'] .= self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass');
+		} elseif (static::isClassValid($itemsProcFunc) && static::isMethodValid($itemsProcFunc)) {
+			$this->appendItemContent($PA, static::getIcon('gfx/icon_ok.gif'));
+		} elseif (!static::isClassValid($itemsProcFunc)) {
+			$this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass'));
 		} else {
-			$PA['item'] .= self::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod');
+			$this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod'));
 		}
+	}
+
+	/**
+	 * Appends some content to the PA's item (next to it).
+	 *
+	 * @param array $PA
+	 * @param string $content
+	 * @return void
+	 */
+	protected function appendItemContent(array &$PA, $content) {
+		$PA['item'] = preg_replace('#(<div style="clear:both;"></div>)$#s', $content . '$1', $PA['item']);
 	}
 
 	/**
@@ -81,9 +92,9 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param t3lib_TCEforms $pObj Parent object
 	 * @return string HTML snippet to be put after the params field
 	 */
-	public function params_procWizard(array $PA, t3lib_TCEforms $pObj) {
+	public function params_procWizard(array &$PA, t3lib_TCEforms $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-		if (!self::isMethodValid($itemsProcFunc)) {
+		if (!static::isMethodValid($itemsProcFunc)) {
 			return '';
 		}
 
@@ -110,10 +121,10 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 			$wizardJS .= 'return false;';
 
 			$output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="' . $altIcon . '">';
-			$output .= self::getIcon('gfx/options.gif');
+			$output .= static::getIcon('gfx/options.gif');
 			$output .= '</a>';
 		} else {
-			$output = self::getIcon('gfx/options.gif', $altIcon, 'id="params-btn" style="cursor:pointer"');
+			$output = static::getIcon('gfx/options.gif', $altIcon, 'id="params-btn" style="cursor:pointer"');
 			$output .= $wizardJS;
 		}
 
@@ -143,7 +154,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @api
 	 */
 	static public function isMethodValid($itemsProcFunc) {
-		if (!self::isClassValid($itemsProcFunc)) {
+		if (!static::isClassValid($itemsProcFunc)) {
 			return FALSE;
 		}
 
@@ -174,7 +185,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param array $PA TCA configuration passed by reference
 	 * @return void
 	 */
-	static protected function AddUserFunctionProviders($PA) {
+	static protected function addUserFunctionProviders(&$PA) {
 		if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
 			return;
 		}
@@ -183,7 +194,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 		$providers = array();
 		foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] as $provider) {
 			$itemsProcFunc = $provider['class'] .'->' . $provider['method'];
-			$providers[$itemsProcFunc] = self::getLL($provider['label']);
+			$providers[$itemsProcFunc] = static::getLL($provider['label']);
 		}
 		asort($providers);
 

@@ -1,5 +1,6 @@
 2013-11-02  Xavier Perseguers  <xavier@causal.ch>
 
+	* [FEATURE] #53280: Add support for TCA ['ctrl']['requestUpdate']
 	* [TASK] Hide itemsProcFunc input text if using provider
 	* [TASK] #53279: Reload edit form when changing itemsProcFunc
 	* [TASK] #53278: itemsProcFunc should show selected item

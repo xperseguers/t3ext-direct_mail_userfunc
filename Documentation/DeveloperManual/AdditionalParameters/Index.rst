@@ -24,9 +24,14 @@ able to process it the way it likes:
 
 .. code-block:: php
 
-	function myRecipientList($params, $pObj) {
+	public function myRecipientList(array &$params, ux_tx_directmail_recipient_list $pObj) {
 	    // Retrieve user parameters (will get "18")
 	    $sizeOfRecipientList = $params['userParams'];
 
 	    // snip
 	}
+
+The next two sections describe how you may:
+
+#. Create a JavaScript-based wizard to manipulate the string of additional parameters
+#. Create additional TCA fields to be even more user friendly

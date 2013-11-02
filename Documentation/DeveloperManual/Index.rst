@@ -18,7 +18,7 @@ recipient list.
 
 	class user_testList {
 
-	    function myRecipientList(array &$params, $pObj) {
+	    public function myRecipientList(array &$params, ux_tx_directmail_recipient_list $pObj) {
 	        $params['lists']['PLAINLIST'][] = array(
 	            'name' => 'John Doo',
 	            'email' => 'john.doo@hotmail.com',
@@ -43,14 +43,14 @@ this is easily done with:
 	$params['lists']['fe_users'][] = 14;
 
 .. note::
-	Your class should be properly loaded. This is typically done with an include statement in ``typo3conf/localconf.php``
-	or with an extension and the corresponding include statement in ``ext_localconf.php``.
+	Your class should be properly loaded. This is typically done with an include statement in :file:`typo3conf/localconf.php`
+	or with an extension and the corresponding include statement in :file:`ext_localconf.php`.
 
 .. note::
 	You class should be prefixed with ``user_`` in order to prevent TYPO3 from issuing a warning. If you create an
 	extension for your user functions, we suggest using naming ``user_Tx_YourExt_Controller_SomeClass`` with file
-	``SomeClass.php`` stored in ``yourExt/Classes/Controller/SomeClass.php`` in order to respect as much as possible
-	Extbase naming convention.
+	:file:`SomeClass.php` stored in :file:`yourExt/Classes/Controller/SomeClass.php` in order to respect as much as
+	possible Extbase naming convention.
 
 
 .. toctree::
@@ -60,5 +60,6 @@ this is easily done with:
 
 	RegisteringTheUserFunction/Index
 	AdditionalParameters/Index
-	UsingAWizardForAdditionalParameters/Index
+	AdditionalParameters/Wizard
+	AdditionalParameters/TCA
 	SampleUserFunctions/Index

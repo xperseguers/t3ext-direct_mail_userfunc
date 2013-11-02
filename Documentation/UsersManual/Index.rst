@@ -26,8 +26,7 @@ As you see, dynamic lists are fully integrated with Direct Mail.
 Supported types of recipient lists
 ----------------------------------
 
-With the exception of custom table records, Direct Mail supports
-recipient lists with basically three types of items:
+With the exception of custom table records, Direct Mail supports recipient lists with basically three types of items:
 
 #. List of ``tt_address`` records
 
@@ -35,10 +34,9 @@ recipient lists with basically three types of items:
 
 #. Plain list of email addresses
 
-This extension allows you to create dynamic list of recipients using
-any of these types of items. Screenshot below shows a dynamic list
-with 1 record coming from table tt_address, 1 record coming from
-table fe_users and 18 records given as plain email addresses:
+This extension allows you to create dynamic list of recipients using any of these types of items. Screenshot below shows
+a dynamic list with 1 record coming from table tt_address, 1 record coming from table fe_users and 18 records given as
+plain email addresses:
 
 .. figure:: ../Images/supported_types.png
 	:alt: Supported types of dynamic lists

@@ -12,7 +12,7 @@ Sample Providers
 ----------------
 
 Three wizards are provided in directory :file:`Samples` of the extension. To activate them, go to Extension Manager,
-click on extension Direct Mail User Functions, tick the corresponding checkbox and click on Update button:
+click on extension External Providers for Direct Mail, tick the corresponding checkbox and click on Update button:
 
 .. figure:: ../../Images/enable_samples.png
 	:alt: Enable samples

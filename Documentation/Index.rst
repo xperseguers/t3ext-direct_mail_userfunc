@@ -8,9 +8,9 @@
 
 .. _start:
 
-==========================
-Direct Mail User Functions
-==========================
+==================================
+External Providers for Direct Mail
+==================================
 
 .. only:: html
 

@@ -1,5 +1,6 @@
 2013-11-03  Xavier Perseguers  <xavier@causal.ch>
 
+	* [TASK][UX] Change extension's title
 	* [TASK][UX] #53288: Rename "User function" and "itemsProcFunc"
 	* [BUGFIX][!!!] #53287: Cannot mix TCA and non TCA-based additional parameters
 

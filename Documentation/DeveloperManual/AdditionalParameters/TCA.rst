@@ -65,5 +65,6 @@ fields. The 'ctrl' section is only needed if you wish to trigger an update of th
 	Type number "5" corresponds to a list of recipients defined as a user function, what we are dealing with here.
 
 .. hint::
-	Method ``getWizardFields`` may return ``NULL`` instead of an array. This has the effect of simply hiding the
-	additional parameters text area.
+	Method ``getWizardFields`` should return an empty array if no additional parameters are needed and ``NULL`` if the
+	standard additional parameters text area should be kept (useful when the user class is used for both TCA and non
+	TCA-based additional parameters).

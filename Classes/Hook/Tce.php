@@ -140,10 +140,18 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 	 * @return void
 	 */
 	protected function reconfigureTCA(array $fields = NULL, array &$row) {
+		if ($fields === NULL) {
+			// The user class is used for both TCA and non TCA-based additional parameters
+			// and the standard text area should be shown
+			// see http://forge.typo3.org/issues/53287
+			return;
+		}
+
 		// Remove standard textarea
 		unset($GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']);
 
-		if ($fields === NULL) {
+		if (count($fields) === 0) {
+			// The user class does not need any additional parameters
 			return;
 		}
 

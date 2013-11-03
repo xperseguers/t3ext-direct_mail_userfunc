@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'External Providers for Direct Mail',
-	'description' => 'Adds support for external providers to Direct Mail. It allows recipient lists to be defined using a user function.',
+	'description' => 'Adds support for external providers to Direct Mail. This extension extends the types of recipient lists handled by Direct Mail with an entry for parameterized custom lists. These custom lists are prepared by user functions and may easily reuse your own business logic.',
 	'category' => 'module',
 	'author' => 'Xavier Perseguers (Causal)',
 	'author_company' => 'Causal Sàrl',

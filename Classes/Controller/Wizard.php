@@ -185,7 +185,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * @param array $PA TCA configuration passed by reference
 	 * @return void
 	 */
-	static protected function addUserFunctionProviders(&$PA) {
+	static protected function addUserFunctionProviders(array &$PA) {
 		if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
 			return;
 		}

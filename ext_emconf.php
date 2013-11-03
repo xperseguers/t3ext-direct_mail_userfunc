@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Direct Mail User Functions',
-	'description' => 'Adds support for user functions to Direct Mail. Currently allows recipient lists to be defined using a user function.',
+	'description' => 'Adds support for external providers to Direct Mail. It allows recipient lists to be defined using a user function.',
 	'category' => 'module',
 	'author' => 'Xavier Perseguers (Causal)',
 	'author_company' => 'Causal Sàrl',

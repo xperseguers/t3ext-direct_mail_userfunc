@@ -24,11 +24,11 @@ Direct Mail User Functions
 		en
 
 	:Description:
-		Adds support for user functions to Direct Mail. Currently allows recipient lists to be defined using a
+		Adds support for external providers to Direct Mail. It allows recipient lists to be defined using a
 		user function.
 
 	:Keywords:
-		direct_mail, dynamic list, user function
+		direct_mail, dynamic list, user function, external provider
 
 	:Copyright:
 		2009-2013

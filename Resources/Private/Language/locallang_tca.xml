@@ -6,7 +6,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="sys_dmail_group.type.I.5">User function</label>
+			<label index="sys_dmail_group.type.I.5">External provider</label>
 			<label index="wizard.itemsProcFunc.invalidClass">Unknown class</label>
 			<label index="wizard.itemsProcFunc.invalidMethod">Class is valid but method does not exist</label>
 			<label index="wizard.itemsProcFunc.providers">Registered providers:</label>

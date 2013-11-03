@@ -11,16 +11,13 @@
 Additional parameters
 ---------------------
 
-When creating a recipient list from type user function, you have the
-possibility to specify additional parameters that will be passed as a
-single string arguments to the itemsProcFunc. Let's suppose the user
-specify this recipient list:
+When creating a recipient list from type external provider, you have the possibility to specify additional parameters
+that will be passed as a single string arguments to the provider. Let's suppose the user specify this recipient list:
 
 .. figure:: ../../Images/itemsprocfunc.png
-	:alt: itemsProcFunc
+	:alt: Custom provider as an itemsProcFunc
 
-Method ``myRecipientList`` will get additional parameter "18" and will be
-able to process it the way it likes:
+Method ``myRecipientList`` will get additional parameter "18" and will be able to process it the way it likes:
 
 .. code-block:: php
 

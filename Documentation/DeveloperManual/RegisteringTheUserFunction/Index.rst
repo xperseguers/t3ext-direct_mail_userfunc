@@ -8,11 +8,11 @@
 
 .. _registering-user-function:
 
-Registering the user function
------------------------------
+Registering the provider
+------------------------
 
-As shown in section :ref:`screenshots`, you have the opportunity to register your user function and add it to the
-registered providers selector:
+As shown in section :ref:`screenshots`, you have the opportunity to register your provider and add it to the selector of
+registered providers:
 
 .. figure:: ../../Images/registered_providers.png
 	:alt: Registered providers
@@ -29,7 +29,7 @@ Sample code to be added to your :file:`ext_tables.php` file:
 	    );
 	}
 
-This will add a new entry "Some Label" that fills in itemsProcFunc ``yourClass->yourMethod`` when selected:
+This will add a new entry "Some Label" that fills in provider ``yourClass->yourMethod`` when selected:
 
 .. figure:: ../../Images/new_provider.png
 	:alt: New provider

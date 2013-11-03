@@ -6,8 +6,8 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc">itemsProcFunc</label>
-			<label index="sys_dmail_group.tx_directmailuserfunc_params">Additional parameters</label>
+			<label index="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc">Provider:</label>
+			<label index="sys_dmail_group.tx_directmailuserfunc_params">Additional parameters:</label>
 
 			<!--  Labels for sample user functions -->
 			<label index="myRecipientListTca.size">Size of the list:</label>

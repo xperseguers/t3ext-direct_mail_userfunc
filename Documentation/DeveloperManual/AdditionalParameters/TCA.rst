@@ -62,7 +62,7 @@ Please refer to :ref:`['columns'] section in TCA reference <t3tca:columns>` for 
 fields. The 'ctrl' section is only needed if you wish to trigger an update of the form.
 
 .. note::
-	Type number "5" corresponds to a list of recipients defined as a user function, what we are dealing with here.
+	Type number "5" corresponds to a list of recipients defined as an external provider, what we are dealing with here.
 
 .. hint::
 	Method ``getWizardFields`` should return an empty array if no additional parameters are needed and ``NULL`` if the

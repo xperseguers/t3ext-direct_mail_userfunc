@@ -14,10 +14,10 @@ class Tx_DirectMailUserfunc_Samples_TestList {
 	 * Returns a list of recipients.
 	 *
 	 * @param array $params User parameters
-	 * @param ux_tx_directmail_recipient_list $pObj Parent object
+	 * @param ux_tx_directmail_recipient_list|ux_tx_directmail_dmail $pObj Parent object
 	 * @return array
 	 */
-	public function myRecipientList(array &$params, ux_tx_directmail_recipient_list $pObj) {
+	public function myRecipientList(array &$params, $pObj) {
 		// Add tt_address #4 to the recipient list
 		$params['lists']['tt_address'][] = 4;
 

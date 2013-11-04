@@ -21,7 +21,7 @@ Method ``myRecipientList`` will get additional parameter "18" and will be able t
 
 .. code-block:: php
 
-	public function myRecipientList(array &$params, ux_tx_directmail_recipient_list $pObj) {
+	public function myRecipientList(array &$params, $pObj) {
 	    // Retrieve user parameters (will get "18")
 	    $sizeOfRecipientList = $params['userParams'];
 

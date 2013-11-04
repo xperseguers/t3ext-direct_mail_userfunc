@@ -18,7 +18,7 @@ recipient list.
 
 	class user_testList {
 
-	    public function myRecipientList(array &$params, ux_tx_directmail_recipient_list $pObj) {
+	    public function myRecipientList(array &$params, $pObj) {
 	        $params['lists']['PLAINLIST'][] = array(
 	            'name' => 'John Doo',
 	            'email' => 'john.doo@hotmail.com',

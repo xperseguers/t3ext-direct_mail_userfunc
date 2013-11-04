@@ -43,14 +43,9 @@ this is easily done with:
 	$params['lists']['fe_users'][] = 14;
 
 .. note::
-	Your class should be properly loaded. This is typically done with an include statement in :file:`typo3conf/localconf.php`
-	or with an extension and the corresponding include statement in :file:`ext_localconf.php`.
-
-.. note::
-	You class should be prefixed with ``user_`` in order to prevent TYPO3 from issuing a warning. If you create an
-	extension for your user functions, we suggest using naming ``user_Tx_YourExt_Controller_SomeClass`` with file
-	:file:`SomeClass.php` stored in :file:`yourExt/Classes/Controller/SomeClass.php` in order to respect as much as
-	possible Extbase naming convention.
+	Your class should be properly loaded. If you are using TYPO3 >= 4.6 and you stick to Extbase naming conventions, the
+	TYPO3 autoloader will automatically take care of loading it when needed. If using TYPO3 4.5, you should add a
+	reference into :file:`EXT:yourext/ext_autoload.php`.
 
 
 .. toctree::

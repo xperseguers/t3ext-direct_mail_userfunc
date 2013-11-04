@@ -81,7 +81,7 @@ number of recipients you want to get in your recipient list:
 .. figure:: ../../Images/alert_basic.png
 	:alt: Standard alert box
 
-As TYPO3 comes with the ExtJS framework, you may show a prettier dialog (code is provided in Samples):
+As TYPO3 comes with the ExtJS framework, you may show a prettier dialog (code is provided in :file:`Classes/Samples`):
 
 .. figure:: ../../Images/alert_extjs.png
 	:alt: Alert box based on ExtJS

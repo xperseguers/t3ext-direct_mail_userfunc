@@ -59,19 +59,19 @@ if (TYPO3_MODE === 'BE') {
 	$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
 	if ($extConf['enableSamples']) {
 		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = array(
-			'class'  => 'user_testList',
+			'class'  => 'Tx_DirectMailUserfunc_Samples_TestList',
 			'method' => 'myRecipientList',
 			'label'  => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:userfunction.myRecipientList'
 		);
 
 		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = array(
-			'class'  => 'user_testList_extjs',
+			'class'  => 'Tx_DirectMailUserfunc_Samples_TestListExtjs',
 			'method' => 'myRecipientList',
 			'label'  => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:userfunction.myRecipientListExtJS'
 		);
 
 		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = array(
-			'class'  => 'user_testList_tca',
+			'class'  => 'Tx_DirectMailUserfunc_Samples_TestListTca',
 			'method' => 'myRecipientList',
 			'label'  => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:userfunction.myRecipientListTca'
 		);

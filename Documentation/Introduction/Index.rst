@@ -38,8 +38,8 @@ Screenshots
 .. figure:: ../Images/userfunc_overview.png
 	:alt: Overview of the configuration of a dynamic list of recipients
 
-#. Icon |valid| confirms that the provider definition is valid (class ``user_testlist`` was found and method
-   "myRecipientList" exists).
+#. Icon |valid| confirms that the provider definition is valid (class ``Tx_DirectMailUserfunc_Samples_TestList`` was
+   found and method "myRecipientList" exists).
 
 #. Icon |wizard| informs you that a wizard is available to configure the additional parameters. Simply click on it to
    invoke a user-generated script.

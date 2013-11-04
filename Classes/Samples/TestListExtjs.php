@@ -8,7 +8,7 @@
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class user_testList_extjs {
+class Tx_DirectMailUserfunc_Samples_TestListExtjs {
 
 	/**
 	 * Returns a list of recipients.
@@ -47,7 +47,7 @@ class user_testList_extjs {
 		$js = '';
 
 		if ($methodName === 'myRecipientList') {
-			$js = '<script type="text/javascript" src="' . t3lib_extMgm::extRelPath('direct_mail_userfunc') . 'Samples/parameters.js' . '"></script>';
+			$js = '<script type="text/javascript" src="' . t3lib_extMgm::extRelPath('direct_mail_userfunc') . 'Classes/Samples/parameters.js' . '"></script>';
 			$js .= '<script type="text/javascript"><!--
 				var dmuf_parameters = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'];
 				function updateParameters(params) {

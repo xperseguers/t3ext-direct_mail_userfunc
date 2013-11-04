@@ -8,7 +8,7 @@
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class user_testList_tca {
+class Tx_DirectMailUserfunc_Samples_TestListTca {
 
 	/**
 	 * Returns a list of recipients.

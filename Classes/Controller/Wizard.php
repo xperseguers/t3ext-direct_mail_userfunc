@@ -64,9 +64,10 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 
 		if (!$itemsProcFunc) {
 			return;
-		} elseif (static::isClassValid($itemsProcFunc) && static::isMethodValid($itemsProcFunc)) {
+		} elseif (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isMethodValid($itemsProcFunc)) {
+
 			$this->appendItemContent($PA, static::getIcon('gfx/icon_ok.gif'));
-		} elseif (!static::isClassValid($itemsProcFunc)) {
+		} elseif (!Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isClassValid($itemsProcFunc)) {
 			$this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass'));
 		} else {
 			$this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod'));
@@ -94,20 +95,12 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 */
 	public function params_procWizard(array &$PA, t3lib_TCEforms $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-		if (!static::isMethodValid($itemsProcFunc)) {
-			return '';
-		}
-
-		list($className, $methodName) = explode('->', $itemsProcFunc);
-		if (!method_exists($className, 'getWizard')) {
+		if (!Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizard($itemsProcFunc)) {
 			return '';
 		}
 
 		$autoJS = TRUE;
-		$wizardJS = trim(call_user_func_array(
-			array($className, 'getWizard'),
-			array($methodName, &$PA, $pObj, &$autoJS)
-		));
+		$wizardJS = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizard($itemsProcFunc, $PA, $autoJS, $pObj);
 
 		if (!$wizardJS) {
 			return '';
@@ -115,7 +108,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 
 		$altIcon = $GLOBALS['LANG']->getLL('wizard.parameters.title');
 		if ($autoJS) {
-			if ($wizardJS{strlen($wizardJS) - 1} !== ';') {
+			if (substr($wizardJS, -1) !== ';') {
 				$wizardJS .= ';';
 			}
 			$wizardJS .= 'return false;';
@@ -129,41 +122,6 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 		}
 
 		return $output;
-	}
-
-	/**
-	 * Checks whether the class part of a given itemsProcFunc definition is valid.
-	 *
-	 * @param string $itemsProcFunc
-	 * @return boolean
-	 */
-	static protected function isClassValid($itemsProcFunc) {
-		list($className, $methodName) = explode('->', $itemsProcFunc);
-
-		if ($className && class_exists($className)) {
-			return TRUE;
-		}
-		return FALSE;
-	}
-
-	/**
-	 * Checks whether the method part of a given itemsProcFunc definition is valid.
-	 *
-	 * @param string $itemsProcFunc
-	 * @return boolean
-	 * @api
-	 */
-	static public function isMethodValid($itemsProcFunc) {
-		if (!static::isClassValid($itemsProcFunc)) {
-			return FALSE;
-		}
-
-		list($className, $methodName) = explode('->', $itemsProcFunc);
-
-		if ($methodName && method_exists($className, $methodName)) {
-			return TRUE;
-		}
-		return FALSE;
 	}
 
 	/**
@@ -222,9 +180,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 			</select>
 		';
 
-		$hideInput = $hasOptionSelected
-			&& static::isClassValid($PA['row']['tx_directmailuserfunc_itemsprocfunc'])
-			&& static::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
+		$hideInput = $hasOptionSelected && Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
 
 		// Prepend the provider selector
 		$PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector .

@@ -8,4 +8,5 @@ return array(
 	'tx_directmailuserfunc_samples_testlistextjs' => $extensionClassesPath . 'Samples/TestListExtjs.php',
 	'tx_directmailuserfunc_samples_testlisttca' => $extensionClassesPath . 'Samples/TestListTca.php',
 	'tx_directmailuserfunc_tca_parameters' => $extensionClassesPath . 'Tca/Parameters.php',
+	'tx_directmailuserfunc_utility_itemsprocfunc' => $extensionClassesPath . 'Utility/ItemsProcFunc.php',
 );

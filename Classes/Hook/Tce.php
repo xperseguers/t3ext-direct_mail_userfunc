@@ -53,15 +53,9 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 
 		$wizardFields = NULL;
 		$itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
-		if (!empty($itemsProcFunc) && Tx_DirectMailUserfunc_Controller_Wizard::isMethodValid($itemsProcFunc)) {
-			list($className, $methodName) = explode('->', $itemsProcFunc);
-			if (method_exists($className, 'getWizardFields')) {
-				$wizardFields = call_user_func_array(
-					array($className, 'getWizardFields'),
-					array($methodName, $pObj)
-				);
-				$this->reconfigureTCA($wizardFields, $row);
-			}
+		if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+			$wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
+			$this->reconfigureTCA($wizardFields, $row);
 		}
 	}
 
@@ -81,15 +75,9 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 		}
 
 		$itemsProcFunc = $incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'];
-		if (!empty($itemsProcFunc) && Tx_DirectMailUserfunc_Controller_Wizard::isMethodValid($itemsProcFunc)) {
-			list($className, $methodName) = explode('->', $itemsProcFunc);
-			if (method_exists($className, 'getWizardFields')) {
-				$wizardFields = call_user_func_array(
-					array($className, 'getWizardFields'),
-					array($methodName, $pObj)
-				);
-				$this->reconfigureTCA($wizardFields, $incomingFieldArray);
-			}
+		if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+			$wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
+			$this->reconfigureTCA($wizardFields, $incomingFieldArray);
 		}
 	}
 
@@ -120,15 +108,10 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 
 		if (count($virtualValues) > 0) {
 			$row = t3lib_BEfunc::getRecord($table, $id);
-			$currentValues = !empty($row['tx_directmailuserfunc_params'])
-				? json_decode($row['tx_directmailuserfunc_params'], TRUE)
-				: array();
-			if (!is_array($currentValues)) {
-				$currentValues = array();
-			}
+			$currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
 
 			$newValues = array_merge($currentValues, $virtualValues);
-			$fieldArray['tx_directmailuserfunc_params'] = json_encode($newValues);
+			Tx_DirectMailUserfunc_Utility_ItemsProcFunc::encodeUserParameters($fieldArray, $newValues);
 		}
 	}
 
@@ -155,12 +138,7 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 			return;
 		}
 
-		$currentValues = !empty($row['tx_directmailuserfunc_params'])
-			? json_decode($row['tx_directmailuserfunc_params'], TRUE)
-			: array();
-		if (!is_array($currentValues)) {
-			$currentValues = array();
-		}
+		$currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
 
 		// Prefix each additional field
 		$prefixedFields = array(

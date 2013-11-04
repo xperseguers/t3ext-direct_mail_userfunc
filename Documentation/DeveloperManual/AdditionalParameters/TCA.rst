@@ -25,15 +25,14 @@ Once defined, this custom TCA will *replace* the text area with any field you wa
 
 Upon saving, this extension will take care of automatically and transparently serializing your custom fields and their
 corresponding values into the standard ``tx_directmailuserfunc_params`` database field (the one that is mapped to the
-standard text area) as JSON. Please note however that you will have to unserialize it manually within your itemsProcFunc
-method, just as when dealing with JavaScript additional parameter wizards.
+standard text area) as JSON. You will automatically get decoded values in your itemsProcFunc.
 
 In order to replace the text area, you have to write a method ``getWizardFields`` in your class that returns an array
 of table configuration (TCA):
 
 .. code-block:: php
 
-	public function getWizardFields($methodName, $pObj) {
+	public function getWizardFields($methodName) {
 	    return array(
 	        'columns' => array(
 	            'field1' => array(

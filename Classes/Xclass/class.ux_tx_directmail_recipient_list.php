@@ -53,17 +53,27 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 			'fe_users'   => array(),
 			'PLAINLIST'  => array(),
 		);
-		if ($group_uid)	{
+		if ($group_uid) {
 			$mailGroup = t3lib_BEfunc::getRecord('sys_dmail_group', $group_uid);
 			if (is_array($mailGroup) && $mailGroup['pid'] == $this->id) {
 				switch ($mailGroup['type']) {
 					case 5:
 						$itemsProcFunc = $mailGroup['tx_directmailuserfunc_itemsprocfunc'];
-						if (preg_match('/^[a-zA-z0-9_:]+->[a-zA-z0-9_]+$/', $itemsProcFunc)) {
+						if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isMethodValid($itemsProcFunc)) {
+							$userParams = $mailGroup['tx_directmailuserfunc_params'];
+							if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+								$fields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc);
+								if ($fields !== NULL) {
+									$userParams = count($fields) === 0
+										? array()
+										: Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($mailGroup);
+								}
+							}
+
 							$params = array(
 								'groupUid'  => $group_uid,
 								'lists' => &$id_lists,
-								'userParams' => $mailGroup['tx_directmailuserfunc_params'],
+								'userParams' => $userParams,
 							);
 							t3lib_div::callUserFunction($itemsProcFunc, $params, $this);
 
@@ -75,7 +85,7 @@ class ux_tx_directmail_recipient_list extends tx_directmail_recipient_list {
 								$id_lists['PLAINLIST'] = tx_directmail_static::cleanPlainList($id_lists['PLAINLIST']);
 							}
 						}
-						break;
+					break;
 					default:
 						return parent::cmd_compileMailGroup($group_uid);
 				}

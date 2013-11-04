@@ -25,12 +25,7 @@ class Tx_DirectMailUserfunc_Samples_TestListTca {
 		$params['lists']['fe_users'][] = 1;
 
 		// Retrieve user parameters
-		$userParameters = !empty($params['userParams'])
-			? json_decode($params['userParams'], TRUE)
-			: array();
-		if (!is_array($userParameters)) {
-			$userParameters = array();
-		}
+		$userParameters = $params['userParams'];
 
 		$sizeOfRecipientList = isset($userParameters['size']) ? intval($userParameters['size']) : 2;
 		for ($i = 0; $i < $sizeOfRecipientList; $i++) {
@@ -48,10 +43,9 @@ class Tx_DirectMailUserfunc_Samples_TestListTca {
 	 * Returns an array of field definitions for additional parameters.
 	 *
 	 * @param string $methodName
-	 * @param t3lib_TCEforms|t3lib_TCEmain $pObj Parent object
 	 * @return array|NULL TCA or NULL if no additional parameters are needed
 	 */
-	public function getWizardFields($methodName, $pObj) {
+	public function getWizardFields($methodName) {
 		$additionalParameters = array(
 			'columns' => array(
 				'size' => array(

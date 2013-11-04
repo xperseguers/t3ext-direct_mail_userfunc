@@ -60,7 +60,7 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 	}
 
 	/**
-	 * Reconfigures TCA as in getMainFields_preProcess() to let field evaluation take place.
+	 * Stores virtual field values into column tx_directmailuserfunc_params.
 	 * Hook in t3lib_TCEmain
 	 *
 	 * @param array $incomingFieldArray
@@ -74,45 +74,62 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 			return;
 		}
 
-		$itemsProcFunc = $incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'];
+		$row = t3lib_BEfunc::getRecord($table, $id);
+		$currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
+
+		if (isset($incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'])) {
+			$itemsProcFunc = $incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'];
+		} else {
+			$itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
+		}
+
 		if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
 			$wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
-			$this->reconfigureTCA($wizardFields, $incomingFieldArray);
-		}
-	}
-
-	/**
-	 * Stores virtual field values into column tx_directmailuserfunc_params.
-	 * Hook in t3lib_TCEmain
-	 *
-	 * @param string $status
-	 * @param string $table
-	 * @param integer|string $id
-	 * @param array $fieldArray
-	 * @param t3lib_TCEmain $pObj
-	 * @return void
-	 */
-	public function processDatamap_postProcessFieldArray($status, $table, $id, array &$fieldArray, t3lib_TCEmain $pObj) {
-		if ($table !== 'sys_dmail_group') {
-			return;
+			$this->reconfigureTCA($wizardFields, $row, FALSE);
 		}
 
 		$virtualValues = array();
-		foreach ($fieldArray as $field => $value) {
+		foreach ($incomingFieldArray as $field => $value) {
 			if (t3lib_div::isFirstPartOfStr($field, 'tx_directmailuserfunc_virtual_')) {
 				$virtualField = substr($field, strlen('tx_directmailuserfunc_virtual_'));
-				$virtualValues[$virtualField] = $value;
-				unset($fieldArray[$field]);
+
+				// Evaluate field
+				$curValue = isset($currentValues[$virtualField]) ? $currentValues[$virtualField] : '';
+				$res = $this->checkValue($table, $field, $value, $curValue, $id, $status, $row['pid'], $pObj);
+				if (isset($res['value'])) {
+					$virtualValues[$virtualField] = $res['value'];
+				}
+
+				unset($incomingFieldArray[$field]);
 			}
 		}
 
 		if (count($virtualValues) > 0) {
-			$row = t3lib_BEfunc::getRecord($table, $id);
-			$currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
-
 			$newValues = array_merge($currentValues, $virtualValues);
-			Tx_DirectMailUserfunc_Utility_ItemsProcFunc::encodeUserParameters($fieldArray, $newValues);
+			Tx_DirectMailUserfunc_Utility_ItemsProcFunc::encodeUserParameters($incomingFieldArray, $newValues);
 		}
+	}
+
+	/**
+	 * @param string $table Table name
+	 * @param string $field Field name
+	 * @param string $value Value to be evaluated. Notice, this is the INPUT value from the form
+	 * @param string $curValue The original value (from existing record)
+	 * @param string $id The record-uid, mainly - but not exclusively - used for logging
+	 * @param string $status 'update' or 'new' flag
+	 * @param integer $realPid The real PID value of the record. For updates, this is just the pid of the record.
+	 * @param t3lib_TCEmain $pObj
+	 * @return array Returns the evaluated $value as key "value" in this array. Can be checked with isset($res['value']) ...
+	 * @see t3lib_TCEmain::checkValue()
+	 */
+	protected function checkValue($table, $field, $value, $curValue, $id, $status, $realPid, t3lib_TCEmain $pObj) {
+		// For our use $tscPID is always the real PID
+		$tscPID = $realPid;
+		// Getting config for the field
+		$tcaFieldConf = $GLOBALS['TCA'][$table]['columns'][$field]['config'];
+		// Perform processing:
+		$res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, array(), $tscPID);
+		return $res;
 	}
 
 	/**
@@ -120,9 +137,10 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 	 *
 	 * @param array|NULL $fields
 	 * @param array $row
+	 * @param boolean $removeStandardField
 	 * @return void
 	 */
-	protected function reconfigureTCA(array $fields = NULL, array &$row) {
+	protected function reconfigureTCA(array $fields = NULL, array &$row, $removeStandardField = TRUE) {
 		if ($fields === NULL) {
 			// The user class is used for both TCA and non TCA-based additional parameters
 			// and the standard text area should be shown
@@ -130,8 +148,10 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 			return;
 		}
 
-		// Remove standard textarea
-		unset($GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']);
+		if ($removeStandardField) {
+			// Remove standard textarea
+			unset($GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']);
+		}
 
 		if (count($fields) === 0) {
 			// The user class does not need any additional parameters

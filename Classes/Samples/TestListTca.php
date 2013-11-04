@@ -55,6 +55,7 @@ class Tx_DirectMailUserfunc_Samples_TestListTca {
 						'size' => '5',
 						'max' => '5',
 						'eval' => 'int',
+						'default' => 1,
 						'range' => array(
 							'lower' => 1,
 						)

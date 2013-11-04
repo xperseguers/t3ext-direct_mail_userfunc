@@ -1,5 +1,6 @@
 2013-11-04  Xavier Perseguers  <xavier@causal.ch>
 
+	* [TASK] Raise version to 1.4.0
 	* [BUGFIX] #53309: Unknown column 'tx_directmailuserfunc_virtual_type' in 'field list'
 	* [TASK] Transparently decode TCA parameters
 	* [BUGFIX] Invalid type hint in samples (thanks to Eric Chavaillaz)

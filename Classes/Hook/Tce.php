@@ -74,7 +74,11 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 			return;
 		}
 
-		$row = t3lib_BEfunc::getRecord($table, $id);
+		if (strpos($id, 'NEW') !== FALSE) {
+			$row = array();
+		} else {
+			$row = t3lib_BEfunc::getRecord($table, $id);
+		}
 		$currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
 
 		if (isset($incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'])) {

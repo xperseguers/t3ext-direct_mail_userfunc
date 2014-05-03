@@ -11,7 +11,7 @@
 ChangeLog
 =========
 
-The following is a very high level overview of the changes in this extension. For more details, `read the online log <http://forge.typo3.org/projects/extension-direct_mail_userfunc/repository/changes/trunk>`_.
+The following is a very high level overview of the changes in this extension. For more details, `read the online log <https://git.typo3.org/TYPO3CMS/Extensions/direct_mail_userfunc.git/log>`_.
 
 
 .. tabularcolumns:: |r|p{13.7cm}|

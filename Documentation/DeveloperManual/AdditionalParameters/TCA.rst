@@ -63,7 +63,7 @@ fields. The 'ctrl' section is only needed if you wish to trigger an update of th
 .. note::
 	Type number "5" corresponds to a list of recipients defined as an external provider, what we are dealing with here.
 
-.. hint::
+.. tip::
 	Method ``getWizardFields`` should return an empty array if no additional parameters are needed and ``NULL`` if the
 	standard additional parameters text area should be kept (useful when the user class is used for both TCA and non
 	TCA-based additional parameters).

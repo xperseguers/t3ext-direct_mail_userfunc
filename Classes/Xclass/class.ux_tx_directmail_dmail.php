@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Xavier Perseguers (xavier@causal.ch)
+ *  (c) 2012-2014 Xavier Perseguers (xavier@causal.ch)
  *  (c) 2009-2011 Xavier Perseguers (typo3@perseguers.ch)
  *
  *  All rights reserved
@@ -27,6 +27,10 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+if (version_compare(TYPO3_version, '6.2.0', '>=')) {
+	class tx_directmail_dmail extends \DirectMailTeam\DirectMail\Mod2\tx_directmail_dmail {}
+}
+
 /**
  * This class extends EXT:direct_mail to let recipient lists to be
  * defined by a user function.
@@ -34,7 +38,7 @@
  * @category    XCLASS
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @copyright   2012-2013 Causal Sàrl
+ * @copyright   2012-2014 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class ux_tx_directmail_dmail extends tx_directmail_dmail {
@@ -105,7 +109,11 @@ class ux_tx_directmail_dmail extends tx_directmail_dmail {
 								// Make unique entries
 								$recipientList['tt_address'] = array_unique($recipientList['tt_address']);
 								$recipientList['fe_users'] = array_unique($recipientList['fe_users']);
-								$recipientList['PLAINLIST'] = tx_directmail_static::cleanPlainList($recipientList['PLAINLIST']);
+								if (version_compare(TYPO3_version, '6.2.0', '>=')) {
+									$recipientList['PLAINLIST'] = \DirectMailTeam\DirectMail\DirectMailUtility::cleanPlainList($recipientList['PLAINLIST']);
+								} else {
+									$recipientList['PLAINLIST'] = tx_directmail_static::cleanPlainList($recipientList['PLAINLIST']);
+								}
 							}
 						}
 					break;

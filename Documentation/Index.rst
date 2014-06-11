@@ -32,7 +32,7 @@ External Providers for Direct Mail
 		direct_mail, dynamic list, user function, external provider
 
 	:Copyright:
-		2009-2013
+		2009-2014
 
 	:Author:
 		Xavier Perseguers
@@ -68,7 +68,6 @@ External Providers for Direct Mail
 	UsersManual/Index
 	DeveloperManual/Index
 	KnownProblems/Index
-	ToDoList/Index
 	FurtherInformation/Index
 	ChangeLog/Index
 	Targets

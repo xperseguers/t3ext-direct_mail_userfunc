@@ -50,6 +50,10 @@ if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc'])) {
 	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] = array();
 }
 
+// Register hook into direct_mail
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod2']['cmd_compileMailGroup'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/DirectMail.php:Tx_DirectMailUserfunc_Hook_DirectMail';
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod3']['cmd_compileMailGroup'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/DirectMail.php:Tx_DirectMailUserfunc_Hook_DirectMail';
+
 // Register hook into t3lib_TCEforms and t3lib_TCEmain
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/Tce.php:Tx_DirectMailUserfunc_Hook_Tce';
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/Tce.php:Tx_DirectMailUserfunc_Hook_Tce';
@@ -77,5 +81,3 @@ if (TYPO3_MODE === 'BE') {
 		);
 	}
 }
-
-?>

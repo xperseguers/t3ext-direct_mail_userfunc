@@ -54,7 +54,7 @@ External Providers for Direct Mail
 	**Other version of this document**
 
 	:PDF:
-		http://docs.typo3.org/typo3cms/extensions/direct_mail_userfunc/1.4.1/_pdf/
+		http://docs.typo3.org/typo3cms/extensions/direct_mail_userfunc/1.4.2/_pdf/
 
 
 	**Table of Contents**

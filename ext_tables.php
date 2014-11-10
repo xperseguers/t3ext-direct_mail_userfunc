@@ -40,7 +40,7 @@ $tempColumns = array(
 if (version_compare(TYPO3_version, '6.1.0', '<')) {
 	t3lib_div::loadTCA('sys_dmail_group');
 }
-t3lib_extMgm::addTCAcolumns('sys_dmail_group', $tempColumns, 1);
+t3lib_extMgm::addTCAcolumns('sys_dmail_group', $tempColumns);
 
 $GLOBALS['TCA']['sys_dmail_group']['columns']['type']['config']['items'][] = array('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xml:sys_dmail_group.type.I.5', '5');
 $GLOBALS['TCA']['sys_dmail_group']['types']['5'] = array('showitem' => 'type;;;;1-1-1, title;;;;3-3-3, description, tx_directmailuserfunc_itemsprocfunc;;;;5-5-5, tx_directmailuserfunc_params;;;;7-7-7');

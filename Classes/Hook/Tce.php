@@ -43,10 +43,10 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 	 *
 	 * @param string $table
 	 * @param array $row
-	 * @param t3lib_TCEforms $pObj
+	 * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj
 	 * @return void
 	 */
-	public function getMainFields_preProcess($table, array &$row, t3lib_TCEforms $pObj) {
+	public function getMainFields_preProcess($table, array &$row, /* t3lib_TCEforms */ $pObj) {
 		if ($table !== 'sys_dmail_group') {
 			return;
 		}
@@ -66,10 +66,10 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 	 * @param array $incomingFieldArray
 	 * @param string $table
 	 * @param integer|string $id
-	 * @param t3lib_TCEmain $pObj
+	 * @param t3lib_TCEmain|\TYPO3\CMS\Core\DataHandling\DataHandler $pObj
 	 * @return void
 	 */
-	public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, $table, $id, t3lib_TCEmain $pObj) {
+	public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, $table, $id, /* t3lib_TCEmain */ $pObj) {
 		if ($table !== 'sys_dmail_group') {
 			return;
 		}
@@ -122,11 +122,11 @@ class Tx_DirectMailUserfunc_Hook_Tce {
 	 * @param string $id The record-uid, mainly - but not exclusively - used for logging
 	 * @param string $status 'update' or 'new' flag
 	 * @param integer $realPid The real PID value of the record. For updates, this is just the pid of the record.
-	 * @param t3lib_TCEmain $pObj
+	 * @param t3lib_TCEmain|\TYPO3\CMS\Core\DataHandling\DataHandler $pObj
 	 * @return array Returns the evaluated $value as key "value" in this array. Can be checked with isset($res['value']) ...
 	 * @see t3lib_TCEmain::checkValue()
 	 */
-	protected function checkValue($table, $field, $value, $curValue, $id, $status, $realPid, t3lib_TCEmain $pObj) {
+	protected function checkValue($table, $field, $value, $curValue, $id, $status, $realPid, /* t3lib_TCEmain */ $pObj) {
 		// For our use $tscPID is always the real PID
 		$tscPID = $realPid;
 		// Getting config for the field

@@ -14,7 +14,7 @@ class Tx_DirectMailUserfunc_Samples_TestList {
 	 * Returns a list of recipients.
 	 *
 	 * @param array $params User parameters
-	 * @param ux_tx_directmail_recipient_list|ux_tx_directmail_dmail $pObj Parent object
+	 * @param tx_directmail_recipient_list|tx_directmail_dmail $pObj Parent object
 	 * @return array
 	 */
 	public function myRecipientList(array &$params, $pObj) {
@@ -39,11 +39,11 @@ class Tx_DirectMailUserfunc_Samples_TestList {
 	 *
 	 * @param string $methodName
 	 * @param array $PA TCA configuration passed by reference
-	 * @param t3lib_TCEforms $pObj Parent object
+	 * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj Parent object
 	 * @param boolean $autoJS Set to TRUE if you wish to fully generate your own code for calling your wizard
 	 * @return string JavaScript code to be executed upon icon click
 	 */
-	public function getWizard($methodName, array &$PA, t3lib_TCEforms $pObj, &$autoJS) {
+	public function getWizard($methodName, array &$PA, /* t3lib_TCEforms */ $pObj, &$autoJS) {
 		$js = '';
 
 		if ($methodName === 'myRecipientList') {

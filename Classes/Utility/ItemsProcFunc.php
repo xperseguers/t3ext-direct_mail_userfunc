@@ -58,11 +58,11 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc {
 	 * @param string $itemsProcFunc
 	 * @param array $PA
 	 * @param boolean $autoJS
-	 * @param t3lib_TCEforms $pObj (deprecated)
+	 * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj (deprecated)
 	 * @return string
 	 * @throws RuntimeException
 	 */
-	static public function callWizard($itemsProcFunc, array &$PA, &$autoJS, t3lib_TCEforms $pObj) {
+	static public function callWizard($itemsProcFunc, array &$PA, &$autoJS, /* t3lib_TCEforms */ $pObj) {
 		if (!static::hasWizard($itemsProcFunc)) {
 			throw new RuntimeException($itemsProcFunc . ' has no method getWizard', 1383559688);
 		}

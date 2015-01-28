@@ -49,10 +49,10 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * Returns code to show whether the itemsProcFunc definition is valid.
 	 *
 	 * @param array $PA TCA configuration passed by reference
-	 * @param t3lib_TCEforms $pObj
+	 * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj
 	 * @return string HTML snippet to be put after the itemsProcFunc field
 	 */
-	public function itemsprocfunc_procWizard(array &$PA, t3lib_TCEforms $pObj) {
+	public function itemsprocfunc_procWizard(array &$PA, /* t3lib_TCEforms */ $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!$itemsProcFunc) {
 			// Show the required icon
@@ -90,10 +90,10 @@ class Tx_DirectMailUserfunc_Controller_Wizard {
 	 * itemsProcFunc value.
 	 *
 	 * @param array $PA TCA configuration passed by reference
-	 * @param t3lib_TCEforms $pObj Parent object
+	 * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj Parent object
 	 * @return string HTML snippet to be put after the params field
 	 */
-	public function params_procWizard(array &$PA, t3lib_TCEforms $pObj) {
+	public function params_procWizard(array &$PA, /* t3lib_TCEforms */ $pObj) {
 		$itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
 		if (!Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizard($itemsProcFunc)) {
 			return '';

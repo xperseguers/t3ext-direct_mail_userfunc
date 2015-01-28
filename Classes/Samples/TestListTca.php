@@ -14,7 +14,7 @@ class Tx_DirectMailUserfunc_Samples_TestListTca {
 	 * Returns a list of recipients.
 	 *
 	 * @param array $params User parameters
-	 * @param ux_tx_directmail_recipient_list|ux_tx_directmail_dmail $pObj Parent object
+	 * @param tx_directmail_recipient_list|tx_directmail_dmail $pObj Parent object
 	 * @return array
 	 */
 	public function myRecipientList(array &$params, $pObj) {

@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Xavier Perseguers <xavier@causal.ch>
+ *  (c) 2014-2015 Xavier Perseguers <xavier@causal.ch>
  *
  *  All rights reserved
  *
@@ -32,7 +32,7 @@
  * @category    Hook
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @copyright   2014 Causal Sàrl
+ * @copyright   2014-2015 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class Tx_DirectMailUserfunc_Hook_DirectMail {

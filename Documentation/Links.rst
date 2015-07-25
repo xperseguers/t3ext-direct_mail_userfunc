@@ -21,7 +21,7 @@ Links
 	https://git.typo3.org/TYPO3CMS/Extensions/direct_mail_userfunc.git
 
 :Translation:
-	http://translation.typo3.org/projects/TYPO3.TYPO3.ext.direct_mail_userfunc/
+	http://translation.typo3.org/projects/TYPO3.ext.direct_mail_userfunc/
 
 :Contact:
 	`@xperseguers <https://twitter.com/xperseguers>`_

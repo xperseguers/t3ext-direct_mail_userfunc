@@ -20,9 +20,9 @@ conf.py:
     preamble: \usepackage{typo3}
   intersphinx_mapping:
     t3tca:
-    - http://docs.typo3.org/typo3cms/TCAReference/
+    - https://docs.typo3.org/typo3cms/TCAReference/
     - null
     t3cmsapi:
-    - http://typo3.org/api/typo3cms/
+    - https://typo3.org/api/typo3cms/
     - null
 ...

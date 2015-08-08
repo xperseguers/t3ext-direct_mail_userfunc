@@ -91,7 +91,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard
             return '';
         }
 
-        $autoJS = TRUE;
+        $autoJS = true;
         $wizardJS = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizard($itemsProcFunc, $PA, $autoJS, $pObj);
 
         if (!$wizardJS) {
@@ -150,12 +150,12 @@ class Tx_DirectMailUserfunc_Controller_Wizard
         }
         asort($providers);
 
-        $hasOptionSelected = FALSE;
+        $hasOptionSelected = false;
         $options = array();
         foreach ($providers as $itemsProcFunc => $label) {
             $selected = '';
             if ($PA['row']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc) {
-                $hasOptionSelected = TRUE;
+                $hasOptionSelected = true;
                 $selected = ' selected="selected"';
             }
             $options[] = sprintf('<option value="%s"%s>%s</option>', $itemsProcFunc, $selected, $label);

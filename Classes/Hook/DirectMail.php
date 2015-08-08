@@ -88,7 +88,7 @@ class Tx_DirectMailUserfunc_Hook_DirectMail
             $userParams = $mailGroup['tx_directmailuserfunc_params'];
             if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
                 $fields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc);
-                if ($fields !== NULL) {
+                if ($fields !== null) {
                     $userParams = count($fields) === 0
                         ? array()
                         : Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($mailGroup);

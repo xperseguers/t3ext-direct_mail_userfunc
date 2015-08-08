@@ -40,7 +40,7 @@ class Tx_DirectMailUserfunc_Hook_Tce
             return;
         }
 
-        $wizardFields = NULL;
+        $wizardFields = null;
         $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
         if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
             $wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
@@ -65,7 +65,7 @@ class Tx_DirectMailUserfunc_Hook_Tce
             return;
         }
 
-        if (strpos($id, 'NEW') !== FALSE) {
+        if (strpos($id, 'NEW') !== false) {
             $row = array();
         } else {
             $row = t3lib_BEfunc::getRecord($table, $id);
@@ -80,7 +80,7 @@ class Tx_DirectMailUserfunc_Hook_Tce
 
         if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
             $wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
-            $this->reconfigureTCA($wizardFields, $row, FALSE);
+            $this->reconfigureTCA($wizardFields, $row, false);
         }
 
         $virtualValues = array();
@@ -132,14 +132,14 @@ class Tx_DirectMailUserfunc_Hook_Tce
     /**
      * Reconfigures the TCA with custom fields.
      *
-     * @param array|NULL $fields
+     * @param array|null $fields
      * @param array $row
      * @param boolean $removeStandardField
      * @return void
      */
-    protected function reconfigureTCA(array $fields = NULL, array &$row, $removeStandardField = TRUE)
+    protected function reconfigureTCA(array $fields = null, array &$row, $removeStandardField = true)
     {
-        if ($fields === NULL) {
+        if ($fields === null) {
             // The user class is used for both TCA and non TCA-based additional parameters
             // and the standard text area should be shown
             // see http://forge.typo3.org/issues/53287

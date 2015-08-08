@@ -45,7 +45,7 @@ class Tx_DirectMailUserfunc_Samples_TestListTca
      * Returns an array of field definitions for additional parameters.
      *
      * @param string $methodName
-     * @return array|NULL TCA or NULL if no additional parameters are needed
+     * @return array|null TCA or null if no additional parameters are needed
      */
     public function getWizardFields($methodName)
     {

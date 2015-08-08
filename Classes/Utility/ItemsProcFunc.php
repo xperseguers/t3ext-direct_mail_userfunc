@@ -25,7 +25,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
 {
 
     /**
-     * Returns TRUE if $itemsProcFunc has a method getWizard().
+     * Returns true if $itemsProcFunc has a method getWizard().
      *
      * @param string $itemsProcFunc
      * @return boolean
@@ -33,7 +33,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
     static public function hasWizard($itemsProcFunc)
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
-        $ret = FALSE;
+        $ret = false;
         if (!empty($itemsProcFunc) && static::isMethodValid($itemsProcFunc)) {
             $ret = method_exists($className, 'getWizard');
         }
@@ -66,7 +66,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
     }
 
     /**
-     * Returns TRUE if $itemsProcFunc has a method getWizardFields().
+     * Returns true if $itemsProcFunc has a method getWizardFields().
      *
      * @param string $itemsProcFunc
      * @return boolean
@@ -74,7 +74,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
     static public function hasWizardFields($itemsProcFunc)
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
-        $ret = FALSE;
+        $ret = false;
         if (!empty($itemsProcFunc) && static::isMethodValid($itemsProcFunc)) {
             $ret = method_exists($className, 'getWizardFields');
         }
@@ -85,7 +85,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * Invokes method getWizardFields from $itemsProcFunc.
      *
      * @param string $itemsProcFunc
-     * @return array|NULL
+     * @return array|null
      * @throws RuntimeException
      */
     static public function callWizardFields($itemsProcFunc)
@@ -113,9 +113,9 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
         list($className, $methodName) = explode('->', $itemsProcFunc);
 
         if (!empty($className) && class_exists($className)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -128,15 +128,15 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
     static public function isMethodValid($itemsProcFunc)
     {
         if (!static::isClassValid($itemsProcFunc)) {
-            return FALSE;
+            return false;
         }
 
         list($className, $methodName) = explode('->', $itemsProcFunc);
 
         if (!empty($methodName) && method_exists($className, $methodName)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -160,7 +160,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
     static public function decodeUserParameters(array $row)
     {
         $values = !empty($row['tx_directmailuserfunc_params'])
-            ? json_decode($row['tx_directmailuserfunc_params'], TRUE)
+            ? json_decode($row['tx_directmailuserfunc_params'], true)
             : array();
         if (!is_array($values)) {
             $values = array();

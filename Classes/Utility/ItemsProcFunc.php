@@ -30,7 +30,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @param string $itemsProcFunc
      * @return boolean
      */
-    static public function hasWizard($itemsProcFunc)
+    public static function hasWizard($itemsProcFunc)
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $ret = false;
@@ -50,7 +50,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @return string
      * @throws RuntimeException
      */
-    static public function callWizard($itemsProcFunc, array &$PA, &$autoJS, /* t3lib_TCEforms */
+    public static function callWizard($itemsProcFunc, array &$PA, &$autoJS, /* t3lib_TCEforms */
                                       $pObj)
     {
         if (!static::hasWizard($itemsProcFunc)) {
@@ -71,7 +71,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @param string $itemsProcFunc
      * @return boolean
      */
-    static public function hasWizardFields($itemsProcFunc)
+    public static function hasWizardFields($itemsProcFunc)
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $ret = false;
@@ -88,7 +88,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @return array|null
      * @throws RuntimeException
      */
-    static public function callWizardFields($itemsProcFunc)
+    public static function callWizardFields($itemsProcFunc)
     {
         if (!static::hasWizardFields($itemsProcFunc)) {
             throw new RuntimeException($itemsProcFunc . ' has no method getWizardFields', 1383559998);
@@ -108,7 +108,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @param string $itemsProcFunc
      * @return boolean
      */
-    static public function isClassValid($itemsProcFunc)
+    public static function isClassValid($itemsProcFunc)
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
 
@@ -125,7 +125,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @return boolean
      * @api
      */
-    static public function isMethodValid($itemsProcFunc)
+    public static function isMethodValid($itemsProcFunc)
     {
         if (!static::isClassValid($itemsProcFunc)) {
             return false;
@@ -146,7 +146,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @param array $values
      * @return void
      */
-    static public function encodeUserParameters(array &$row, array $values)
+    public static function encodeUserParameters(array &$row, array $values)
     {
         $row['tx_directmailuserfunc_params'] = json_encode($values);
     }
@@ -157,7 +157,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * @param array $row
      * @return array
      */
-    static public function decodeUserParameters(array $row)
+    public static function decodeUserParameters(array $row)
     {
         $values = !empty($row['tx_directmailuserfunc_params'])
             ? json_decode($row['tx_directmailuserfunc_params'], true)

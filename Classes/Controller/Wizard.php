@@ -124,7 +124,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard
      * @param string $params Additional parameters for the img tag
      * @return string
      */
-    static protected function getIcon($src, $alt = '', $params = '')
+    protected static function getIcon($src, $alt = '', $params = '')
     {
         return '<img ' . t3lib_iconWorks::skinImg($GLOBALS['BACKPATH'], $src) .
         ' alt="' . $alt . '" title="' . $alt . '" vspace="4" align="absmiddle" ' . $params . '/>';
@@ -136,7 +136,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard
      * @param array $PA TCA configuration passed by reference
      * @return void
      */
-    static protected function addUserFunctionProviders(array &$PA)
+    protected static function addUserFunctionProviders(array &$PA)
     {
         if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
             return;
@@ -187,7 +187,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard
      * @param string $label Label/key reference
      * @return string
      */
-    static public function getLL($label)
+    public static function getLL($label)
     {
         if (strcmp(substr($label, 0, 8), 'LLL:EXT:')) {
             // Non-localizable string provided

@@ -59,29 +59,14 @@ External Providers for Direct Mail
 
 	**Table of Contents**
 
-	.. toctree::
-		:maxdepth: 5
-		:titlesonly:
+.. toctree::
+	:maxdepth: 5
+	:titlesonly:
 
-		Introduction/Index
-		UsersManual/Index
-		DeveloperManual/Index
-		KnownProblems/Index
-		FurtherInformation/Index
-		ChangeLog/Index
-		Links
-		Targets
-
-.. only:: latex
-
-	.. toctree::
-		:maxdepth: 5
-		:titlesonly:
-
-		Introduction/Index
-		UsersManual/Index
-		DeveloperManual/Index
-		KnownProblems/Index
-		FurtherInformation/Index
-		ChangeLog/Index
-		Targets
+	Introduction/Index
+	UsersManual/Index
+	DeveloperManual/Index
+	KnownProblems/Index
+	FurtherInformation/Index
+	ChangeLog/Index
+	Links

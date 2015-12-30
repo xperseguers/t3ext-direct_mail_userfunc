@@ -18,7 +18,7 @@
  * @category    Hook
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @copyright   2014-2015 Causal Sàrl
+ * @copyright   2014-2016 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class Tx_DirectMailUserfunc_Hook_DirectMail

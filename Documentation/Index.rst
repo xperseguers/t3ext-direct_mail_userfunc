@@ -32,7 +32,7 @@ External Providers for Direct Mail
 		direct_mail, dynamic list, user function, external provider
 
 	:Copyright:
-		2009-2015
+		2009-2016
 
 	:Author:
 		Xavier Perseguers

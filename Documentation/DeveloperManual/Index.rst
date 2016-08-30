@@ -21,7 +21,7 @@ recipient list.
 	    public function myRecipientList(array &$params, $pObj) {
 	        $params['lists']['PLAINLIST'][] = array(
 	            'name' => 'John Doo',
-	            'email' => 'john.doo@hotmail.com',
+	            'email' => 'john.doo@gmail.com',
 	        );
 	        $params['lists']['PLAINLIST'][] = array(
 	            'name' => 'Foo Bar',

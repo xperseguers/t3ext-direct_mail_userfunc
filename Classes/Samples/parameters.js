@@ -1,7 +1,5 @@
 /**
  * Sample code to show a parameter dialog with ExtJS
- *
- * $Id$
  */
 Ext.onReady(function () {
     var win;

@@ -12,6 +12,11 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+namespace Causal\DirectMailUserfunc\Hook;
+
+use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This class hooks into t3lib_TCEforms and t3lib_TCEmain to process the virtual fields.
  *
@@ -21,7 +26,7 @@
  * @copyright   2013-2016 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfunc_Hook_Tce
+class Tce
 {
 
     /**
@@ -30,11 +35,10 @@ class Tx_DirectMailUserfunc_Hook_Tce
      *
      * @param string $table
      * @param array $row
-     * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj
+     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj
      * @return void
      */
-    public function getMainFields_preProcess($table, array &$row, /* t3lib_TCEforms */
-                                             $pObj)
+    public function getMainFields_preProcess($table, array &$row, \TYPO3\CMS\Backend\Form\FormEngine $pObj)
     {
         if ($table !== 'sys_dmail_group') {
             return;
@@ -42,35 +46,34 @@ class Tx_DirectMailUserfunc_Hook_Tce
 
         $wizardFields = null;
         $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
-        if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
-            $wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
+        if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+            $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
             $this->reconfigureTCA($wizardFields, $row);
         }
     }
 
     /**
      * Stores virtual field values into column tx_directmailuserfunc_params.
-     * Hook in t3lib_TCEmain
+     * Hook in \TYPO3\CMS\Core\DataHandling\DataHandler
      *
      * @param array $incomingFieldArray
      * @param string $table
-     * @param integer|string $id
-     * @param t3lib_TCEmain|\TYPO3\CMS\Core\DataHandling\DataHandler $pObj
+     * @param int|string $id
+     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $pObj
      * @return void
      */
-    public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, $table, $id, /* t3lib_TCEmain */
-                                                        $pObj)
+    public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, $table, $id, \TYPO3\CMS\Core\DataHandling\DataHandler $pObj)
     {
         if ($table !== 'sys_dmail_group') {
             return;
         }
 
         if (strpos($id, 'NEW') !== false) {
-            $row = array();
+            $row = [];
         } else {
-            $row = t3lib_BEfunc::getRecord($table, $id);
+            $row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $id);
         }
-        $currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
+        $currentValues = ItemsProcFunc::decodeUserParameters($row);
 
         if (isset($incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'])) {
             $itemsProcFunc = $incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'];
@@ -78,14 +81,14 @@ class Tx_DirectMailUserfunc_Hook_Tce
             $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
         }
 
-        if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
-            $wizardFields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
+        if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+            $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
             $this->reconfigureTCA($wizardFields, $row, false);
         }
 
-        $virtualValues = array();
+        $virtualValues = [];
         foreach ($incomingFieldArray as $field => $value) {
-            if (t3lib_div::isFirstPartOfStr($field, 'tx_directmailuserfunc_virtual_')) {
+            if (GeneralUtility::isFirstPartOfStr($field, 'tx_directmailuserfunc_virtual_')) {
                 $virtualField = substr($field, strlen('tx_directmailuserfunc_virtual_'));
 
                 // Evaluate field
@@ -99,9 +102,9 @@ class Tx_DirectMailUserfunc_Hook_Tce
             }
         }
 
-        if (count($virtualValues) > 0) {
+        if (!empty($virtualValues)) {
             $newValues = array_merge($currentValues, $virtualValues);
-            Tx_DirectMailUserfunc_Utility_ItemsProcFunc::encodeUserParameters($incomingFieldArray, $newValues);
+            ItemsProcFunc::encodeUserParameters($incomingFieldArray, $newValues);
         }
     }
 
@@ -112,20 +115,19 @@ class Tx_DirectMailUserfunc_Hook_Tce
      * @param string $curValue The original value (from existing record)
      * @param string $id The record-uid, mainly - but not exclusively - used for logging
      * @param string $status 'update' or 'new' flag
-     * @param integer $realPid The real PID value of the record. For updates, this is just the pid of the record.
-     * @param t3lib_TCEmain|\TYPO3\CMS\Core\DataHandling\DataHandler $pObj
+     * @param int $realPid The real PID value of the record. For updates, this is just the pid of the record.
+     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $pObj
      * @return array Returns the evaluated $value as key "value" in this array. Can be checked with isset($res['value']) ...
-     * @see t3lib_TCEmain::checkValue()
+     * @see \TYPO3\CMS\Core\DataHandling\DataHandler::checkValue()
      */
-    protected function checkValue($table, $field, $value, $curValue, $id, $status, $realPid, /* t3lib_TCEmain */
-                                  $pObj)
+    protected function checkValue($table, $field, $value, $curValue, $id, $status, $realPid, \TYPO3\CMS\Core\DataHandling\DataHandler $pObj)
     {
         // For our use $tscPID is always the real PID
         $tscPID = $realPid;
         // Getting config for the field
         $tcaFieldConf = $GLOBALS['TCA'][$table]['columns'][$field]['config'];
         // Perform processing:
-        $res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, array(), $tscPID);
+        $res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, [], $tscPID);
         return $res;
     }
 
@@ -134,7 +136,7 @@ class Tx_DirectMailUserfunc_Hook_Tce
      *
      * @param array|null $fields
      * @param array $row
-     * @param boolean $removeStandardField
+     * @param bool $removeStandardField
      * @return void
      */
     protected function reconfigureTCA(array $fields = null, array &$row, $removeStandardField = true)
@@ -156,15 +158,15 @@ class Tx_DirectMailUserfunc_Hook_Tce
             return;
         }
 
-        $currentValues = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($row);
+        $currentValues = ItemsProcFunc::decodeUserParameters($row);
 
         // Prefix each additional field
-        $prefixedFields = array(
-            'columns' => array(),
+        $prefixedFields = [
+            'columns' => [],
             'types' => $fields['types'],
-            'palettes' => isset($fields['palettes']) ? $fields['palettes'] : array(),
-            'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : array(),
-        );
+            'palettes' => isset($fields['palettes']) ? $fields['palettes'] : [],
+            'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : [],
+        ];
         foreach ($fields['columns'] as $field => $fieldInfo) {
             $virtualField = 'tx_directmailuserfunc_virtual_' . $field;
             $prefixedFields['columns'][$virtualField] = $fieldInfo;

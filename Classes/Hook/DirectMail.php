@@ -12,6 +12,11 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+namespace Causal\DirectMailUserfunc\Hook;
+
+use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This class hooks into direct_mail to post-process the list of recipients.
  *
@@ -21,35 +26,30 @@
  * @copyright   2014-2016 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfunc_Hook_DirectMail
+class DirectMail
 {
 
     /**
      * Post-processes the list of recipients.
      *
      * @param array $id_lists
-     * @param object $pObj parent object
+     * @param \DirectMailTeam\DirectMail\Module\RecipientList|\DirectMailTeam\DirectMail\Module\Dmail $pObj parent object
      * @param array $groups
      * @return array
      */
     public function cmd_compileMailGroup_postProcess(array $id_lists, $pObj, array $groups)
     {
-        $mailGroups = array();
+        $mailGroups = [];
 
         if (!isset($groups['uid'])) {
             // Coming from mod2 (Dmail)
             foreach ($groups as $group) {
-                // Testing to see if group ID is a valid integer, if not - skip to next group ID
-                if (t3lib_div::compat_version('4.6')) {
-                    $group = t3lib_utility_Math::convertToPositiveInteger($group);
-                } else {
-                    $group = t3lib_div::intval_positive($group);
-                }
+                \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($group);
                 if (!$group) {
                     continue;
                 }
 
-                $mailGroup = t3lib_BEfunc::getRecord('sys_dmail_group', $group);
+                $mailGroup = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('sys_dmail_group', $group);
                 if (is_array($mailGroup)) {
                     $mailGroups[] = $mailGroup;
                 }
@@ -78,40 +78,36 @@ class Tx_DirectMailUserfunc_Hook_DirectMail
      */
     protected function generateRecipientList(array $mailGroup, $pObj)
     {
-        $recipientList = array(
-            'tt_address' => array(),
-            'fe_users' => array(),
-            'PLAINLIST' => array(),
-        );
+        $recipientList = [
+            'tt_address' => [],
+            'fe_users' => [],
+            'PLAINLIST' => [],
+        ];
         $itemsProcFunc = $mailGroup['tx_directmailuserfunc_itemsprocfunc'];
-        if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isMethodValid($itemsProcFunc)) {
+        if (ItemsProcFunc::isMethodValid($itemsProcFunc)) {
             $userParams = $mailGroup['tx_directmailuserfunc_params'];
-            if (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
-                $fields = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizardFields($itemsProcFunc);
+            if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+                $fields = ItemsProcFunc::callWizardFields($itemsProcFunc);
                 if ($fields !== null) {
                     $userParams = count($fields) === 0
-                        ? array()
-                        : Tx_DirectMailUserfunc_Utility_ItemsProcFunc::decodeUserParameters($mailGroup);
+                        ? []
+                        : ItemsProcFunc::decodeUserParameters($mailGroup);
                 }
             }
 
-            $params = array(
+            $params = [
                 'groupUid' => $mailGroup['uid'],
                 'lists' => &$recipientList,
                 'userParams' => $userParams,
-            );
-            t3lib_div::callUserFunction($itemsProcFunc, $params, $pObj);
+            ];
+            GeneralUtility::callUserFunction($itemsProcFunc, $params, $pObj);
 
             $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
             if (!isset($extConf['makeEntriesUnique']) || $extConf['makeEntriesUnique'] == 1) {
                 // Make unique entries
                 $recipientList['tt_address'] = array_unique($recipientList['tt_address']);
                 $recipientList['fe_users'] = array_unique($recipientList['fe_users']);
-                if (version_compare(TYPO3_version, '6.2.0', '>=')) {
-                    $recipientList['PLAINLIST'] = \DirectMailTeam\DirectMail\DirectMailUtility::cleanPlainList($recipientList['PLAINLIST']);
-                } else {
-                    $recipientList['PLAINLIST'] = tx_directmail_static::cleanPlainList($recipientList['PLAINLIST']);
-                }
+                $recipientList['PLAINLIST'] = \DirectMailTeam\DirectMail\DirectMailUtility::cleanPlainList($recipientList['PLAINLIST']);
             }
         }
 

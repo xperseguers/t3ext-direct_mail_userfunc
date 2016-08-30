@@ -1,5 +1,7 @@
 <?php
 
+namespace Causal\DirectMailUserfunc\Samples;
+
 /**
  * This is a sample class showing how to define a user function
  * returning a list of recipients. To use it, put 'user_testList->myRecipientList' as
@@ -8,14 +10,14 @@
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfunc_Samples_TestList
+class TestList
 {
 
     /**
      * Returns a list of recipients.
      *
      * @param array $params User parameters
-     * @param tx_directmail_recipient_list|tx_directmail_dmail $pObj Parent object
+     * @param \DirectMailTeam\DirectMail\Module\RecipientList|\DirectMailTeam\DirectMail\Module\Dmail $pObj Parent object
      * @return array
      */
     public function myRecipientList(array &$params, $pObj)
@@ -29,7 +31,10 @@ class Tx_DirectMailUserfunc_Samples_TestList
         // Retrieve user parameters
         $sizeOfRecipientList = $params['userParams'] ? $params['userParams'] : 2;
         for ($i = 0; $i < $sizeOfRecipientList; $i++) {
-            $params['lists']['PLAINLIST'][] = array('name' => 'John Doo #' . $i, 'email' => 'john.doo-' . $i . '@hotmail.com');
+            $params['lists']['PLAINLIST'][] = [
+                'name' => 'John Doo #' . $i,
+                'email' => 'john.doo-' . $i . '@gmail.com'
+            ];
         }
     }
 
@@ -41,12 +46,10 @@ class Tx_DirectMailUserfunc_Samples_TestList
      *
      * @param string $methodName
      * @param array $PA TCA configuration passed by reference
-     * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj Parent object
-     * @param boolean $autoJS Set to true if you wish to fully generate your own code for calling your wizard
+     * @param bool $autoJS Set to true if you wish to fully generate your own code for calling your wizard
      * @return string JavaScript code to be executed upon icon click
      */
-    public function getWizard($methodName, array &$PA, /* t3lib_TCEforms */
-                              $pObj, &$autoJS)
+    public function getWizard($methodName, array &$PA, &$autoJS)
     {
         $js = '';
 

@@ -37,5 +37,5 @@ This will add a new entry "Some Label" that fills in provider ``yourClass->yourM
 .. tip::
 
 	- Parameter ``label`` of the registration code supports a localized label definition such as
-	  ``LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:`` ``userfunction.myRecipientList``
+	  ``LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xlf:`` ``userfunction.myRecipientList``
 	- Providers are automatically sorted by label in the selector

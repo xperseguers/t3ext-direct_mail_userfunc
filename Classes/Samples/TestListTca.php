@@ -1,5 +1,7 @@
 <?php
 
+namespace Causal\DirectMailUserfunc\Samples;
+
 /**
  * This is a sample class showing how to define a user function
  * returning a list of recipients. To use it, put 'user_testList_tca->myRecipientList' as
@@ -8,7 +10,7 @@
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfunc_Samples_TestListTca
+class TestListTca
 {
 
     /**
@@ -29,11 +31,11 @@ class Tx_DirectMailUserfunc_Samples_TestListTca
         // Retrieve user parameters
         $userParameters = $params['userParams'];
 
-        $sizeOfRecipientList = isset($userParameters['size']) ? intval($userParameters['size']) : 2;
+        $sizeOfRecipientList = isset($userParameters['size']) ? (int)$userParameters['size'] : 2;
         for ($i = 0; $i < $sizeOfRecipientList; $i++) {
             $name = !empty($userParameters['name']) ? $userParameters['name'] : 'John Doo';
             $name .= ' #' . $i;
-            $email = !empty($userParameters['email']) ? $userParameters['email'] : 'john.doo@hotmail.com';
+            $email = !empty($userParameters['email']) ? $userParameters['email'] : 'john.doo@gmail.com';
             list($username, $domain) = explode('@', $email, 2);
             $email = $username . '-' . $i . '@' . $domain;
 
@@ -49,51 +51,51 @@ class Tx_DirectMailUserfunc_Samples_TestListTca
      */
     public function getWizardFields($methodName)
     {
-        $additionalParameters = array(
-            'columns' => array(
-                'size' => array(
-                    'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xml:myRecipientListTca.size',
-                    'config' => array(
+        $additionalParameters = [
+            'columns' => [
+                'size' => [
+                    'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.size',
+                    'config' => [
                         'type' => 'input',
                         'size' => '5',
                         'max' => '5',
                         'eval' => 'int',
                         'default' => 1,
-                        'range' => array(
+                        'range' => [
                             'lower' => 1,
-                        )
-                    )
-                ),
-                'name' => array(
-                    'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xml:myRecipientListTca.name',
-                    'config' => array(
+                        ]
+                    ]
+                ],
+                'name' => [
+                    'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.name',
+                    'config' => [
                         'type' => 'input',
                         'size' => '20',
                         'eval' => 'trim',
-                    )
-                ),
-                'email' => array(
-                    'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xml:myRecipientListTca.email',
-                    'config' => array(
+                    ]
+                ],
+                'email' => [
+                    'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.email',
+                    'config' => [
                         'type' => 'input',
                         'size' => '20',
                         'eval' => 'trim',
-                    )
-                ),
-            ),
-            'types' => array(
-                '5' => array(
+                    ]
+                ],
+            ],
+            'types' => [
+                '5' => [
                     'showitem' => 'size,
-                        --palette--;LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xml:myRecipientListTca.palette.person;person'
-                )
-            ),
-            'palettes' => array(
-                'person' => array(
+                        --palette--;LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.palette.person;person'
+                ]
+            ],
+            'palettes' => [
+                'person' => [
                     'showitem' => 'name, email',
                     'canNotCollapse' => 1,
-                ),
-            )
-        );
+                ],
+            ]
+        ];
 
         return $additionalParameters;
     }

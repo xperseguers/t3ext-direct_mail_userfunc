@@ -1,81 +1,82 @@
 <?php
 defined('TYPO3_MODE') || die();
 
-$tempColumns = array(
-    'tx_directmailuserfunc_itemsprocfunc' => array(
+$tempColumns = [
+    'tx_directmailuserfunc_itemsprocfunc' => [
         'exclude' => 0,
-        'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xml:sys_dmail_group.tx_directmailuserfunc_itemsprocfunc',
-        'config' => array(
+        'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:sys_dmail_group.tx_directmailuserfunc_itemsprocfunc',
+        'config' => [
             'type' => 'input',
             'size' => '40',
-            'wizards' => array(
-                'uproc' => array(
+            'wizards' => [
+                'uproc' => [
                     'type' => 'userFunc',
-                    'userFunc' => 'Tx_DirectMailUserfunc_Controller_Wizard->itemsprocfunc_procWizard',
-                    'params' => array(),
-                ),
-            ),
-        )
-    ),
-    'tx_directmailuserfunc_params' => array(
+                    'userFunc' => \Causal\DirectMailUserfunc\Controller\Wizard::class . '->itemsprocfunc_procWizard',
+                    'params' => [],
+                ],
+            ],
+        ]
+    ],
+    'tx_directmailuserfunc_params' => [
         'exclude' => 0,
-        'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xml:sys_dmail_group.tx_directmailuserfunc_params',
-        'config' => array(
+        'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:sys_dmail_group.tx_directmailuserfunc_params',
+        'config' => [
             'type' => 'text',
             'cols' => '40',
             'rows' => '2',
-            'wizards' => array(
-                'uproc' => array(
+            'wizards' => [
+                'uproc' => [
                     'type' => 'userFunc',
-                    'userFunc' => 'Tx_DirectMailUserfunc_Controller_Wizard->params_procWizard',
-                    'params' => array(),
-                ),
-            ),
-        )
-    ),
-);
+                    'userFunc' => \Causal\DirectMailUserfunc\Controller\Wizard::class . '->params_procWizard',
+                    'params' => [],
+                ],
+            ],
+        ]
+    ],
+];
 
-if (version_compare(TYPO3_version, '6.1.0', '<')) {
-    t3lib_div::loadTCA('sys_dmail_group');
-}
-t3lib_extMgm::addTCAcolumns('sys_dmail_group', $tempColumns);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_dmail_group', $tempColumns);
 
-$GLOBALS['TCA']['sys_dmail_group']['columns']['type']['config']['items'][] = array('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xml:sys_dmail_group.type.I.5', '5');
-$GLOBALS['TCA']['sys_dmail_group']['types']['5'] = array('showitem' => 'type;;;;1-1-1, title;;;;3-3-3, description, tx_directmailuserfunc_itemsprocfunc;;;;5-5-5, tx_directmailuserfunc_params;;;;7-7-7');
+$GLOBALS['TCA']['sys_dmail_group']['columns']['type']['config']['items'][] = [
+    'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:sys_dmail_group.type.I.5', '5'
+];
+$GLOBALS['TCA']['sys_dmail_group']['types']['5'] = [
+    'showitem' => 'type;;;;1-1-1, title;;;;3-3-3, description, tx_directmailuserfunc_itemsprocfunc;;;;5-5-5, tx_directmailuserfunc_params;;;;7-7-7'
+];
 
 if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc'])) {
     // Allow extensions to register themselves as userfunc providers
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] = array();
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] = [];
 }
 
 // Register hook into direct_mail
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod2']['cmd_compileMailGroup'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/DirectMail.php:Tx_DirectMailUserfunc_Hook_DirectMail';
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod3']['cmd_compileMailGroup'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/DirectMail.php:Tx_DirectMailUserfunc_Hook_DirectMail';
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod2']['cmd_compileMailGroup'][] = \Causal\DirectMailUserfunc\Hook\DirectMail::class;
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod3']['cmd_compileMailGroup'][] = \Causal\DirectMailUserfunc\Hook\DirectMail::class;
 
-// Register hook into t3lib_TCEforms and t3lib_TCEmain
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/Tce.php:Tx_DirectMailUserfunc_Hook_Tce';
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hook/Tce.php:Tx_DirectMailUserfunc_Hook_Tce';
+// Register hook into \TYPO3\CMS\Backend\Form\FormEngine and \TYPO3\CMS\Core\DataHandling\DataHandler
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] = \Causal\DirectMailUserfunc\Hook\Tce::class;
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = \Causal\DirectMailUserfunc\Hook\Tce::class;
 
 // Register sample user functions if needed
 if (TYPO3_MODE === 'BE') {
     $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
     if ($extConf['enableSamples']) {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = array(
-            'class' => 'Tx_DirectMailUserfunc_Samples_TestList',
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
+            'class' => \Causal\DirectMailUserfunc\Samples\TestList::class,
             'method' => 'myRecipientList',
-            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:userfunction.myRecipientList'
-        );
+            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xlf:userfunction.myRecipientList'
+        ];
 
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = array(
-            'class' => 'Tx_DirectMailUserfunc_Samples_TestListExtjs',
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
+            'class' => \Causal\DirectMailUserfunc\Samples\TestListExtjs::class,
             'method' => 'myRecipientList',
-            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:userfunction.myRecipientListExtJS'
-        );
+            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xlf:userfunction.myRecipientListExtJS'
+        ];
 
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = array(
-            'class' => 'Tx_DirectMailUserfunc_Samples_TestListTca',
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
+            'class' => \Causal\DirectMailUserfunc\Samples\TestListTca::class,
             'method' => 'myRecipientList',
-            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xml:userfunction.myRecipientListTca'
-        );
+            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xlf:userfunction.myRecipientListTca'
+        ];
     }
 }

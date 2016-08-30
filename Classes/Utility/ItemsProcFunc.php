@@ -12,6 +12,8 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+namespace Causal\DirectMailUserfunc\Utility;
+
 /**
  * Various ItemsProcFunc utility methods.
  *
@@ -21,14 +23,14 @@
  * @copyright   2013-2016 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
+class ItemsProcFunc
 {
 
     /**
      * Returns true if $itemsProcFunc has a method getWizard().
      *
      * @param string $itemsProcFunc
-     * @return boolean
+     * @return bool
      */
     public static function hasWizard($itemsProcFunc)
     {
@@ -45,13 +47,11 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      *
      * @param string $itemsProcFunc
      * @param array $PA
-     * @param boolean $autoJS
-     * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj (deprecated)
+     * @param bool $autoJS
      * @return string
      * @throws RuntimeException
      */
-    public static function callWizard($itemsProcFunc, array &$PA, &$autoJS, /* t3lib_TCEforms */
-                                      $pObj)
+    public static function callWizard($itemsProcFunc, array &$PA, &$autoJS)
     {
         if (!static::hasWizard($itemsProcFunc)) {
             throw new RuntimeException($itemsProcFunc . ' has no method getWizard', 1383559688);
@@ -60,7 +60,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $wizardJS = trim(call_user_func_array(
             array($className, 'getWizard'),
-            array($methodName, &$PA, $pObj, &$autoJS)
+            array($methodName, &$PA, &$autoJS)
         ));
         return $wizardJS;
     }
@@ -69,7 +69,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * Returns true if $itemsProcFunc has a method getWizardFields().
      *
      * @param string $itemsProcFunc
-     * @return boolean
+     * @return bool
      */
     public static function hasWizardFields($itemsProcFunc)
     {
@@ -106,7 +106,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * Checks whether the class part of a given itemsProcFunc definition is valid.
      *
      * @param string $itemsProcFunc
-     * @return boolean
+     * @return bool
      */
     public static function isClassValid($itemsProcFunc)
     {
@@ -122,7 +122,7 @@ class Tx_DirectMailUserfunc_Utility_ItemsProcFunc
      * Checks whether the method part of a given itemsProcFunc definition is valid.
      *
      * @param string $itemsProcFunc
-     * @return boolean
+     * @return bool
      * @api
      */
     public static function isMethodValid($itemsProcFunc)

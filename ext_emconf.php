@@ -1,16 +1,10 @@
 <?php
 
-/***************************************************************
- * Extension Manager/Repository config file for ext "direct_mail_userfunc".
- *
- * Auto generated 05-02-2015 09:21
- *
- * Manual updates:
- * Only the data in the array - everything else is removed by next
- * writing. "version" and "dependencies" must not be touched!
- ***************************************************************/
+// -------------------------------------------------------------------------
+// Extension Manager/Repository config file for ext: "direct_mail_userfunc"
+// -------------------------------------------------------------------------
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'External Providers for Direct Mail',
     'description' => 'Adds support for external providers to Direct Mail. This extension extends the types of recipient lists handled by Direct Mail with an entry for parameterized custom lists. These custom lists are prepared by user functions and may easily reuse your own business logic.',
     'category' => 'module',
@@ -29,19 +23,19 @@ $EM_CONF[$_EXTKEY] = array(
     'modify_tables' => 'sys_dmail,sys_dmail_group',
     'clearCacheOnLoad' => 0,
     'lockType' => '',
-    'version' => '1.4.3',
-    'constraints' => array(
-        'depends' => array(
-            'php' => '5.3.7-5.6.99',
-            'typo3' => '4.5.0-6.2.99',
-            'direct_mail' => '3.1.0-4.0.99',
-        ),
-        'conflicts' => array(),
-        'suggests' => array(),
-    ),
+    'version' => '1.5.0-dev',
+    'constraints' => [
+        'depends' => [
+            'php' => '5.5.0-5.6.99',
+            'typo3' => '6.2.0-6.2.99',
+            'direct_mail' => '4.1.0-4.1.99',
+        ],
+        'conflicts' => [],
+        'suggests' => [],
+    ],
     '_md5_values_when_last_written' => '',
-    'suggests' => array(),
-    'autoload' => array(
-        'psr-4' => array('Causal\\DirectMailUserfunc\\' => 'Classes')
-    ),
-);
+    'suggests' => [],
+    'autoload' => [
+        'psr-4' => ['Causal\\DirectMailUserfunc\\' => 'Classes']
+    ],
+];

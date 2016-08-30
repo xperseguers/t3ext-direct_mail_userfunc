@@ -3,24 +3,24 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc">
 		<header/>
 		<body>
-			<trans-unit id="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc" xml:space="preserve">
+			<trans-unit id="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc">
 				<source>Provider:</source>
 			</trans-unit>
-			<trans-unit id="sys_dmail_group.tx_directmailuserfunc_params" xml:space="preserve">
+			<trans-unit id="sys_dmail_group.tx_directmailuserfunc_params">
 				<source>Additional parameters:</source>
 			</trans-unit>
 
 			<!--  Labels for sample user functions -->
-			<trans-unit id="myRecipientListTca.size" xml:space="preserve">
+			<trans-unit id="myRecipientListTca.size">
 				<source>Size of the list:</source>
 			</trans-unit>
-			<trans-unit id="myRecipientListTca.name" xml:space="preserve">
+			<trans-unit id="myRecipientListTca.name">
 				<source>Name:</source>
 			</trans-unit>
-			<trans-unit id="myRecipientListTca.email" xml:space="preserve">
+			<trans-unit id="myRecipientListTca.email">
 				<source>E-mail:</source>
 			</trans-unit>
-			<trans-unit id="myRecipientListTca.palette.person" xml:space="preserve">
+			<trans-unit id="myRecipientListTca.palette.person">
 				<source>Person</source>
 			</trans-unit>
 		</body>

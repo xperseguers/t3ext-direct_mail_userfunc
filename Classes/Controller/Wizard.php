@@ -12,6 +12,11 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+namespace Causal\DirectMailUserfunc\Controller;
+
+use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This class encapsulates display of a user wizard.
  *
@@ -21,7 +26,7 @@
  * @copyright   2012-2016 Causal Sàrl
  * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tx_DirectMailUserfunc_Controller_Wizard
+class Wizard
 {
 
     /**
@@ -29,18 +34,17 @@ class Tx_DirectMailUserfunc_Controller_Wizard
      */
     public function __construct()
     {
-        $GLOBALS['LANG']->includeLLFile('EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xml');
+        $GLOBALS['LANG']->includeLLFile('EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf');
     }
 
     /**
      * Returns code to show whether the itemsProcFunc definition is valid.
      *
      * @param array $PA TCA configuration passed by reference
-     * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj
+     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj
      * @return string HTML snippet to be put after the itemsProcFunc field
      */
-    public function itemsprocfunc_procWizard(array &$PA, /* t3lib_TCEforms */
-                                             $pObj)
+    public function itemsprocfunc_procWizard(array &$PA, \TYPO3\CMS\Backend\Form\FormEngine $pObj)
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
         if (!$itemsProcFunc) {
@@ -53,10 +57,10 @@ class Tx_DirectMailUserfunc_Controller_Wizard
 
         if (!$itemsProcFunc) {
             return;
-        } elseif (Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isMethodValid($itemsProcFunc)) {
+        } elseif (ItemsProcFunc::isMethodValid($itemsProcFunc)) {
 
             $this->appendItemContent($PA, static::getIcon('gfx/icon_ok.gif'));
-        } elseif (!Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isClassValid($itemsProcFunc)) {
+        } elseif (!ItemsProcFunc::isClassValid($itemsProcFunc)) {
             $this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass'));
         } else {
             $this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod'));
@@ -80,19 +84,18 @@ class Tx_DirectMailUserfunc_Controller_Wizard
      * itemsProcFunc value.
      *
      * @param array $PA TCA configuration passed by reference
-     * @param t3lib_TCEforms|\TYPO3\CMS\Backend\Form\FormEngine $pObj Parent object
+     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj Parent object
      * @return string HTML snippet to be put after the params field
      */
-    public function params_procWizard(array &$PA, /* t3lib_TCEforms */
-                                      $pObj)
+    public function params_procWizard(array &$PA, \TYPO3\CMS\Backend\Form\FormEngine $pObj)
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-        if (!Tx_DirectMailUserfunc_Utility_ItemsProcFunc::hasWizard($itemsProcFunc)) {
+        if (!ItemsProcFunc::hasWizard($itemsProcFunc)) {
             return '';
         }
 
         $autoJS = true;
-        $wizardJS = Tx_DirectMailUserfunc_Utility_ItemsProcFunc::callWizard($itemsProcFunc, $PA, $autoJS, $pObj);
+        $wizardJS = ItemsProcFunc::callWizard($itemsProcFunc, $PA, $autoJS, $pObj);
 
         if (!$wizardJS) {
             return '';
@@ -126,7 +129,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard
      */
     protected static function getIcon($src, $alt = '', $params = '')
     {
-        return '<img ' . t3lib_iconWorks::skinImg($GLOBALS['BACKPATH'], $src) .
+        return '<img ' . \TYPO3\CMS\Backend\Utility\IconUtility::skinImg($GLOBALS['BACKPATH'], $src) .
         ' alt="' . $alt . '" title="' . $alt . '" vspace="4" align="absmiddle" ' . $params . '/>';
     }
 
@@ -174,7 +177,7 @@ class Tx_DirectMailUserfunc_Controller_Wizard
             </select>
         ';
 
-        $hideInput = $hasOptionSelected && Tx_DirectMailUserfunc_Utility_ItemsProcFunc::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
+        $hideInput = $hasOptionSelected && ItemsProcFunc::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
 
         // Prepend the provider selector
         $PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector .
@@ -201,23 +204,15 @@ class Tx_DirectMailUserfunc_Controller_Wizard
             return $label;
         }
 
-        $file = t3lib_extMgm::extPath($extension) . $references[0];
+        $file = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extension) . $references[0];
         $index = $references[1];
-        $LOCAL_LANG = t3lib_div::readLLfile($file, $GLOBALS['LANG']->lang);
+        $LOCAL_LANG = GeneralUtility::readLLfile($file, $GLOBALS['LANG']->lang);
 
         $ret = $label;
-        if (version_compare(TYPO3_version, '4.6.0', '<')) {
-            if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index], '')) {
-                $ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index];
-            } else {
-                $ret = $LOCAL_LANG['default'][$index];
-            }
+        if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'], '')) {
+            $ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'];
         } else {
-            if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'], '')) {
-                $ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'];
-            } else {
-                $ret = $LOCAL_LANG['default'][$index][0]['target'];
-            }
+            $ret = $LOCAL_LANG['default'][$index][0]['target'];
         }
 
         return $ret;

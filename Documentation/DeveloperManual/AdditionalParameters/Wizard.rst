@@ -34,7 +34,7 @@ after the field:
 
 .. code-block:: php
 
-	public function getWizard($methodName, array &$PA, t3lib_TCEforms $pObj, &$autoJS) {
+	public function getWizard($methodName, array &$PA, &$autoJS) {
 	    $js = '';
 
 	    if ($methodName === 'myRecipientList') {
@@ -64,8 +64,6 @@ Parameters of the getWizard method are:
 
 - **$PA** : The full TCA configuration for the parameter field. Passed by reference. This allows you to change the way
   the input field *itself* is rendered. (see :ref:`TSref <t3tca:wizards-configuration-user>` for an example).
-
-- **$pObj** : :ref:`t3lib_TCEforms <t3cmsapi:TYPO3\\CMS\\Backend\\Form\\FormEngine>` parent object.
 
 - **$autoJS** : Defaults to ``TRUE``. Passed by reference. Should be set to ``FALSE`` if you want to have full control
   to create your wizard. In such case, no code is added to the onclick event of the parameter icon. You should handle it

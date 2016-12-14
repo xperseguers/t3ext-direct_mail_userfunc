@@ -19,6 +19,7 @@ The following is a very high level overview of the changes in this extension. Fo
 =======  ===========================================================================
 Version  Changes
 =======  ===========================================================================
+1.5.0    Support for TYPO3 v7
 1.4.0    Support for TCA-based additional parameters
 1.3.0    - Fix compatibility with EXT:direct_mail
          - Support for TYPO3 6.x

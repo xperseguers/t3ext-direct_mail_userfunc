@@ -49,7 +49,7 @@ class TestListTca
      * @param string $methodName
      * @return array|null TCA or null if no additional parameters are needed
      */
-    public function getWizardFields($methodName)
+    public static function getWizardFields($methodName)
     {
         $additionalParameters = [
             'columns' => [

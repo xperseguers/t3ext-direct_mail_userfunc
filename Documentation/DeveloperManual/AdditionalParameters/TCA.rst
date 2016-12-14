@@ -32,7 +32,7 @@ of table configuration (TCA):
 
 .. code-block:: php
 
-	public function getWizardFields($methodName) {
+	public static function getWizardFields($methodName) {
 	    return array(
 	        'columns' => array(
 	            'field1' => array(

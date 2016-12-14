@@ -41,10 +41,10 @@ class Wizard
      * Returns code to show whether the itemsProcFunc definition is valid.
      *
      * @param array $PA TCA configuration passed by reference
-     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj
+     * @param \TYPO3\CMS\Backend\Form\FormEngine|\TYPO3\CMS\Backend\Form\Element\InputTextElement $pObj Parent object
      * @return string HTML snippet to be put after the itemsProcFunc field
      */
-    public function itemsprocfunc_procWizard(array &$PA, \TYPO3\CMS\Backend\Form\FormEngine $pObj)
+    public function itemsprocfunc_procWizard(array &$PA, $pObj)
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
         if (!$itemsProcFunc) {
@@ -84,10 +84,10 @@ class Wizard
      * itemsProcFunc value.
      *
      * @param array $PA TCA configuration passed by reference
-     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj Parent object
+     * @param \TYPO3\CMS\Backend\Form\FormEngine|\TYPO3\CMS\Backend\Form\Element\InputTextElement $pObj Parent object
      * @return string HTML snippet to be put after the params field
      */
-    public function params_procWizard(array &$PA, \TYPO3\CMS\Backend\Form\FormEngine $pObj)
+    public function params_procWizard(array &$PA, $pObj)
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
         if (!ItemsProcFunc::hasWizard($itemsProcFunc)) {

@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2013-2016 Causal Sàrl
- * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class Tce
 {
@@ -144,7 +144,7 @@ class Tce
         if ($fields === null) {
             // The user class is used for both TCA and non TCA-based additional parameters
             // and the standard text area should be shown
-            // see http://forge.typo3.org/issues/53287
+            // see https://forge.typo3.org/issues/53287
             return;
         }
 

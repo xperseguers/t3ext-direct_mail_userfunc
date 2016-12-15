@@ -21,7 +21,7 @@ namespace Causal\DirectMailUserfunc\Utility;
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2013-2016 Causal Sàrl
- * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class ItemsProcFunc
 {

@@ -8,7 +8,7 @@ namespace Causal\DirectMailUserfunc\Samples;
  * itemsProcFunc value when creating a Recipient List of type "User function".
  *
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @license     http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class TestList
 {

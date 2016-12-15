@@ -42,11 +42,6 @@ this is easily done with:
 	// Add fe_users record with uid = 14 to the list
 	$params['lists']['fe_users'][] = 14;
 
-.. note::
-	Your class should be properly loaded. If you are using TYPO3 >= 4.6 and you stick to Extbase naming conventions, the
-	TYPO3 autoloader will automatically take care of loading it when needed. If using TYPO3 4.5, you should add a
-	reference into :file:`EXT:yourext/ext_autoload.php`.
-
 
 .. toctree::
 	:maxdepth: 5

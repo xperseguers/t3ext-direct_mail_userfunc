@@ -4,7 +4,7 @@
 
 ---
 conf.py:
-  copyright: 2009-2016
+  copyright: 2009-2017
   project: External Providers for Direct Mail
   version: 1.5
   release: 1.5.1-dev

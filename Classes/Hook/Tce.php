@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @category    Hook
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @copyright   2013-2017 Causal Sàrl
+ * @copyright   2013-2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class Tce

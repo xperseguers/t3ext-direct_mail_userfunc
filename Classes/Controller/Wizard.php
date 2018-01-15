@@ -165,13 +165,13 @@ class Wizard
         }
 
         $updateJS = 'var itemsProcFunc = document.' . $PA['formName'] . '[\'userfunc_provider\'].value;';
-        $updateJS .= 'document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = itemsProcFunc;';
+        $updateJS .= 'TYPO3.jQuery(\'[data-formengine-input-name="' . $PA['itemName'] . '"]\').val(itemsProcFunc);';
         $updateJS .= implode('', $PA['fieldChangeFunc']);
         // Automatically reload edit form
-        $updateJS .= 'if (confirm(TBE_EDITOR.labels.onChangeAlert) &amp;&amp; TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm() };';
+        $updateJS .= 'if (confirm(TBE_EDITOR.labels.onChangeAlert) && TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm() };';
 
         $selector = '
-            <select name="userfunc_provider" onchange="' . $updateJS . '">
+            <select name="userfunc_provider" onchange="' . htmlspecialchars($updateJS) . '">
                 <option value=""></option>' .
             join('', $options) . '
             </select>

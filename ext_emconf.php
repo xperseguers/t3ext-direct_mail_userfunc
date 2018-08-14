@@ -28,7 +28,7 @@ $EM_CONF[$_EXTKEY] = [
         'depends' => [
             'php' => '5.5.0-7.2.99',
             'typo3' => '7.6.0-8.7.99',
-            'direct_mail' => '5.0.0-5.2.99',
+            'direct_mail' => '5.2.0-5.2.99',
         ],
         'conflicts' => [],
         'suggests' => [],

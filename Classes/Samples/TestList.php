@@ -49,7 +49,7 @@ class TestList
      * @param bool $autoJS Set to true if you wish to fully generate your own code for calling your wizard
      * @return string JavaScript code to be executed upon icon click
      */
-    public function getWizard($methodName, array &$PA, &$autoJS)
+    public static function getWizard($methodName, array &$PA, &$autoJS)
     {
         $js = '';
 

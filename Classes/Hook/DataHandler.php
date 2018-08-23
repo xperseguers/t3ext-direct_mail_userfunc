@@ -141,7 +141,7 @@ class DataHandler
         // Prefix each additional field
         $prefixedFields = [
             'columns' => [],
-            'types' => $fields['types'],
+            'types' => isset($fields['types']) ? $fields['type'] : [],
             'palettes' => isset($fields['palettes']) ? $fields['palettes'] : [],
             'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : [],
         ];

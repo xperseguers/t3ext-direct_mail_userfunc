@@ -17,8 +17,7 @@ class TestListTca
      * Returns a list of recipients.
      *
      * @param array $params User parameters
-     * @param tx_directmail_recipient_list|tx_directmail_dmail $pObj Parent object
-     * @return array
+     * @param \DirectMailTeam\DirectMail\Module\RecipientList|\DirectMailTeam\DirectMail\Module\Dmail $pObj Parent object
      */
     public function myRecipientList(array &$params, $pObj)
     {

@@ -30,14 +30,6 @@ class ExternalProviders
 {
 
     /**
-     * Default constructor.
-     */
-    public function __construct()
-    {
-        $GLOBALS['LANG']->includeLLFile('EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf');
-    }
-
-    /**
      * Returns code to show whether the itemsProcFunc definition is valid.
      *
      * @param array $PA TCA configuration passed by reference
@@ -47,7 +39,7 @@ class ExternalProviders
     public function renderList(array &$PA, $pObj) : string
     {
         // Show the user function provider selector
-        static::addUserFunctionProviders($PA);
+        $this->addUserFunctionProviders($PA);
 
         return $PA['item'];
     }
@@ -74,7 +66,7 @@ class ExternalProviders
             return '';
         }
 
-        $altIcon = $GLOBALS['LANG']->getLL('wizard.parameters.title');
+        $altIcon = $this->sL('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:wizard.parameters.title');
         if ($autoJS) {
             if (substr($wizardJS, -1) !== ';') {
                 $wizardJS .= ';';
@@ -96,9 +88,8 @@ class ExternalProviders
      * Prepends a user function provider selector to the itemsProcFunc field.
      *
      * @param array $PA TCA configuration passed by reference
-     * @return void
      */
-    protected static function addUserFunctionProviders(array &$PA)
+    protected function addUserFunctionProviders(array &$PA)
     {
         if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
             return;
@@ -108,7 +99,7 @@ class ExternalProviders
         $providers = [];
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] as $provider) {
             $itemsProcFunc = $provider['class'] . '->' . $provider['method'];
-            $providers[$itemsProcFunc] = static::getLL($provider['label']);
+            $providers[$itemsProcFunc] = $this->sL($provider['label']);
         }
         asort($providers);
 
@@ -140,7 +131,9 @@ class ExternalProviders
 
         $out = [];
         $out[] = '<div class="form-control-wrap">';
-        $out[] =    '<label class="t3js-formengine-label">' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . '</label>';
+        $out[] =    '<label class="t3js-formengine-label">' .
+                        $this->sL('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:wizard.itemsProcFunc.providers') .
+                    '</label>';
         $out[] =    '<div class="form-control-wrap">';
         $out[] =        $selector;
         $out[] =        ($hideInput ? '<div style="display:none">' : '') . $PA['item'] . ($hideInput ? '</div>' : '');
@@ -151,40 +144,16 @@ class ExternalProviders
     }
 
     /**
-     * Returns the label with key $index for current backend language.
-     *
-     * @param string $label Label/key reference
+     * @param string $input
      * @return string
      */
-    public static function getLL($label)
+    protected function sL(string $input) : string
     {
-        if (strcmp(substr($label, 0, 8), 'LLL:EXT:')) {
-            // Non-localizable string provided
-            return $label;
+        if (!strcmp(substr($input, 0, 8), 'LLL:EXT:')) {
+            $input = $GLOBALS['LANG']->sL($input);
         }
 
-        $label = substr($label, 8);    // Remove 'LLL:EXT:' at the beginning
-        $extension = substr($label, 0, strpos($label, '/'));
-        $references = explode(':', substr($label, strlen($extension) + 1));
-        if (!($extension && count($references))) {
-            return $label;
-        }
-
-        $file = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extension) . $references[0];
-        $index = $references[1];
-
-        /** @var \TYPO3\CMS\Core\Localization\LocalizationFactory $languageFactory */
-        $languageFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Localization\LocalizationFactory::class);
-        $LOCAL_LANG = $languageFactory->getParsedData($file, $GLOBALS['LANG']->lang);
-
-        $ret = $label;
-        if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'], '')) {
-            $ret = $LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'];
-        } else {
-            $ret = $LOCAL_LANG['default'][$index][0]['target'];
-        }
-
-        return $ret;
+        return htmlspecialchars($input);
     }
 
 }

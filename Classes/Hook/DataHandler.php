@@ -18,7 +18,7 @@ use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * This class hooks into t3lib_TCEforms and t3lib_TCEmain to process the virtual fields.
+ * This class hooks into \TYPO3\CMS\Core\DataHandling\DataHandler to process the virtual fields.
  *
  * @category    Hook
  * @package     direct_mail_userfunc
@@ -26,31 +26,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @copyright   2013-2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Tce
+class DataHandler
 {
-
-    /**
-     * Pre-processes the TCA of table sys_dmail_group.
-     * Hook in t3lib_TCEforms
-     *
-     * @param string $table
-     * @param array $row
-     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj
-     * @return void
-     */
-    public function getMainFields_preProcess($table, array &$row, \TYPO3\CMS\Backend\Form\FormEngine $pObj)
-    {
-        if ($table !== 'sys_dmail_group') {
-            return;
-        }
-
-        $wizardFields = null;
-        $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
-        if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
-            $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
-            $this->reconfigureTCA($wizardFields, $row);
-        }
-    }
 
     /**
      * Stores virtual field values into column tx_directmailuserfunc_params.
@@ -83,7 +60,7 @@ class Tce
 
         if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
             $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
-            $this->reconfigureTCA($wizardFields, $row, false);
+            $this->reconfigureTCA($wizardFields, $row);
         }
 
         $virtualValues = [];
@@ -136,10 +113,9 @@ class Tce
      *
      * @param array|null $fields
      * @param array $row
-     * @param bool $removeStandardField
      * @return void
      */
-    protected function reconfigureTCA(array $fields = null, array &$row, $removeStandardField = true)
+    protected function reconfigureTCA(array $fields = null, array &$row)
     {
         if ($fields === null) {
             // The user class is used for both TCA and non TCA-based additional parameters
@@ -148,10 +124,8 @@ class Tce
             return;
         }
 
-        if ($removeStandardField) {
-            // Remove standard textarea
-            unset($GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']);
-        }
+        // Remove standard textarea
+        $GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']['config']['type'] = 'passthrough';
 
         if (count($fields) === 0) {
             // The user class does not need any additional parameters

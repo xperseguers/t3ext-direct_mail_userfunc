@@ -161,9 +161,9 @@ class ItemsProcFunc
     {
         $values = !empty($row['tx_directmailuserfunc_params'])
             ? json_decode($row['tx_directmailuserfunc_params'], true)
-            : array();
+            : [];
         if (!is_array($values)) {
-            $values = array();
+            $values = [];
         }
 
         return $values;

@@ -10,9 +10,16 @@ if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc'])) {
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod2']['cmd_compileMailGroup'][] = \Causal\DirectMailUserfunc\Hook\DirectMail::class;
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail']['mod3']['cmd_compileMailGroup'][] = \Causal\DirectMailUserfunc\Hook\DirectMail::class;
 
-// Register hook into \TYPO3\CMS\Backend\Form\FormEngine and \TYPO3\CMS\Core\DataHandling\DataHandler
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] = \Causal\DirectMailUserfunc\Hook\Tce::class;
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = \Causal\DirectMailUserfunc\Hook\Tce::class;
+// Register a custom data provider for \TYPO3\CMS\Backend\Form\FormEngine
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
+    [\Causal\DirectMailUserfunc\FormEngine\FormDataProvider\DatabaseEditVirtualRow::class] = [
+        'depends' => [
+            \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseEditRow::class,
+        ]
+    ];
+
+// Register hook into \TYPO3\CMS\Backend\Form\FormEngine
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = \Causal\DirectMailUserfunc\Hook\DataHandler::class;
 
 // Register sample user functions if needed
 if (TYPO3_MODE === 'BE') {

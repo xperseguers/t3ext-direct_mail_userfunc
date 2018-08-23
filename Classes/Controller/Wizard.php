@@ -146,7 +146,7 @@ class Wizard
         }
 
         // Sort list of providers
-        $providers = array();
+        $providers = [];
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'] as $provider) {
             $itemsProcFunc = $provider['class'] . '->' . $provider['method'];
             $providers[$itemsProcFunc] = static::getLL($provider['label']);
@@ -154,7 +154,7 @@ class Wizard
         asort($providers);
 
         $hasOptionSelected = false;
-        $options = array();
+        $options = [];
         foreach ($providers as $itemsProcFunc => $label) {
             $selected = '';
             if ($PA['row']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc) {

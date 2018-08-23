@@ -23,11 +23,11 @@ $EM_CONF[$_EXTKEY] = [
     'modify_tables' => 'sys_dmail,sys_dmail_group',
     'clearCacheOnLoad' => 0,
     'lockType' => '',
-    'version' => '1.6.0-dev',
+    'version' => '2.0.0-dev',
     'constraints' => [
         'depends' => [
-            'php' => '5.5.0-7.2.99',
-            'typo3' => '7.6.0-8.7.99',
+            'php' => '7.2.0-7.2.99',
+            'typo3' => '8.7.0-8.7.99',
             'direct_mail' => '5.2.0-5.2.99',
         ],
         'conflicts' => [],

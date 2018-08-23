@@ -138,10 +138,18 @@ class DataHandler
 
         $currentValues = ItemsProcFunc::decodeUserParameters($row);
 
+        if (!isset($fields['type'])) {
+            // Without a definition for type "5", custom fields are not shown
+            // so we automatically create a basic configuration to show them
+            $fields['type']['5'] = [
+                'showitem' => implode(', ', array_keys($fields['columns']))
+            ];
+        }
+
         // Prefix each additional field
         $prefixedFields = [
             'columns' => [],
-            'types' => isset($fields['types']) ? $fields['type'] : [],
+            'types' => $fields['type'],
             'palettes' => isset($fields['palettes']) ? $fields['palettes'] : [],
             'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : [],
         ];

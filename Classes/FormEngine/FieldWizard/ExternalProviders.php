@@ -131,9 +131,9 @@ class ExternalProviders
 
         $out = [];
         $out[] = '<div class="form-control-wrap">';
-        $out[] =    '<label class="t3js-formengine-label">' .
-                        $this->sL('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:wizard.itemsProcFunc.providers') .
-                    '</label>';
+        $out[] =    '<label class="t3js-formengine-label">';
+        $out[] =        $this->sL('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:wizard.itemsProcFunc.providers');
+        $out[] =    '</label>';
         $out[] =    '<div class="form-control-wrap">';
         $out[] =        $selector;
         $out[] =        ($hideInput ? '<div style="display:none">' : '') . $PA['item'] . ($hideInput ? '</div>' : '');

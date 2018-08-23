@@ -13,9 +13,9 @@ Using TCA for additional parameters
 
 The simple JavaScript wizard presented in previous section is fine as long as you want to store a single additional
 parameter, e.g., a number or some string. But when you wish to store some complex settings such as various options or
-business record references, you will have to create an ExtJS-based wizard which involves quite some work and still has
-the drawback that you are on your own to serialize/deserialize your configuration options in the additional parameters
-text area. Besides, the serialized configuration is shown in clear in the text area.
+business record references, this quickly becomes less than ideal and has the drawback that you are on your own to
+serialize/deserialize your configuration options in the additional parameters text area. Besides, the serialized
+configuration is shown in clear in the text area.
 
 Fortunately there is an alternative. This extension lets you define custom TCA to be used for additional parameters.
 Once defined, this custom TCA will *replace* the text area with any field you want:

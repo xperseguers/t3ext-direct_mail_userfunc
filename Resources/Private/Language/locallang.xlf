@@ -14,9 +14,6 @@
 			<trans-unit id="userfunction.myRecipientList">
 				<source>[Sample] Recipient List</source>
 			</trans-unit>
-			<trans-unit id="userfunction.myRecipientListExtJS">
-				<source>[Sample] Recipient List (ExtJS wizard)</source>
-			</trans-unit>
 			<trans-unit id="userfunction.myRecipientListTca">
 				<source>[Sample] Recipient List (TCA wizard)</source>
 			</trans-unit>

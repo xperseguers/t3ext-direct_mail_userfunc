@@ -32,12 +32,6 @@ if (TYPO3_MODE === 'BE') {
         ];
 
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
-            'class' => \Causal\DirectMailUserfunc\Samples\TestListExtjs::class,
-            'method' => 'myRecipientList',
-            'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xlf:userfunction.myRecipientListExtJS'
-        ];
-
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
             'class' => \Causal\DirectMailUserfunc\Samples\TestListTca::class,
             'method' => 'myRecipientList',
             'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang.xlf:userfunction.myRecipientListTca'

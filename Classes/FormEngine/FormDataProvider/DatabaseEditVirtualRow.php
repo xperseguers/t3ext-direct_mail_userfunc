@@ -36,8 +36,11 @@ class DatabaseEditVirtualRow implements FormDataProviderInterface
             if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
                 $currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
                 $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
+                $fieldPrefix = 'tx_directmailuserfunc_virtual_';
+
                 foreach ($wizardFields['columns'] as $field => $_) {
-                    $result['databaseRow']['tx_directmailuserfunc_virtual_' . $field] = $currentValues[$field] ?? '';
+                    $tcaField = $fieldPrefix . $field;
+                    $result['databaseRow'][$tcaField] = $currentValues[$field] ?? '';
                 }
             }
         }

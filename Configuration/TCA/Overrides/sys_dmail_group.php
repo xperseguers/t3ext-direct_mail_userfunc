@@ -7,6 +7,12 @@ $tempColumns = [
         'config' => [
             'type' => 'input',
             'size' => '40',
+            'eval' => 'required',
+            'fieldControl' => [
+                'checkControl' => [
+                    'renderType' => 'checkUserfuncControl'
+                ]
+            ],
             'wizards' => [
                 'uproc' => [
                     'type' => 'userFunc',

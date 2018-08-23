@@ -47,24 +47,11 @@ class Wizard
     public function itemsprocfunc_procWizard(array &$PA, $pObj)
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-        if (!$itemsProcFunc) {
-            // Show the required icon
-            $PA['item'] = static::getIcon('gfx/required_h.gif') . $PA['item'];
-        }
 
         // Show the user function provider selector
         static::addUserFunctionProviders($PA);
 
-        if (!$itemsProcFunc) {
-            return;
-        } elseif (ItemsProcFunc::isMethodValid($itemsProcFunc)) {
-
-            $this->appendItemContent($PA, static::getIcon('gfx/icon_ok.gif'));
-        } elseif (!ItemsProcFunc::isClassValid($itemsProcFunc)) {
-            $this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidClass'));
-        } else {
-            $this->appendItemContent($PA, static::getIcon('gfx/icon_warning.gif') . ' ' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.invalidMethod'));
-        }
+        return $PA['item'];
     }
 
     /**

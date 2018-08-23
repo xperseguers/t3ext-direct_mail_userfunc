@@ -6,6 +6,9 @@
 			<trans-unit id="sys_dmail_group.type.I.5">
 				<source>External provider</source>
 			</trans-unit>
+			<trans-unit id="wizard.itemsProcFunc.valid">
+				<source>Valid class and method</source>
+			</trans-unit>
 			<trans-unit id="wizard.itemsProcFunc.invalidClass">
 				<source>Unknown class</source>
 			</trans-unit>

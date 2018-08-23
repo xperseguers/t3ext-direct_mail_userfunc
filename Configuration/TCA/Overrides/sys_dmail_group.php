@@ -16,7 +16,7 @@ $tempColumns = [
             'wizards' => [
                 'uproc' => [
                     'type' => 'userFunc',
-                    'userFunc' => \Causal\DirectMailUserfunc\Controller\Wizard::class . '->itemsprocfunc_procWizard',
+                    'userFunc' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\ExternalProviders::class . '->renderList',
                     'params' => [],
                 ],
             ],
@@ -32,7 +32,7 @@ $tempColumns = [
             'wizards' => [
                 'uproc' => [
                     'type' => 'userFunc',
-                    'userFunc' => \Causal\DirectMailUserfunc\Controller\Wizard::class . '->params_procWizard',
+                    'userFunc' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\ExternalProviders::class . '->params_procWizard',
                     'params' => [],
                 ],
             ],

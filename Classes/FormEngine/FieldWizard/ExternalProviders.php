@@ -12,7 +12,7 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-namespace Causal\DirectMailUserfunc\Controller;
+namespace Causal\DirectMailUserfunc\FormEngine\FieldWizard;
 
 use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -20,13 +20,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * This class encapsulates display of a user wizard.
  *
- * @category    Controller
+ * @category    FormEngine\FieldWizard
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2012-2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Wizard
+class ExternalProviders
 {
 
     /**
@@ -44,26 +44,12 @@ class Wizard
      * @param \TYPO3\CMS\Backend\Form\FormEngine|\TYPO3\CMS\Backend\Form\Element\InputTextElement $pObj Parent object
      * @return string HTML snippet to be put after the itemsProcFunc field
      */
-    public function itemsprocfunc_procWizard(array &$PA, $pObj)
+    public function renderList(array &$PA, $pObj) : string
     {
-        $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-
         // Show the user function provider selector
         static::addUserFunctionProviders($PA);
 
         return $PA['item'];
-    }
-
-    /**
-     * Appends some content to the PA's item (next to it).
-     *
-     * @param array $PA
-     * @param string $content
-     * @return void
-     */
-    protected function appendItemContent(array &$PA, $content)
-    {
-        $PA['item'] = preg_replace('#(<div style="clear:both;"></div>)$#s', $content . '$1', $PA['item']);
     }
 
     /**
@@ -74,7 +60,7 @@ class Wizard
      * @param \TYPO3\CMS\Backend\Form\FormEngine|\TYPO3\CMS\Backend\Form\Element\InputTextElement $pObj Parent object
      * @return string HTML snippet to be put after the params field
      */
-    public function params_procWizard(array &$PA, $pObj)
+    public function params_procWizard(array &$PA, $pObj) : string
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
         if (!ItemsProcFunc::hasWizard($itemsProcFunc)) {
@@ -96,28 +82,14 @@ class Wizard
             $wizardJS .= 'return false;';
 
             $output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="' . $altIcon . '">';
-            $output .= static::getIcon('gfx/options.gif');
+            //$output .= static::getIcon('gfx/options.gif');
             $output .= '</a>';
         } else {
-            $output = static::getIcon('gfx/options.gif', $altIcon, 'id="params-btn" style="cursor:pointer"');
+            $output = ''; //static::getIcon('gfx/options.gif', $altIcon, 'id="params-btn" style="cursor:pointer"');
             $output .= $wizardJS;
         }
 
         return $output;
-    }
-
-    /**
-     * Returns a HTML image tag with a given icon (taking t3skin into account).
-     *
-     * @param string $src Image source
-     * @param string $alt Alternate text
-     * @param string $params Additional parameters for the img tag
-     * @return string
-     */
-    protected static function getIcon($src, $alt = '', $params = '')
-    {
-        return '<img ' . \TYPO3\CMS\Backend\Utility\IconUtility::skinImg($GLOBALS['BACKPATH'], $src) .
-        ' alt="' . $alt . '" title="' . $alt . '" vspace="4" align="absmiddle" ' . $params . '/>';
     }
 
     /**
@@ -158,17 +130,24 @@ class Wizard
         $updateJS .= 'if (confirm(TBE_EDITOR.labels.onChangeAlert) && TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm() };';
 
         $selector = '
-            <select name="userfunc_provider" onchange="' . htmlspecialchars($updateJS) . '">
+            <select class="form-control" name="userfunc_provider" onchange="' . htmlspecialchars($updateJS) . '">
                 <option value=""></option>' .
-            join('', $options) . '
+                implode('', $options) . '
             </select>
         ';
 
         $hideInput = $hasOptionSelected && ItemsProcFunc::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
 
-        // Prepend the provider selector
-        $PA['item'] = $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . $selector .
-            ($hideInput ? '<div style="display:none">' : '') . '<br />' . $PA['item'] . ($hideInput ? '</div>' : '');
+        $out = [];
+        $out[] = '<div class="form-control-wrap">';
+        $out[] =    '<label class="t3js-formengine-label">' . $GLOBALS['LANG']->getLL('wizard.itemsProcFunc.providers') . '</label>';
+        $out[] =    '<div class="form-control-wrap">';
+        $out[] =        $selector;
+        $out[] =        ($hideInput ? '<div style="display:none">' : '') . $PA['item'] . ($hideInput ? '</div>' : '');
+        $out[] =    '</div>';
+        $out[] = '</div>';
+
+        $PA['item'] = implode(LF, $out);
     }
 
     /**
@@ -193,7 +172,10 @@ class Wizard
 
         $file = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extension) . $references[0];
         $index = $references[1];
-        $LOCAL_LANG = GeneralUtility::readLLfile($file, $GLOBALS['LANG']->lang);
+
+        /** @var \TYPO3\CMS\Core\Localization\LocalizationFactory $languageFactory */
+        $languageFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Localization\LocalizationFactory::class);
+        $LOCAL_LANG = $languageFactory->getParsedData($file, $GLOBALS['LANG']->lang);
 
         $ret = $label;
         if (strcmp($LOCAL_LANG[$GLOBALS['LANG']->lang][$index][0]['target'], '')) {

@@ -99,10 +99,14 @@ class DataHandler
      */
     protected function checkValue($table, $field, $value, $curValue, $id, $status, $realPid, \TYPO3\CMS\Core\DataHandling\DataHandler $pObj)
     {
+        // Result array
+        $res = [];
+
         // For our use $tscPID is always the real PID
         $tscPID = $realPid;
         // Getting config for the field
         $tcaFieldConf = $GLOBALS['TCA'][$table]['columns'][$field]['config'];
+
         // Perform processing:
         $res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, [], $tscPID);
         return $res;

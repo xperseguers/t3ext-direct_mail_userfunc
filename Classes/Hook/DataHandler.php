@@ -66,7 +66,7 @@ class DataHandler
 
         $virtualValues = [];
         foreach ($incomingFieldArray as $field => $value) {
-            if (GeneralUtility::isFirstPartOfStr($field, 'tx_directmailuserfunc_virtual_')) {
+            if (GeneralUtility::isFirstPartOfStr($field, TcaUtility::VIRTUAL_PREFIX)) {
                 $virtualField = substr($field, strlen('tx_directmailuserfunc_virtual_'));
 
                 // Evaluate field
@@ -84,6 +84,8 @@ class DataHandler
             $newValues = array_merge($currentValues, $virtualValues);
             ItemsProcFunc::encodeUserParameters($incomingFieldArray, $newValues);
         }
+
+        TcaUtility::resetTCA();
     }
 
     /**

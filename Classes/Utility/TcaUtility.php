@@ -14,6 +14,8 @@
 
 namespace Causal\DirectMailUserfunc\Utility;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This class allows the TCA to be extended with virtual fields.
  *
@@ -25,6 +27,8 @@ namespace Causal\DirectMailUserfunc\Utility;
  */
 class TcaUtility
 {
+
+    const VIRTUAL_PREFIX = 'tx_directmailuserfunc_virtual_';
 
     /**
      * Reconfigures the TCA with custom fields.
@@ -68,7 +72,7 @@ class TcaUtility
             'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : [],
         ];
         foreach ($fields['columns'] as $field => $fieldInfo) {
-            $virtualField = 'tx_directmailuserfunc_virtual_' . $field;
+            $virtualField = static::VIRTUAL_PREFIX . $field;
             $prefixedFields['columns'][$virtualField] = $fieldInfo;
 
             if (isset($currentValues[$field])) {
@@ -117,6 +121,22 @@ class TcaUtility
 
         if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
             $GLOBALS['TCA']['sys_dmail_group']['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];
+        }
+    }
+
+    /**
+     * Resets the TCA so that it does not contain any virtual column anymore.
+     *
+     * This is needed to prevent virtual columns to be queried by
+     * \TYPO3\CMS\Core\Database\ReferenceIndex::updateRefIndexTable()
+     * after DataHanlder persisted changes to the database.
+     */
+    public static function resetTCA()
+    {
+        foreach ($GLOBALS['TCA']['sys_dmail_group']['columns'] as $field => $_) {
+            if (GeneralUtility::isFirstPartOfStr($field, TcaUtility::VIRTUAL_PREFIX)) {
+                unset($GLOBALS['TCA']['sys_dmail_group']['columns'][$field]);
+            }
         }
     }
 

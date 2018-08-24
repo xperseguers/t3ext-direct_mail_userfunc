@@ -29,19 +29,21 @@ class DatabaseEditVirtualRow implements FormDataProviderInterface
      */
     public function addData(array $result)
     {
-        if ($result['tableName'] === 'sys_dmail_group') {
-            $wizardFields = null;
-            $itemsProcFunc = $result['databaseRow']['tx_directmailuserfunc_itemsprocfunc'];
+        if ($result['command'] !== 'edit' || $result['tableName'] !== 'sys_dmail_group') {
+            return $result;
+        }
 
-            if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
-                $currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
-                $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
-                $fieldPrefix = 'tx_directmailuserfunc_virtual_';
+        $wizardFields = null;
+        $itemsProcFunc = $result['databaseRow']['tx_directmailuserfunc_itemsprocfunc'];
 
-                foreach ($wizardFields['columns'] as $field => $_) {
-                    $tcaField = $fieldPrefix . $field;
-                    $result['databaseRow'][$tcaField] = $currentValues[$field] ?? '';
-                }
+        if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+            $currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
+            $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
+            $fieldPrefix = 'tx_directmailuserfunc_virtual_';
+
+            foreach ($wizardFields['columns'] as $field => $_) {
+                $tcaField = $fieldPrefix . $field;
+                $result['databaseRow'][$tcaField] = $currentValues[$field] ?? '';
             }
         }
 

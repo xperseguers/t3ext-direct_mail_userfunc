@@ -15,7 +15,10 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRe
     [\Causal\DirectMailUserfunc\FormEngine\FormDataProvider\DatabaseEditVirtualRow::class] = [
         'depends' => [
             \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseEditRow::class,
-        ]
+        ],
+        'before' => [
+            \TYPO3\CMS\Backend\Form\FormDataProvider\InlineOverrideChildTca::class,
+        ],
     ];
 
 // Register hook into \TYPO3\CMS\Backend\Form\FormEngine

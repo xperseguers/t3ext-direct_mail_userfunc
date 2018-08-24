@@ -52,10 +52,10 @@ class TcaUtility
 
         $currentValues = ItemsProcFunc::decodeUserParameters($row);
 
-        if (!isset($fields['type'])) {
+        if (!isset($fields['types']) || !isset($fields['types']['5'])) {
             // Without a definition for type "5", custom fields are not shown
             // so we automatically create a basic configuration to show them
-            $fields['type']['5'] = [
+            $fields['types']['5'] = [
                 'showitem' => implode(', ', array_keys($fields['columns']))
             ];
         }
@@ -63,7 +63,7 @@ class TcaUtility
         // Prefix each additional field
         $prefixedFields = [
             'columns' => [],
-            'types' => $fields['type'],
+            'types' => $fields['types'],
             'palettes' => isset($fields['palettes']) ? $fields['palettes'] : [],
             'ctrl' => isset($fields['ctrl']) ? $fields['ctrl'] : [],
         ];

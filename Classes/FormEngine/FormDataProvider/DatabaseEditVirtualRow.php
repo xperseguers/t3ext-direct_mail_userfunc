@@ -16,6 +16,7 @@ namespace Causal\DirectMailUserfunc\FormEngine\FormDataProvider;
 
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
+use Causal\DirectMailUserfunc\Utility\TcaUtility;
 
 class DatabaseEditVirtualRow implements FormDataProviderInterface
 {
@@ -39,12 +40,7 @@ class DatabaseEditVirtualRow implements FormDataProviderInterface
         if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
             $currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
             $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
-            $fieldPrefix = 'tx_directmailuserfunc_virtual_';
-
-            foreach ($wizardFields['columns'] as $field => $_) {
-                $tcaField = $fieldPrefix . $field;
-                $result['databaseRow'][$tcaField] = $currentValues[$field] ?? '';
-            }
+            TcaUtility::reconfigureTCA($wizardFields, $result['databaseRow']);
         }
 
         return $result;

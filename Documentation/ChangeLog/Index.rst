@@ -11,7 +11,8 @@
 ChangeLog
 =========
 
-The following is a very high level overview of the changes in this extension. For more details, `read the online log <https://git.typo3.org/TYPO3CMS/Extensions/direct_mail_userfunc.git/log>`_.
+The following is a very high level overview of the changes in this extension. For more details,
+`read the online log <https://github.com/xperseguers/t3ext-direct_mail_userfunc/commits/master>`_.
 
 
 .. tabularcolumns:: |r|p{13.7cm}|
@@ -19,6 +20,7 @@ The following is a very high level overview of the changes in this extension. Fo
 =======  ===========================================================================
 Version  Changes
 =======  ===========================================================================
+1.6.0    Support for TYPO3 v8 (partial, not the TCA wizards)
 1.5.0    Support for TYPO3 v7
 1.4.0    Support for TCA-based additional parameters
 1.3.0    - Fix compatibility with EXT:direct_mail

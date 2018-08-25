@@ -48,7 +48,8 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.6.x-dev"
+      "dev-master": "2.0.x-dev",
+      "dev-DMU_v16": "1.6.x-dev"
     },
     "typo3/cms": {
       "cms-package-dir": "{$vendor-dir}/typo3/cms",

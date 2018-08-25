@@ -4,10 +4,10 @@
 
 ---
 conf.py:
-  copyright: 2009-2017
+  copyright: 2009-2018
   project: External Providers for Direct Mail
-  version: 1.5
-  release: 1.5.1-dev
+  version: 1.6
+  release: 1.6.0
   latex_documents:
   - - Index
     - direct_mail_userfunc.tex

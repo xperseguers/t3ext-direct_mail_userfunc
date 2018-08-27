@@ -48,7 +48,7 @@ class CheckUserfuncControl extends AbstractNode
             'title' => $this->sL($titleKey),
             'linkAttributes' => [
                 'class' => $class,
-                'data-id' => $this->data['databaseRow']['uid'],
+                'data-id' => 'check-' . $this->data['databaseRow']['uid'],
             ]
         ];
         return $result;

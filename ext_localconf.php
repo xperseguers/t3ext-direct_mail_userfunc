@@ -7,6 +7,11 @@ $boot = function ($_EXTKEY) {
         'priority' => 30,
         'class' => \Causal\DirectMailUserfunc\FormEngine\FieldControl\CheckUserfuncControl::class
     ];
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1535361874] = [
+        'nodeName' => 'invokeUserJsControl',
+        'priority' => 30,
+        'class' => \Causal\DirectMailUserfunc\FormEngine\FieldControl\InvokeUserJsControl::class
+    ];
 };
 
 $boot($_EXTKEY);

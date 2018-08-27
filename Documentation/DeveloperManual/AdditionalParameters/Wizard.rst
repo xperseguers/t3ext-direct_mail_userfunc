@@ -17,8 +17,7 @@ as XML. This means you hardly can expect user to remember the exact syntax to be
 
 You already know of many extensions providing a wizard to help you prepare plugin configuration. With this extension,
 you also have the opportunity to create a wizard. The wizard is typically written in JavaScript and basically supports
-whatever you may do with a TCA wizard of type "userFunc" (see :ref:`TSref <t3tca:wizards-configuration-user>` for more
-information).
+whatever you may do with a TCA wizard of type "userFunc".
 
 Screenshot below shows an additional icon next to the parameter field:
 
@@ -34,28 +33,34 @@ after the field:
 
 .. code-block:: php
 
-	public function getWizard($methodName, array &$PA, &$autoJS) {
-	    $js = '';
+	public function getWizard(string $methodName, array &$PA, bool $checkOnly = false) : ?string
+	{
+		$js = null;
 
-	    if ($methodName === 'myRecipientList') {
-	        $js = '
-	            var params = document.'.$PA['formName'].'[\''.$PA['itemName'].'\'].value;
-	            if (empty(params)) params = 2;
-	        ';
+		if ($methodName === 'myRecipientList') {
+			if ($checkOnly) {
+				// We just need to return some non-empty string to show the wizard button
+				return 'ok';
+			}
 
-	        // Show a standard javascript prompt and assign result to the parameters field
-	        // This information will be saved with form and available in myRecipientList
-	        $js .= '
-	            var r = prompt("How many items do you want in your list?", params);
-	            if (r != null) {
-	                document.'.$PA['formName'].'[\''.$PA['itemName'].'\'].value =
-	                    parseInt(r);'.
-	                implode('', $PA['fieldChangeFunc']) .';
-	            }
-	        ';
-	    }
+			$js = '
+				var params = document.'.$PA['formName'].'[\''.$PA['itemName'].'\'].value;
+				if (params == "") params = 2;
+			';
 
-	    return $js;
+			// Show a standard javascript prompt and assign result to the parameters field
+			// This information will be saved with form and available in myRecipientList
+			$js .= '
+				var r = prompt("How many items do you want in your list?", params);
+				if (r != null) {
+					document.'.$PA['formName'].'[\''.$PA['itemName'].'\'].value =
+						parseInt(r);'.
+					implode('', $PA['fieldChangeFunc']) .';
+				}
+			';
+		}
+
+		return $js;
 	}
 
 Parameters of the getWizard method are:
@@ -65,9 +70,9 @@ Parameters of the getWizard method are:
 - **$PA** : The full TCA configuration for the parameter field. Passed by reference. This allows you to change the way
   the input field *itself* is rendered. (see :ref:`TSref <t3tca:wizards-configuration-user>` for an example).
 
-- **$autoJS** : Defaults to ``TRUE``. Passed by reference. Should be set to ``FALSE`` if you want to have full control
-  to create your wizard. In such case, no code is added to the onclick event of the parameter icon. You should handle it
-  on your own. This is typically useful when creating an ExtJS wizard. The icon tag is given HTML id ``params-btn``.
+- **$checkOnly** : If ``true``, you should only return an non-empty string if some JS is needed. This is used by the
+  FormEngine to show the wizard button next to the parameter field. The actual JS should be returned if ``$checkOnly``
+  is `false`.
 
 .. caution::
 	Make sure to always run JavaScript code stored in ``$PA['fieldChangeFunc']`` when updating the value as it takes

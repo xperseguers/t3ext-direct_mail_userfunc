@@ -29,10 +29,15 @@ $tempColumns = [
             'type' => 'text',
             'cols' => '40',
             'rows' => '2',
+            'fieldControl' => [
+                'invokeControl' => [
+                    'renderType' => 'invokeUserJsControl'
+                ]
+            ],
             'wizards' => [
                 'uproc' => [
                     'type' => 'userFunc',
-                    'userFunc' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\ExternalProviders::class . '->params_procWizard',
+                    'userFunc' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\ExternalProviders::class . '->renderWizardJs',
                     'params' => [],
                 ],
             ],

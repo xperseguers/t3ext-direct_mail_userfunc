@@ -45,43 +45,34 @@ class ExternalProviders
     }
 
     /**
-     * Returns code to show a user-handled wizard associated to current
-     * itemsProcFunc value.
+     * Returns the code to be invoked when clicking the cog icon to call javascript-based wizard.
      *
-     * @param array $PA TCA configuration passed by reference
-     * @param \TYPO3\CMS\Backend\Form\FormEngine|\TYPO3\CMS\Backend\Form\Element\InputTextElement $pObj Parent object
-     * @return string HTML snippet to be put after the params field
+     * @param array $PA
+     * @param $pObj
+     * @return string
      */
-    public function params_procWizard(array &$PA, $pObj) : string
+    public function renderWizardJs(array &$PA, $pObj) : string
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-        if ($itemsProcFunc === null || !ItemsProcFunc::hasWizard($itemsProcFunc)) {
-            return '';
-        }
 
-        $autoJS = true;
-        $wizardJS = ItemsProcFunc::callWizard($itemsProcFunc, $PA, $autoJS, $pObj);
-
-        if (!$wizardJS) {
-            return '';
-        }
-
-        $altIcon = $this->sL('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:wizard.parameters.title');
-        if ($autoJS) {
-            if (substr($wizardJS, -1) !== ';') {
-                $wizardJS .= ';';
+        if ($itemsProcFunc !== null && ItemsProcFunc::hasWizard($itemsProcFunc)) {
+            $wizardJs = ItemsProcFunc::callWizard($itemsProcFunc, $PA);
+            if (!empty($wizardJs)) {
+                $wizardButton = 'a[data-id="wizard-' . $PA['row']['uid'] . '"]';
+                $js = '<script type="text/javascript">';
+                $js .= <<<JS
+TYPO3.jQuery(document).ready(function($) {
+    $('$wizardButton').click(function() {
+        $wizardJs
+    });
+});
+JS;
+                $js .= '</script>';
+                return $js;
             }
-            $wizardJS .= 'return false;';
-
-            $output = '<a href="#" onclick="' . htmlspecialchars($wizardJS) . '" title="' . $altIcon . '">';
-            //$output .= static::getIcon('gfx/options.gif');
-            $output .= '</a>';
-        } else {
-            $output = ''; //static::getIcon('gfx/options.gif', $altIcon, 'id="params-btn" style="cursor:pointer"');
-            $output .= $wizardJS;
         }
 
-        return $output;
+        return '';
     }
 
     /**

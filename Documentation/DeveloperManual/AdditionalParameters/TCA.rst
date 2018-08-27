@@ -57,8 +57,9 @@ of table configuration (TCA):
 	    );
 	}
 
-Please refer to :ref:`['columns'] section in TCA reference <t3tca:columns>` for information on how to define your custom
-fields. The 'ctrl' section is only needed if you wish to trigger an update of the form.
+Please refer to `['columns'] section in TCA reference <https://docs.typo3.org/typo3cms/TCAReference/Columns/Index.html>`__
+for information on how to define your custom fields. The 'ctrl' section is only needed if you wish to trigger an update
+of the form.
 
 .. note::
 	Type number "5" corresponds to a list of recipients defined as an external provider, what we are dealing with here.

@@ -47,11 +47,11 @@ class ItemsProcFunc
      *
      * @param string $itemsProcFunc
      * @param array $PA
-     * @param bool $autoJS
+     * @param bool $checkOnly
      * @return string|null
      * @throws \RuntimeException
      */
-    public static function callWizard(string $itemsProcFunc, array &$PA, &$autoJS) : ?string
+    public static function callWizard(string $itemsProcFunc, array &$PA, bool $checkOnly = false) : ?string
     {
         if (!static::hasWizard($itemsProcFunc)) {
             throw new \RuntimeException($itemsProcFunc . ' has no method getWizard', 1383559688);
@@ -60,7 +60,7 @@ class ItemsProcFunc
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $wizardJS = trim(call_user_func_array(
             array($className, 'getWizard'),
-            array($methodName, &$PA, &$autoJS)
+            array($methodName, &$PA, $checkOnly)
         ));
         return $wizardJS;
     }

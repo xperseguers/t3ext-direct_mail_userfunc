@@ -18,11 +18,4 @@ conf.py:
     papersize: a4paper
     pointsize: 10pt
     preamble: \usepackage{typo3}
-  intersphinx_mapping:
-    t3tca:
-    - https://docs.typo3.org/typo3cms/TCAReference/
-    - null
-    t3cmsapi:
-    - https://typo3.org/api/typo3cms/
-    - null
 ...

@@ -46,17 +46,22 @@ class TestList
      *
      * @param string $methodName
      * @param array $PA TCA configuration passed by reference
-     * @param bool $autoJS Set to true if you wish to fully generate your own code for calling your wizard
-     * @return string JavaScript code to be executed upon icon click
+     * @param bool $checkOnly
+     * @return string|null JavaScript code to be executed upon icon click
      */
-    public static function getWizard($methodName, array &$PA, &$autoJS)
+    public static function getWizard(string $methodName, array &$PA, bool $checkOnly = false) : ?string
     {
-        $js = '';
+        $js = null;
 
         if ($methodName === 'myRecipientList') {
+            if ($checkOnly) {
+                // We just need to return some non-empty string to show the wizard button
+                return 'ok';
+            }
+
             $js = '
                 var params = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value;
-                if (empty(params)) params = 2;
+                if (params == "") params = 2;
             ';
 
             // Show a standard javascript prompt and assign result to the parameters field
@@ -65,7 +70,7 @@ class TestList
                 var r = prompt("How many items do you want in your list?", params);
                 if (r != null) {
                     document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = parseInt(r);' .
-                implode('', $PA['fieldChangeFunc']) . ';
+                        implode('', $PA['fieldChangeFunc']) . ';
                 }
             ';
         }

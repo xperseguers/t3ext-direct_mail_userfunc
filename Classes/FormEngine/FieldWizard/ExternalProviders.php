@@ -16,6 +16,7 @@ namespace Causal\DirectMailUserfunc\FormEngine\FieldWizard;
 
 use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Type\Bitmask\JsConfirmation;
 
 /**
  * This class encapsulates display of a user wizard.
@@ -65,7 +66,20 @@ class ExternalProviders
         $updateJS .= 'TYPO3.jQuery(\'[data-formengine-input-name="' . $PA['itemName'] . '"]\').val(itemsProcFunc);';
         $updateJS .= implode('', $PA['fieldChangeFunc']);
         // Automatically reload edit form
-        $updateJS .= 'if (confirm(TBE_EDITOR.labels.onChangeAlert) && TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm() };';
+        if ($this->getBackendUserAuthentication()->jsConfirmation(JsConfirmation::TYPE_CHANGE)) {
+            $alertMsgOnChange = 'top.TYPO3.Modal.confirm('
+                . 'TYPO3.lang["FormEngine.refreshRequiredTitle"],'
+                . ' TYPO3.lang["FormEngine.refreshRequiredContent"]'
+                . ')'
+                . '.on('
+                . '"button.clicked",'
+                . ' function(e) { if (e.target.name == "ok" && TBE_EDITOR.checkSubmit(-1)) { TBE_EDITOR.submitForm() } top.TYPO3.Modal.dismiss(); }'
+                . ');';
+        } else {
+            $alertMsgOnChange = 'if (TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm();}';
+        }
+
+        $updateJS .= $alertMsgOnChange;
 
         $selector = '
             <select class="form-control" name="userfunc_provider" onchange="' . htmlspecialchars($updateJS) . '">
@@ -132,6 +146,14 @@ JS;
         }
 
         return htmlspecialchars($input);
+    }
+
+    /**
+     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     */
+    protected function getBackendUserAuthentication()
+    {
+        return $GLOBALS['BE_USER'];
     }
 
 }

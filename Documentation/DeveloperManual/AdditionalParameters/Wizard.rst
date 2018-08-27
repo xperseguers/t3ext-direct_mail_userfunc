@@ -68,7 +68,7 @@ Parameters of the getWizard method are:
 - **$methodName** : Name of the method for which a wizard may be specified.
 
 - **$PA** : The full TCA configuration for the parameter field. Passed by reference. This allows you to change the way
-  the input field *itself* is rendered. (see :ref:`TSref <t3tca:wizards-configuration-user>` for an example).
+  the input field *itself* is rendered.
 
 - **$checkOnly** : If ``true``, you should only return an non-empty string if some JS is needed. This is used by the
   FormEngine to show the wizard button next to the parameter field. The actual JS should be returned if ``$checkOnly``

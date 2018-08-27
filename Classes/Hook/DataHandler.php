@@ -59,7 +59,7 @@ class DataHandler
             $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
         }
 
-        if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+        if ($itemsProcFunc !== null && ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
             $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
             TcaUtility::reconfigureTCA($wizardFields, $row);
         }

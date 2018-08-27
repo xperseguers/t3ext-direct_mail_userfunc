@@ -53,16 +53,10 @@ Screenshots
 In case either the class or the method was not found, an warning message is shown that explains what is wrong with the
 provider definition.
 
-User specified an invalid or not included class:
+User specified an invalid or not included class or a valid class but an invalid method:
 
-.. figure:: ../Images/invalid_class.png
-	:alt: Invalid or not loaded class
-	:width: 711
-
-User specified a valid class but an invalid method:
-
-.. figure:: ../Images/invalid_method.png
-	:alt: Invalid method
+.. figure:: ../Images/invalid_class_method.png
+	:alt: Invalid or not loaded class or invalid method
 	:width: 711
 
 Providers may be registered to enhance the user experience:

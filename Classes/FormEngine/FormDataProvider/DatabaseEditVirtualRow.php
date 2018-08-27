@@ -37,7 +37,7 @@ class DatabaseEditVirtualRow implements FormDataProviderInterface
         $wizardFields = null;
         $itemsProcFunc = $result['databaseRow']['tx_directmailuserfunc_itemsprocfunc'];
 
-        if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
+        if ($itemsProcFunc !== null && ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
             $currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
             $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc, $pObj);
             TcaUtility::reconfigureTCA($wizardFields, $result['databaseRow']);

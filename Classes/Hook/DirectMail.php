@@ -37,7 +37,7 @@ class DirectMail
      * @param array $groups
      * @return array
      */
-    public function cmd_compileMailGroup_postProcess(array $id_lists, $pObj, array $groups)
+    public function cmd_compileMailGroup_postProcess(array $id_lists, $pObj, array $groups) : array
     {
         $mailGroups = [];
 
@@ -76,7 +76,7 @@ class DirectMail
      * @param object $pObj parent object
      * @return array
      */
-    protected function generateRecipientList(array $mailGroup, $pObj)
+    protected function generateRecipientList(array $mailGroup, $pObj) : array
     {
         $recipientList = [
             'tt_address' => [],
@@ -84,7 +84,7 @@ class DirectMail
             'PLAINLIST' => [],
         ];
         $itemsProcFunc = $mailGroup['tx_directmailuserfunc_itemsprocfunc'];
-        if (ItemsProcFunc::isMethodValid($itemsProcFunc)) {
+        if ($itemsProcFunc !== null && ItemsProcFunc::isMethodValid($itemsProcFunc)) {
             $userParams = $mailGroup['tx_directmailuserfunc_params'];
             if (ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
                 $fields = ItemsProcFunc::callWizardFields($itemsProcFunc);
@@ -103,7 +103,7 @@ class DirectMail
             GeneralUtility::callUserFunction($itemsProcFunc, $params, $pObj);
 
             $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
-            if (!isset($extConf['makeEntriesUnique']) || $extConf['makeEntriesUnique'] == 1) {
+            if ((bool)$extConf['makeEntriesUnique']) {
                 // Make unique entries
                 $recipientList['tt_address'] = array_unique($recipientList['tt_address']);
                 $recipientList['fe_users'] = array_unique($recipientList['fe_users']);

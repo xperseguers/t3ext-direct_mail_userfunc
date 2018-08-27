@@ -55,7 +55,7 @@ class ExternalProviders
     public function params_procWizard(array &$PA, $pObj) : string
     {
         $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-        if (!ItemsProcFunc::hasWizard($itemsProcFunc)) {
+        if ($itemsProcFunc === null || !ItemsProcFunc::hasWizard($itemsProcFunc)) {
             return '';
         }
 

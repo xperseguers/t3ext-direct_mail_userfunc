@@ -32,7 +32,7 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @return bool
      */
-    public static function hasWizard($itemsProcFunc)
+    public static function hasWizard(string $itemsProcFunc) : bool
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $ret = false;
@@ -48,13 +48,13 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @param array $PA
      * @param bool $autoJS
-     * @return string
-     * @throws RuntimeException
+     * @return string|null
+     * @throws \RuntimeException
      */
-    public static function callWizard($itemsProcFunc, array &$PA, &$autoJS)
+    public static function callWizard(string $itemsProcFunc, array &$PA, &$autoJS) : ?string
     {
         if (!static::hasWizard($itemsProcFunc)) {
-            throw new RuntimeException($itemsProcFunc . ' has no method getWizard', 1383559688);
+            throw new \RuntimeException($itemsProcFunc . ' has no method getWizard', 1383559688);
         }
 
         list($className, $methodName) = explode('->', $itemsProcFunc);
@@ -71,7 +71,7 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @return bool
      */
-    public static function hasWizardFields($itemsProcFunc)
+    public static function hasWizardFields(string $itemsProcFunc) : bool
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $ret = false;
@@ -86,12 +86,12 @@ class ItemsProcFunc
      *
      * @param string $itemsProcFunc
      * @return array|null
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
-    public static function callWizardFields($itemsProcFunc)
+    public static function callWizardFields(string $itemsProcFunc) : ?array
     {
         if (!static::hasWizardFields($itemsProcFunc)) {
-            throw new RuntimeException($itemsProcFunc . ' has no method getWizardFields', 1383559998);
+            throw new \RuntimeException($itemsProcFunc . ' has no method getWizardFields', 1383559998);
         }
 
         list($className, $methodName) = explode('->', $itemsProcFunc);
@@ -108,7 +108,7 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @return bool
      */
-    public static function isClassValid($itemsProcFunc)
+    public static function isClassValid(string $itemsProcFunc) : bool
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
 
@@ -125,7 +125,7 @@ class ItemsProcFunc
      * @return bool
      * @api
      */
-    public static function isMethodValid($itemsProcFunc)
+    public static function isMethodValid(string $itemsProcFunc) : bool
     {
         if (!static::isClassValid($itemsProcFunc)) {
             return false;
@@ -157,7 +157,7 @@ class ItemsProcFunc
      * @param array $row
      * @return array
      */
-    public static function decodeUserParameters(array $row)
+    public static function decodeUserParameters(array $row) : array
     {
         $values = !empty($row['tx_directmailuserfunc_params'])
             ? json_decode($row['tx_directmailuserfunc_params'], true)

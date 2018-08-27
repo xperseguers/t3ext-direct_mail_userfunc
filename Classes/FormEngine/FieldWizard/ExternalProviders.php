@@ -38,52 +38,8 @@ class ExternalProviders
      */
     public function renderList(array &$PA, $pObj) : string
     {
-        // Show the user function provider selector
-        $this->addUserFunctionProviders($PA);
-
-        return $PA['item'];
-    }
-
-    /**
-     * Returns the code to be invoked when clicking the cog icon to call javascript-based wizard.
-     *
-     * @param array $PA
-     * @param $pObj
-     * @return string
-     */
-    public function renderWizardJs(array &$PA, $pObj) : string
-    {
-        $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-
-        if ($itemsProcFunc !== null && ItemsProcFunc::hasWizard($itemsProcFunc)) {
-            $wizardJs = ItemsProcFunc::callWizard($itemsProcFunc, $PA);
-            if (!empty($wizardJs)) {
-                $wizardButton = 'a[data-id="wizard-' . $PA['row']['uid'] . '"]';
-                $js = '<script type="text/javascript">';
-                $js .= <<<JS
-TYPO3.jQuery(document).ready(function($) {
-    $('$wizardButton').click(function() {
-        $wizardJs
-    });
-});
-JS;
-                $js .= '</script>';
-                return $js;
-            }
-        }
-
-        return '';
-    }
-
-    /**
-     * Prepends a user function provider selector to the itemsProcFunc field.
-     *
-     * @param array $PA TCA configuration passed by reference
-     */
-    protected function addUserFunctionProviders(array &$PA)
-    {
         if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
-            return;
+            return '';
         }
 
         // Sort list of providers
@@ -131,7 +87,38 @@ JS;
         $out[] =    '</div>';
         $out[] = '</div>';
 
-        $PA['item'] = implode(LF, $out);
+        return implode(LF, $out);
+    }
+
+    /**
+     * Returns the code to be invoked when clicking the cog icon to call javascript-based wizard.
+     *
+     * @param array $PA
+     * @param $pObj
+     * @return string
+     */
+    public function renderWizardJs(array &$PA, $pObj) : string
+    {
+        $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
+
+        if ($itemsProcFunc !== null && ItemsProcFunc::hasWizard($itemsProcFunc)) {
+            $wizardJs = ItemsProcFunc::callWizard($itemsProcFunc, $PA);
+            if (!empty($wizardJs)) {
+                $wizardButton = 'a[data-id="wizard-' . $PA['row']['uid'] . '"]';
+                $js = '<script type="text/javascript">';
+                $js .= <<<JS
+TYPO3.jQuery(document).ready(function($) {
+    $('$wizardButton').click(function() {
+        $wizardJs
+    });
+});
+JS;
+                $js .= '</script>';
+                return $js;
+            }
+        }
+
+        return '';
     }
 
     /**

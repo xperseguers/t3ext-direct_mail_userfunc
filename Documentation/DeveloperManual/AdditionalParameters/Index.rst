@@ -17,12 +17,12 @@ that will be passed as a single string arguments to the provider. Let's suppose 
 .. figure:: ../../Images/itemsprocfunc.png
 	:alt: Custom provider as an itemsProcFunc
 
-Method ``myRecipientList`` will get additional parameter "18" and will be able to process it the way it likes:
+Method ``myRecipientList`` will get additional parameter "13" and will be able to process it the way it likes:
 
 .. code-block:: php
 
 	public function myRecipientList(array &$params, $pObj) {
-	    // Retrieve user parameters (will get "18")
+	    // Retrieve user parameters (will get "13")
 	    $sizeOfRecipientList = $params['userParams'];
 
 	    // snip

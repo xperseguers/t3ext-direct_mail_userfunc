@@ -25,8 +25,7 @@ Screenshot below shows an additional icon next to the parameter field:
 	:alt: Additional parameters
 
 In order to display the parameter wizard icon (|wizard|), you have to write a method ``getWizard()`` in your class that
-returns either the JavaScript code to be executed when user clicks on the icon or a full HTML snippet to be included
-after the field:
+returns either the JavaScript code to be executed when user clicks on the icon:
 
 .. |wizard| image:: ../../Images/wizard.png
 	:alt: Wizard available
@@ -77,6 +76,11 @@ Parameters of the getWizard method are:
 .. caution::
 	Make sure to always run JavaScript code stored in ``$PA['fieldChangeFunc']`` when updating the value as it takes
 	care of telling TCEforms that the value has been updated.
+
+.. tip::
+	Your code will effectively be embedded and run from a jQuery context and the jQuery object itself will be available
+	as the usual `$` variable.
+
 
 If you run code written in method ``getWizard()`` above, you will get a standard JavaScript prompt that asks you the
 number of recipients you want to get in your recipient list:

@@ -19,7 +19,7 @@ class TestListTca
      * @param array $params User parameters
      * @param \DirectMailTeam\DirectMail\Module\RecipientList|\DirectMailTeam\DirectMail\Module\Dmail $pObj Parent object
      */
-    public function myRecipientList(array &$params, $pObj)
+    public function myRecipientList(array &$params, $pObj) : void
     {
         // Add tt_address #4 to the recipient list
         $params['lists']['tt_address'][] = 4;
@@ -48,7 +48,7 @@ class TestListTca
      * @param string $methodName
      * @return array|null TCA or null if no additional parameters are needed
      */
-    public static function getWizardFields($methodName)
+    public static function getWizardFields(string $methodName) : ?array
     {
         $additionalParameters = [
             'columns' => [

@@ -20,7 +20,7 @@ class TestList
      * @param \DirectMailTeam\DirectMail\Module\RecipientList|\DirectMailTeam\DirectMail\Module\Dmail $pObj Parent object
      * @return array
      */
-    public function myRecipientList(array &$params, $pObj)
+    public function myRecipientList(array &$params, $pObj) : void
     {
         // Add tt_address #4 to the recipient list
         $params['lists']['tt_address'][] = 4;

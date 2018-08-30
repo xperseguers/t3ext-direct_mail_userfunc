@@ -32,34 +32,31 @@ of table configuration (TCA):
 
 .. code-block:: php
 
-	public static function getWizardFields($methodName) {
-	    return array(
-	        'columns' => array(
-	            'field1' => array(
+	public static function getWizardFields(string $methodName) : ?array
+	{
+	    return [
+	        'columns' => [
+	            'field1' => [
 	                // snip
-	            ),
-	            'field2' => array(
+	            ],
+	            'field2' => [
 	                // snip
-	            ),
-	        ),
-	        'types' => array(
-	            '5' => array(
+	            ],
+	        ],
+	        'types' => [
+	            '5' => [
 	                'showitem' => 'field1, field2, ...'
-	            )
-	        ),
+	            ]
+	        ],
 	        // If needed:
-	        'palettes' => array(
+	        'palettes' => [
 	            // snip
-	        ),
-	        'ctrl' => array(
-	            'requestUpdate' => '',
-	        ),
-	    );
+	        ],
+	    ];
 	}
 
 Please refer to `['columns'] section in TCA reference <https://docs.typo3.org/typo3cms/TCAReference/Columns/Index.html>`__
-for information on how to define your custom fields. The 'ctrl' section is only needed if you wish to trigger an update
-of the form.
+for information on how to define your custom fields.
 
 .. note::
 	Type number "5" corresponds to a list of recipients defined as an external provider, what we are dealing with here.

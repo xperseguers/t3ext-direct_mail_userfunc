@@ -14,5 +14,5 @@ $boot = function ($_EXTKEY) {
     ];
 };
 
-$boot($_EXTKEY);
+$boot('direct_mail_userfunc');
 unset($boot);

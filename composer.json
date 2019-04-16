@@ -23,8 +23,8 @@
   ],
   "license": "GPL-2.0-or-later",
   "require": {
-    "php": ">= 7.2.0",
-    "typo3/cms-core": "^8.7",
+    "php": ">=7.2.0",
+    "typo3/cms-core": "^8.7 || ^9.5",
     "directmailteam/direct-mail": ">= 5.2.0"
   },
   "autoload": {

@@ -91,7 +91,6 @@ class TestListTca
             'palettes' => [
                 'person' => [
                     'showitem' => 'name, email',
-                    'canNotCollapse' => 1,
                 ],
             ]
         ];

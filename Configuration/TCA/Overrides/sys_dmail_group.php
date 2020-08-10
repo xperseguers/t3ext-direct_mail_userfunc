@@ -13,12 +13,10 @@ $tempColumns = [
                     'renderType' => 'checkUserfuncControl'
                 ]
             ],
-            'wizards' => [
-                'uproc' => [
-                    'type' => 'userFunc',
-                    'userFunc' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\ExternalProviders::class . '->renderList',
-                    'params' => [],
-                ],
+            'fieldWizard' => [
+                'providerSelector' => [
+                    'renderType' => 'providerSelector',
+                ]
             ],
         ]
     ],
@@ -34,12 +32,10 @@ $tempColumns = [
                     'renderType' => 'invokeUserJsControl'
                 ]
             ],
-            'wizards' => [
-                'uproc' => [
-                    'type' => 'userFunc',
-                    'userFunc' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\ExternalProviders::class . '->renderWizardJs',
-                    'params' => [],
-                ],
+            'fieldWizard' => [
+                'providerSelector' => [
+                    'renderType' => 'jsProviderWizard',
+                ]
             ],
         ]
     ],

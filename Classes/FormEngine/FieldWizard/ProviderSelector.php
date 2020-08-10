@@ -14,33 +14,30 @@
 
 namespace Causal\DirectMailUserfunc\FormEngine\FieldWizard;
 
-use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Backend\Form\AbstractNode;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Type\Bitmask\JsConfirmation;
+use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 
 /**
- * This class encapsulates display of a user wizard.
+ * This class displays a user wizard.
  *
  * @category    FormEngine\FieldWizard
  * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @copyright   2012-2018 Causal Sàrl
+ * @copyright   2012-2020 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class ExternalProviders
+class ProviderSelector extends AbstractNode
 {
 
     /**
-     * Returns code to show whether the itemsProcFunc definition is valid.
-     *
-     * @param array $PA TCA configuration passed by reference
-     * @param \TYPO3\CMS\Backend\Form\FormEngine|\TYPO3\CMS\Backend\Form\Element\InputTextElement $pObj Parent object
-     * @return string HTML snippet to be put after the itemsProcFunc field
+     * @return array
      */
-    public function renderList(array &$PA, $pObj) : string
+    public function render()
     {
         if (!count($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'])) {
-            return '';
+            return [];
         }
 
         // Sort list of providers
@@ -55,16 +52,17 @@ class ExternalProviders
         $options = [];
         foreach ($providers as $itemsProcFunc => $label) {
             $selected = '';
-            if ($PA['row']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc) {
+            if ($this->data['databaseRow']['tx_directmailuserfunc_itemsprocfunc'] === $itemsProcFunc) {
                 $hasOptionSelected = true;
                 $selected = ' selected="selected"';
             }
             $options[] = sprintf('<option value="%s"%s>%s</option>', $itemsProcFunc, $selected, $label);
         }
 
-        $updateJS = 'var itemsProcFunc = document.' . $PA['formName'] . '[\'userfunc_provider\'].value;';
-        $updateJS .= 'TYPO3.jQuery(\'[data-formengine-input-name="' . $PA['itemName'] . '"]\').val(itemsProcFunc);';
-        $updateJS .= implode('', $PA['fieldChangeFunc']);
+        $providerElID = 'providerSelector' . $this->data['vanillaUid'];
+        $updateJS = 'var itemsProcFunc = $(\'#' . $providerElID . '\').val();';
+        $updateJS .= '$(\'[data-formengine-input-name="' . $this->data['parameterArray']['itemFormElName'] . '"]\').val(itemsProcFunc);';
+        $updateJS .= implode('', $this->data['parameterArray']['fieldChangeFunc']);
         // Automatically reload edit form
         if ($this->getBackendUserAuthentication()->jsConfirmation(JsConfirmation::TYPE_CHANGE)) {
             $alertMsgOnChange = 'top.TYPO3.Modal.confirm('
@@ -82,13 +80,13 @@ class ExternalProviders
         $updateJS .= $alertMsgOnChange;
 
         $selector = '
-            <select class="form-control" name="userfunc_provider" onchange="' . htmlspecialchars($updateJS) . '">
+            <select class="form-control" id="' . $providerElID . '" onchange="' . htmlspecialchars($updateJS) . '">
                 <option value=""></option>' .
-                implode('', $options) . '
+            implode('', $options) . '
             </select>
         ';
 
-        $hideInput = $hasOptionSelected && ItemsProcFunc::isMethodValid($PA['row']['tx_directmailuserfunc_itemsprocfunc']);
+        $hideInput = $hasOptionSelected && ItemsProcFunc::isMethodValid($this->data['databaseRow']['tx_directmailuserfunc_itemsprocfunc']);
 
         $out = [];
         $out[] = '<div class="form-control-wrap">';
@@ -101,45 +99,16 @@ class ExternalProviders
         $out[] =    '</div>';
         $out[] = '</div>';
 
-        return implode(LF, $out);
-    }
-
-    /**
-     * Returns the code to be invoked when clicking the cog icon to call javascript-based wizard.
-     *
-     * @param array $PA
-     * @param $pObj
-     * @return string
-     */
-    public function renderWizardJs(array &$PA, $pObj) : string
-    {
-        $itemsProcFunc = $PA['row']['tx_directmailuserfunc_itemsprocfunc'];
-
-        if ($itemsProcFunc !== null && ItemsProcFunc::hasWizard($itemsProcFunc)) {
-            $wizardJs = ItemsProcFunc::callWizard($itemsProcFunc, $PA);
-            if (!empty($wizardJs)) {
-                $wizardButton = 'a[data-id="wizard-' . $PA['row']['uid'] . '"]';
-                $js = '<script type="text/javascript">';
-                $js .= <<<JS
-TYPO3.jQuery(document).ready(function($) {
-    $('$wizardButton').click(function() {
-        $wizardJs
-    });
-});
-JS;
-                $js .= '</script>';
-                return $js;
-            }
-        }
-
-        return '';
+        return [
+            'html' => implode(LF, $out),
+        ];
     }
 
     /**
      * @param string $input
      * @return string
      */
-    protected function sL(string $input) : string
+    protected function sL(string $input): string
     {
         if (!strcmp(substr($input, 0, 8), 'LLL:EXT:')) {
             $input = $GLOBALS['LANG']->sL($input);
@@ -149,9 +118,9 @@ JS;
     }
 
     /**
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     * @return BackendUserAuthentication
      */
-    protected function getBackendUserAuthentication()
+    protected function getBackendUserAuthentication(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

@@ -46,10 +46,11 @@ class TestList
      *
      * @param string $methodName
      * @param array $PA TCA configuration passed by reference
+     * @param array $row
      * @param bool $checkOnly
      * @return string|null JavaScript code to be executed upon icon click
      */
-    public static function getWizard(string $methodName, array &$PA, bool $checkOnly = false) : ?string
+    public static function getWizard(string $methodName, array &$PA, array $row, bool $checkOnly = false) : ?string
     {
         $js = null;
 
@@ -60,7 +61,7 @@ class TestList
             }
 
             $js = '
-                var params = document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value;
+                var params = $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val();
                 if (params == "") params = 2;
             ';
 
@@ -69,7 +70,7 @@ class TestList
             $js .= '
                 var r = prompt("How many items do you want in your list?", params);
                 if (r != null) {
-                    document.' . $PA['formName'] . '[\'' . $PA['itemName'] . '\'].value = parseInt(r);' .
+                    $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val(parseInt(r));'.
                         implode('', $PA['fieldChangeFunc']) . ';
                 }
             ';

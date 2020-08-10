@@ -31,7 +31,7 @@ class InvokeUserJsControl extends AbstractNode
 
         if ($itemsProcFunc !== null && ItemsProcFunc::hasWizard($itemsProcFunc)) {
             $PA = [];
-            $wizardJs = ItemsProcFunc::callWizard($itemsProcFunc, $PA, true);
+            $wizardJs = ItemsProcFunc::callWizard($itemsProcFunc, $PA, $this->data['databaseRow'], true);
             if (!empty($wizardJs)) {
                 $result = [
                     'iconIdentifier' => 'actions-system-extension-configure',

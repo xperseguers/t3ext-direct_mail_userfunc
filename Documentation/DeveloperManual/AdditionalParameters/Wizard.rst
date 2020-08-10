@@ -32,7 +32,7 @@ returns either the JavaScript code to be executed when user clicks on the icon:
 
 .. code-block:: php
 
-	public function getWizard(string $methodName, array &$PA, bool $checkOnly = false) : ?string
+	public function getWizard(string $methodName, array &$PA, array $row, bool $checkOnly = false) : ?string
 	{
 		$js = null;
 
@@ -43,7 +43,7 @@ returns either the JavaScript code to be executed when user clicks on the icon:
 			}
 
 			$js = '
-				var params = document.'.$PA['formName'].'[\''.$PA['itemName'].'\'].value;
+				var params = $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val();
 				if (params == "") params = 2;
 			';
 
@@ -52,8 +52,7 @@ returns either the JavaScript code to be executed when user clicks on the icon:
 			$js .= '
 				var r = prompt("How many items do you want in your list?", params);
 				if (r != null) {
-					document.'.$PA['formName'].'[\''.$PA['itemName'].'\'].value =
-						parseInt(r);'.
+					$(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val(parseInt(r));'.
 					implode('', $PA['fieldChangeFunc']) .';
 				}
 			';
@@ -68,6 +67,8 @@ Parameters of the getWizard method are:
 
 - **$PA** : The full TCA configuration for the parameter field. Passed by reference. This allows you to change the way
   the input field *itself* is rendered.
+
+- **$row** : The corresponding database row.
 
 - **$checkOnly** : If ``true``, you should only return an non-empty string if some JS is needed. This is used by the
   FormEngine to show the wizard button next to the parameter field. The actual JS should be returned if ``$checkOnly``

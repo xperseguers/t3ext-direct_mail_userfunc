@@ -71,7 +71,7 @@ class DataHandler
 
                 // Evaluate field
                 $curValue = isset($currentValues[$virtualField]) ? $currentValues[$virtualField] : '';
-                $res = $this->checkValue($table, $field, $value, $curValue, $id, $status, $row['pid'], $pObj);
+                $res = $this->checkValue($table, $field, $value, $curValue, $id, 'update', $row['pid'], $pObj);
                 if (isset($res['value'])) {
                     $virtualValues[$virtualField] = $res['value'];
                 }

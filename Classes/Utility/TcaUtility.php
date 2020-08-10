@@ -35,8 +35,9 @@ class TcaUtility
      *
      * @param array|null $fields
      * @param array $row
+     * @param array $processedTca
      */
-    public static function reconfigureTCA(array $fields = null, array &$row)
+    public static function reconfigureTCA(?array $fields, array &$row, array &$processedTca = [])
     {
         if ($fields === null) {
             // The user class is used for both TCA and non TCA-based additional parameters
@@ -48,6 +49,7 @@ class TcaUtility
         // Transform standard textarea field into "passthrough" so that DataHandler allows changes on it
         // while FormEngine does not render it anymore
         $GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']['config']['type'] = 'passthrough';
+        $processedTca['columns']['tx_directmailuserfunc_params']['config']['type'] = 'passthrough';
 
         if (count($fields) === 0) {
             // The user class does not need any additional parameters
@@ -108,16 +110,21 @@ class TcaUtility
         // Reconfigure TCA with virtual fields
         foreach ($prefixedFields['columns'] as $field => $fieldInfo) {
             $GLOBALS['TCA']['sys_dmail_group']['columns'][$field] = $fieldInfo;
+            $processedTca['columns'][$field] = $fieldInfo;
         }
 
         foreach ($prefixedFields['types'] as $type => $typeInfo) {
             if (substr($GLOBALS['TCA']['sys_dmail_group']['types'][$type]['showitem'], -strlen($typeInfo['showitem'])) !== $typeInfo['showitem']) {
                 $GLOBALS['TCA']['sys_dmail_group']['types'][$type]['showitem'] .= ',' . $typeInfo['showitem'];
             }
+            if (substr($processedTca['types'][$type]['showitem'] ?? '', -strlen($typeInfo['showitem'])) !== $typeInfo['showitem']) {
+                $processedTca['types'][$type]['showitem'] .= ',' . $typeInfo['showitem'];
+            }
         }
 
         // sys_dmail_group has no initial palettes
         $GLOBALS['TCA']['sys_dmail_group']['palettes'] = $prefixedFields['palettes'];
+        $processedTca['palettes'] = $prefixedFields['palettes'];
 
         if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
             $GLOBALS['TCA']['sys_dmail_group']['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];

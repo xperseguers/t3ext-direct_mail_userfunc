@@ -9,9 +9,9 @@
     "user function",
     "external provider"
   ],
-  "homepage": "https://forge.typo3.org/projects/extension-direct_mail_userfunc",
+  "homepage": "https://github.com/xperseguers/t3ext-direct_mail_userfunc",
   "support": {
-    "issues": "https://forge.typo3.org/projects/extension-direct_mail_userfunc/issues"
+    "issues": "https://github.com/xperseguers/t3ext-direct_mail_userfunc/issues"
   },
   "authors": [
     {

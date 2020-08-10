@@ -35,24 +35,12 @@
   "replace": {
     "typo3-ter/direct-mail-userfunc": "self.version"
   },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/direct_mail_userfunc ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/direct_mail_userfunc"
-    ]
-  },
   "extra": {
     "branch-alias": {
-      "dev-master": "2.0.x-dev"
+      "dev-master": "2.1.x-dev"
     },
     "typo3/cms": {
-      "extension-key": "direct_mail_userfunc",
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
+      "extension-key": "direct_mail_userfunc"
     }
   }
 }

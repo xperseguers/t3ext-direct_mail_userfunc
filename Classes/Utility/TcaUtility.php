@@ -49,12 +49,16 @@ class TcaUtility
         // Transform standard textarea field into "passthrough" so that DataHandler allows changes on it
         // while FormEngine does not render it anymore
         $GLOBALS['TCA']['sys_dmail_group']['columns']['tx_directmailuserfunc_params']['config']['type'] = 'passthrough';
-        $processedTca['columns']['tx_directmailuserfunc_params']['config']['type'] = 'passthrough';
 
         if (count($fields) === 0) {
             // The user class does not need any additional parameters
             return;
         }
+
+        $populateProcessedTca = !empty($processedTca);
+
+        // BEWARE: this one is done here to prevent side effect when returning above
+        $processedTca['columns']['tx_directmailuserfunc_params']['config']['type'] = 'passthrough';
 
         $currentValues = ItemsProcFunc::decodeUserParameters($row);
 
@@ -128,6 +132,12 @@ class TcaUtility
 
         if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
             $GLOBALS['TCA']['sys_dmail_group']['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];
+            $processedTca['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];
+        }
+
+        if (!$populateProcessedTca) {
+            // Prevent side-effects if we shouldn't modify the processedTca at this point
+            $processedTca = [];
         }
     }
 

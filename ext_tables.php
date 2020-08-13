@@ -29,7 +29,7 @@ if (TYPO3_MODE === 'BE') {
     $typo3Branch = class_exists(\TYPO3\CMS\Core\Information\Typo3Version::class)
         ? (new \TYPO3\CMS\Core\Information\Typo3Version())->getBranch()
         : TYPO3_branch;
-    if (version_compare($typo3Branch, 9.5, '<')) {
+    if (version_compare($typo3Branch, '9.5', '<')) {
         $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
     } else {
         $extConf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('direct_mail_userfunc');

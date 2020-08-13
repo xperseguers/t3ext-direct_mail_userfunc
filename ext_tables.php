@@ -26,7 +26,14 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 
 // Register sample user functions if needed
 if (TYPO3_MODE === 'BE') {
-    $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
+    $typo3Branch = class_exists(\TYPO3\CMS\Core\Information\Typo3Version::class)
+        ? (new \TYPO3\CMS\Core\Information\Typo3Version())->getBranch()
+        : TYPO3_branch;
+    if (version_compare($typo3Branch, 9.5, '<')) {
+        $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['direct_mail_userfunc']);
+    } else {
+        $extConf = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('direct_mail_userfunc');
+    }
     if ($extConf['enableSamples']) {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
             'class' => \Causal\DirectMailUserfunc\Samples\TestList::class,

@@ -11,18 +11,10 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Xavier Perseguers',
     'author_company' => 'Causal Sàrl',
     'author_email' => 'xavier@causal.ch',
-    'shy' => '',
-    'dependencies' => 'direct_mail',
-    'conflicts' => '',
-    'priority' => '',
-    'module' => '',
     'state' => 'stable',
-    'internal' => '',
     'uploadfolder' => 0,
     'createDirs' => '',
-    'modify_tables' => 'sys_dmail,sys_dmail_group',
     'clearCacheOnLoad' => 0,
-    'lockType' => '',
     'version' => '2.1.0',
     'constraints' => [
         'depends' => [
@@ -33,8 +25,6 @@ $EM_CONF[$_EXTKEY] = [
         'conflicts' => [],
         'suggests' => [],
     ],
-    '_md5_values_when_last_written' => '',
-    'suggests' => [],
     'autoload' => [
         'psr-4' => ['Causal\\DirectMailUserfunc\\' => 'Classes']
     ],

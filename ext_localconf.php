@@ -1,7 +1,7 @@
 <?php
 defined('TYPO3_MODE') || die();
 
-$boot = function ($_EXTKEY) {
+(static function () {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1535016737] = [
         'nodeName' => 'checkUserfuncControl',
         'priority' => 30,
@@ -22,7 +22,4 @@ $boot = function ($_EXTKEY) {
         'priority' => '70',
         'class' => \Causal\DirectMailUserfunc\FormEngine\FieldWizard\JsProviderWizard::class
     ];
-};
-
-$boot('direct_mail_userfunc');
-unset($boot);
+})();

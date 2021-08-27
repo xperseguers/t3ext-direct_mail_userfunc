@@ -14,15 +14,14 @@
 
 namespace Causal\DirectMailUserfunc\Hook;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 use Causal\DirectMailUserfunc\Utility\TcaUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class hooks into \TYPO3\CMS\Core\DataHandling\DataHandler to process the virtual fields.
  *
  * @category    Hook
- * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2013-2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
@@ -38,7 +37,6 @@ class DataHandler
      * @param string $table
      * @param int|string $id
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $pObj
-     * @return void
      */
     public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, $table, $id, \TYPO3\CMS\Core\DataHandling\DataHandler $pObj)
     {
@@ -114,5 +112,4 @@ class DataHandler
         $res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, [], $tscPID);
         return $res;
     }
-
 }

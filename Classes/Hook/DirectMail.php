@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * This class hooks into direct_mail to post-process the list of recipients.
  *
  * @category    Hook
- * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2014-2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
@@ -37,7 +36,7 @@ class DirectMail
      * @param array $groups
      * @return array
      */
-    public function cmd_compileMailGroup_postProcess(array $id_lists, $pObj, array $groups) : array
+    public function cmd_compileMailGroup_postProcess(array $id_lists, $pObj, array $groups): array
     {
         $mailGroups = [];
 
@@ -76,7 +75,7 @@ class DirectMail
      * @param object $pObj parent object
      * @return array
      */
-    protected function generateRecipientList(array $mailGroup, $pObj) : array
+    protected function generateRecipientList(array $mailGroup, $pObj): array
     {
         $recipientList = [
             'tt_address' => [],
@@ -120,5 +119,4 @@ class DirectMail
 
         return $recipientList;
     }
-
 }

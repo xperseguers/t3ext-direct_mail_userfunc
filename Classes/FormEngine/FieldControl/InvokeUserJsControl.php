@@ -14,8 +14,8 @@
 
 namespace Causal\DirectMailUserfunc\FormEngine\FieldControl;
 
-use TYPO3\CMS\Backend\Form\AbstractNode;
 use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
+use TYPO3\CMS\Backend\Form\AbstractNode;
 
 class InvokeUserJsControl extends AbstractNode
 {
@@ -50,9 +50,8 @@ class InvokeUserJsControl extends AbstractNode
      * @param string $key
      * @return string
      */
-    protected function sL(string $key) : string
+    protected function sL(string $key): string
     {
         return $GLOBALS['LANG']->sL('LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_tca.xlf:' . $key);
     }
-
 }

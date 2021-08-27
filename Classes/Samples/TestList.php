@@ -20,7 +20,7 @@ class TestList
      * @param \DirectMailTeam\DirectMail\Module\RecipientList|\DirectMailTeam\DirectMail\Module\Dmail $pObj Parent object
      * @return array
      */
-    public function myRecipientList(array &$params, $pObj) : void
+    public function myRecipientList(array &$params, $pObj): void
     {
         // Add tt_address #4 to the recipient list
         $params['lists']['tt_address'][] = 4;
@@ -50,7 +50,7 @@ class TestList
      * @param bool $checkOnly
      * @return string|null JavaScript code to be executed upon icon click
      */
-    public static function getWizard(string $methodName, array &$PA, array $row, bool $checkOnly = false) : ?string
+    public static function getWizard(string $methodName, array &$PA, array $row, bool $checkOnly = false): ?string
     {
         $js = null;
 
@@ -70,7 +70,7 @@ class TestList
             $js .= '
                 var r = prompt("How many items do you want in your list?", params);
                 if (r != null) {
-                    $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val(parseInt(r));'.
+                    $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val(parseInt(r));' .
                         implode('', $PA['fieldChangeFunc']) . ';
                 }
             ';
@@ -78,5 +78,4 @@ class TestList
 
         return $js;
     }
-
 }

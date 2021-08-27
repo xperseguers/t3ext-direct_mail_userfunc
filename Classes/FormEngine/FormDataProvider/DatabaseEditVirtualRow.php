@@ -14,9 +14,9 @@
 
 namespace Causal\DirectMailUserfunc\FormEngine\FormDataProvider;
 
-use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 use Causal\DirectMailUserfunc\Utility\TcaUtility;
+use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 class DatabaseEditVirtualRow implements FormDataProviderInterface
 {
@@ -45,5 +45,4 @@ class DatabaseEditVirtualRow implements FormDataProviderInterface
 
         return $result;
     }
-
 }

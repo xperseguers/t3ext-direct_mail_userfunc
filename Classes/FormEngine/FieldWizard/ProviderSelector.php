@@ -14,16 +14,15 @@
 
 namespace Causal\DirectMailUserfunc\FormEngine\FieldWizard;
 
+use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Type\Bitmask\JsConfirmation;
-use Causal\DirectMailUserfunc\Utility\ItemsProcFunc;
 
 /**
  * This class displays a user wizard.
  *
  * @category    FormEngine\FieldWizard
- * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2012-2020 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
@@ -124,5 +123,4 @@ class ProviderSelector extends AbstractNode
     {
         return $GLOBALS['BE_USER'];
     }
-
 }

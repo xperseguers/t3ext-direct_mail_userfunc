@@ -20,14 +20,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * This class allows the TCA to be extended with virtual fields.
  *
  * @category    Utility
- * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class TcaUtility
 {
-
     const VIRTUAL_PREFIX = 'tx_directmailuserfunc_virtual_';
 
     /**
@@ -156,5 +154,4 @@ class TcaUtility
             }
         }
     }
-
 }

@@ -18,7 +18,6 @@ namespace Causal\DirectMailUserfunc\Utility;
  * Various ItemsProcFunc utility methods.
  *
  * @category    Utility
- * @package     direct_mail_userfunc
  * @author      Xavier Perseguers <xavier@causal.ch>
  * @copyright   2013-2018 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
@@ -32,7 +31,7 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @return bool
      */
-    public static function hasWizard(string $itemsProcFunc) : bool
+    public static function hasWizard(string $itemsProcFunc): bool
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $ret = false;
@@ -52,7 +51,7 @@ class ItemsProcFunc
      * @return string|null
      * @throws \RuntimeException
      */
-    public static function callWizard(string $itemsProcFunc, array &$PA, array $row, bool $checkOnly = false) : ?string
+    public static function callWizard(string $itemsProcFunc, array &$PA, array $row, bool $checkOnly = false): ?string
     {
         if (!static::hasWizard($itemsProcFunc)) {
             throw new \RuntimeException($itemsProcFunc . ' has no method getWizard', 1383559688);
@@ -60,8 +59,8 @@ class ItemsProcFunc
 
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $wizardJS = trim(call_user_func_array(
-            array($className, 'getWizard'),
-            array($methodName, &$PA, $row, $checkOnly)
+            [$className, 'getWizard'],
+            [$methodName, &$PA, $row, $checkOnly]
         ));
         return $wizardJS;
     }
@@ -72,7 +71,7 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @return bool
      */
-    public static function hasWizardFields(string $itemsProcFunc) : bool
+    public static function hasWizardFields(string $itemsProcFunc): bool
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $ret = false;
@@ -89,7 +88,7 @@ class ItemsProcFunc
      * @return array|null
      * @throws \RuntimeException
      */
-    public static function callWizardFields(string $itemsProcFunc) : ?array
+    public static function callWizardFields(string $itemsProcFunc): ?array
     {
         if (!static::hasWizardFields($itemsProcFunc)) {
             throw new \RuntimeException($itemsProcFunc . ' has no method getWizardFields', 1383559998);
@@ -97,8 +96,8 @@ class ItemsProcFunc
 
         list($className, $methodName) = explode('->', $itemsProcFunc);
         $wizardFields = call_user_func_array(
-            array($className, 'getWizardFields'),
-            array($methodName)
+            [$className, 'getWizardFields'],
+            [$methodName]
         );
         return $wizardFields;
     }
@@ -109,7 +108,7 @@ class ItemsProcFunc
      * @param string $itemsProcFunc
      * @return bool
      */
-    public static function isClassValid(string $itemsProcFunc) : bool
+    public static function isClassValid(string $itemsProcFunc): bool
     {
         list($className, $methodName) = explode('->', $itemsProcFunc);
 
@@ -126,7 +125,7 @@ class ItemsProcFunc
      * @return bool
      * @api
      */
-    public static function isMethodValid(string $itemsProcFunc) : bool
+    public static function isMethodValid(string $itemsProcFunc): bool
     {
         if (!static::isClassValid($itemsProcFunc)) {
             return false;
@@ -145,7 +144,6 @@ class ItemsProcFunc
      *
      * @param array $row
      * @param array $values
-     * @return void
      */
     public static function encodeUserParameters(array &$row, array $values)
     {
@@ -158,7 +156,7 @@ class ItemsProcFunc
      * @param array $row
      * @return array
      */
-    public static function decodeUserParameters(array $row) : array
+    public static function decodeUserParameters(array $row): array
     {
         $values = !empty($row['tx_directmailuserfunc_params'])
             ? json_decode($row['tx_directmailuserfunc_params'], true)
@@ -169,5 +167,4 @@ class ItemsProcFunc
 
         return $values;
     }
-
 }

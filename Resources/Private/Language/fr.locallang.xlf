@@ -3,22 +3,22 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="fr">
     <header/>
     <body>
-      <trans-unit id="config.makeEntriesUnique">
+      <trans-unit id="config.makeEntriesUnique" approved="yes">
         <source>Make entries unique: Makes sure entries with the same e-mail address will only appear once.</source>
-        <target state="needs-translation">Make entries unique: Makes sure entries with the same e-mail address will only appear once.</target>
+        <target state="final">Créer des entrées uniques: S'assure que les entrées avec la même adresse email n'apparaîtront qu'une seule fois.</target>
       </trans-unit>
-      <trans-unit id="config.enableSamples">
+      <trans-unit id="config.enableSamples" approved="yes">
         <source>Enable samples: Provides sample user functions to show how it works.</source>
-        <target state="needs-translation">Enable samples: Provides sample user functions to show how it works.</target>
+        <target state="final">Activer les exemples: Fournit des fonctions utilisateur d'exemple pour démontrer comment l'extension fonctionne.</target>
       </trans-unit>
       <!--  Labels for sample user functions -->
-      <trans-unit id="userfunction.myRecipientList">
+      <trans-unit id="userfunction.myRecipientList" approved="yes">
         <source>[Sample] Recipient List</source>
-        <target state="needs-translation">[Sample] Recipient List</target>
+        <target state="final">[Exemple] Liste de destinataires</target>
       </trans-unit>
-      <trans-unit id="userfunction.myRecipientListTca">
+      <trans-unit id="userfunction.myRecipientListTca" approved="yes">
         <source>[Sample] Recipient List (TCA wizard)</source>
-        <target state="needs-translation">[Sample] Recipient List (TCA wizard)</target>
+        <target state="final">[Exemple] Liste de destinataires (assistant TCA)</target>
       </trans-unit>
     </body>
   </file>

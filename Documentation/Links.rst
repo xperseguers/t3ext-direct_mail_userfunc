@@ -24,7 +24,7 @@ Links
 	https://github.com/xperseguers/t3ext-direct_mail_userfunc
 
 :Translation:
-	https://translation.typo3.org/projects/TYPO3.ext.direct_mail_userfunc/
+	https://crowdin.com/project/typo3-extension-directmailuser
 
 :Contact:
 	`@xperseguers <https://twitter.com/xperseguers>`__

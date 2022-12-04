@@ -3,30 +3,30 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="fr">
     <header/>
     <body>
-      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc">
+      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc" approved="yes">
         <source>Provider:</source>
-        <target state="needs-translation">Provider:</target>
+        <target state="final">Fournisseur :</target>
       </trans-unit>
-      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_params">
+      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_params" approved="yes">
         <source>Additional parameters:</source>
-        <target state="needs-translation">Additional parameters:</target>
+        <target state="final">Paramètres supplémentaires :</target>
       </trans-unit>
       <!--  Labels for sample user functions -->
-      <trans-unit id="myRecipientListTca.size">
+      <trans-unit id="myRecipientListTca.size" approved="yes">
         <source>Size of the list:</source>
-        <target state="needs-translation">Size of the list:</target>
+        <target state="final">Taille de la liste :</target>
       </trans-unit>
-      <trans-unit id="myRecipientListTca.name">
+      <trans-unit id="myRecipientListTca.name" approved="yes">
         <source>Name:</source>
-        <target state="needs-translation">Name:</target>
+        <target state="final">Nom :</target>
       </trans-unit>
-      <trans-unit id="myRecipientListTca.email">
+      <trans-unit id="myRecipientListTca.email" approved="yes">
         <source>E-mail:</source>
-        <target state="needs-translation">E-mail:</target>
+        <target state="final">Email :</target>
       </trans-unit>
-      <trans-unit id="myRecipientListTca.palette.person">
+      <trans-unit id="myRecipientListTca.palette.person" approved="yes">
         <source>Person</source>
-        <target state="needs-translation">Person</target>
+        <target state="final">Personne</target>
       </trans-unit>
     </body>
   </file>

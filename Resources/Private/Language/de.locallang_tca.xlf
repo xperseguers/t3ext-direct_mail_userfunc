@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="de">
     <header/>
     <body>
-      <trans-unit id="sys_dmail_group.type.I.5">
+      <trans-unit id="sys_dmail_group.type.I.5" approved="yes">
         <source>External provider</source>
-        <target state="needs-translation">External provider</target>
+        <target state="final">Externen Anbieter</target>
       </trans-unit>
       <trans-unit id="wizard.itemsProcFunc.valid">
         <source>Valid class and method</source>
@@ -19,13 +19,13 @@
         <source>Class is valid but method does not exist</source>
         <target state="needs-translation">Class is valid but method does not exist</target>
       </trans-unit>
-      <trans-unit id="wizard.itemsProcFunc.providers">
+      <trans-unit id="wizard.itemsProcFunc.providers" approved="yes">
         <source>Registered providers:</source>
-        <target state="needs-translation">Registered providers:</target>
+        <target state="final">Registrierte Anbieter:</target>
       </trans-unit>
-      <trans-unit id="wizard.parameters.title">
+      <trans-unit id="wizard.parameters.title" approved="yes">
         <source>Click here to update user parameters</source>
-        <target state="needs-translation">Click here to update user parameters</target>
+        <target state="final">Klicken Sie hier, um Benutzerparameter zu aktualisieren</target>
       </trans-unit>
     </body>
   </file>

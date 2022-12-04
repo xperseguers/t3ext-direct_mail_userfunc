@@ -3,29 +3,29 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="fr">
     <header/>
     <body>
-      <trans-unit id="sys_dmail_group.type.I.5">
+      <trans-unit id="sys_dmail_group.type.I.5" approved="yes">
         <source>External provider</source>
-        <target state="needs-translation">External provider</target>
+        <target state="final">Fournisseur externe</target>
       </trans-unit>
       <trans-unit id="wizard.itemsProcFunc.valid">
         <source>Valid class and method</source>
         <target state="needs-translation">Valid class and method</target>
       </trans-unit>
-      <trans-unit id="wizard.itemsProcFunc.invalidClass">
+      <trans-unit id="wizard.itemsProcFunc.invalidClass" approved="yes">
         <source>Unknown class</source>
-        <target state="needs-translation">Unknown class</target>
+        <target state="final">Classe inconnue</target>
       </trans-unit>
-      <trans-unit id="wizard.itemsProcFunc.invalidMethod">
+      <trans-unit id="wizard.itemsProcFunc.invalidMethod" approved="yes">
         <source>Class is valid but method does not exist</source>
-        <target state="needs-translation">Class is valid but method does not exist</target>
+        <target state="final">La classe est valide mais la méthode n'existe pas</target>
       </trans-unit>
-      <trans-unit id="wizard.itemsProcFunc.providers">
+      <trans-unit id="wizard.itemsProcFunc.providers" approved="yes">
         <source>Registered providers:</source>
-        <target state="needs-translation">Registered providers:</target>
+        <target state="final">Fournisseurs disponibles :</target>
       </trans-unit>
-      <trans-unit id="wizard.parameters.title">
+      <trans-unit id="wizard.parameters.title" approved="yes">
         <source>Click here to update user parameters</source>
-        <target state="needs-translation">Click here to update user parameters</target>
+        <target state="final">Cliquez ici pour mettre à jour les paramètres utilisateur</target>
       </trans-unit>
     </body>
   </file>

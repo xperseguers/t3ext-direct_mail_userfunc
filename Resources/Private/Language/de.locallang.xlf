@@ -12,13 +12,13 @@
         <target state="needs-translation">Enable samples: Provides sample user functions to show how it works.</target>
       </trans-unit>
       <!--  Labels for sample user functions -->
-      <trans-unit id="userfunction.myRecipientList">
+      <trans-unit id="userfunction.myRecipientList" approved="yes">
         <source>[Sample] Recipient List</source>
-        <target state="needs-translation">[Sample] Recipient List</target>
+        <target state="final">[Beispiel] Empfängerliste</target>
       </trans-unit>
-      <trans-unit id="userfunction.myRecipientListTca">
+      <trans-unit id="userfunction.myRecipientListTca" approved="yes">
         <source>[Sample] Recipient List (TCA wizard)</source>
-        <target state="needs-translation">[Sample] Recipient List (TCA wizard)</target>
+        <target state="final">[Beispiel] Empfängerliste (TCA-Assistent)</target>
       </trans-unit>
     </body>
   </file>

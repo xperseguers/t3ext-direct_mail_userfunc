@@ -56,8 +56,8 @@ class TestListTca
                     'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.size',
                     'config' => [
                         'type' => 'input',
-                        'size' => '5',
-                        'max' => '5',
+                        'size' => 5,
+                        'max' => 5,
                         'eval' => 'int',
                         'default' => 1,
                         'range' => [
@@ -69,7 +69,7 @@ class TestListTca
                     'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.name',
                     'config' => [
                         'type' => 'input',
-                        'size' => '20',
+                        'size' => 20,
                         'eval' => 'trim',
                     ]
                 ],
@@ -77,7 +77,7 @@ class TestListTca
                     'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:myRecipientListTca.email',
                     'config' => [
                         'type' => 'input',
-                        'size' => '20',
+                        'size' => 20,
                         'eval' => 'trim',
                     ]
                 ],

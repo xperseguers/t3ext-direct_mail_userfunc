@@ -2,7 +2,7 @@
 
 $tempColumns = [
     'tx_directmailuserfunc_itemsprocfunc' => [
-        'exclude' => 0,
+        'exclude' => false,
         'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:sys_dmail_group.tx_directmailuserfunc_itemsprocfunc',
         'config' => [
             'type' => 'input',
@@ -21,7 +21,7 @@ $tempColumns = [
         ]
     ],
     'tx_directmailuserfunc_params' => [
-        'exclude' => 0,
+        'exclude' => false,
         'label' => 'LLL:EXT:direct_mail_userfunc/Resources/Private/Language/locallang_db.xlf:sys_dmail_group.tx_directmailuserfunc_params',
         'config' => [
             'type' => 'text',

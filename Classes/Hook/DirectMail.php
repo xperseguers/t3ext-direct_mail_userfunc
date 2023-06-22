@@ -113,10 +113,37 @@ class DirectMail
                 // Make unique entries
                 $recipientList['tt_address'] = array_unique($recipientList['tt_address']);
                 $recipientList['fe_users'] = array_unique($recipientList['fe_users']);
-                $recipientList['PLAINLIST'] = \DirectMailTeam\DirectMail\DirectMailUtility::cleanPlainList($recipientList['PLAINLIST']);
+                $recipientList['PLAINLIST'] = $this->cleanPlainList($recipientList['PLAINLIST']);
             }
         }
 
         return $recipientList;
+    }
+
+    /**
+     * Removes double record in an array.
+     *
+     * $plainlist is a multidimensional array.
+     *
+     * This method only remove if a value has the same array
+     * $plainlist = [
+     *     0 => [
+     *         name => '',
+     *         email => '',
+     *     ],
+     *     1 => [
+     *         name => '',
+     *         email => '',
+     *     ],
+     * ];
+     *
+     * @param array $plainlist Email addresses of the recipients
+     * @return array Cleaned array
+     */
+    protected function cleanPlainList(array $plainlist): array
+    {
+        $plainlist = array_map('unserialize', array_unique(array_map('serialize', $plainlist)));
+
+        return $plainlist;
     }
 }

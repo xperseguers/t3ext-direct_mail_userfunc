@@ -120,7 +120,7 @@ class TcaUtility
                 $GLOBALS['TCA']['sys_dmail_group']['types'][$type]['showitem'] .= ',' . $typeInfo['showitem'];
             }
             if (substr($processedTca['types'][$type]['showitem'] ?? '', -strlen($typeInfo['showitem'])) !== $typeInfo['showitem']) {
-                $processedTca['types'][$type]['showitem'] .= ',' . $typeInfo['showitem'];
+                $processedTca['types'][$type]['showitem'] = ($processedTca['types'][$type]['showitem'] ?? '') . ',' . $typeInfo['showitem'];
             }
         }
 
@@ -130,11 +130,11 @@ class TcaUtility
 
         if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
             $GLOBALS['TCA']['sys_dmail_group']['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];
-            $processedTca['ctrl']['requestUpdate'] .= ',' . $prefixedFields['ctrl']['requestUpdate'];
+            $processedTca['ctrl']['requestUpdate'] = ($processedTca['ctrl']['requestUpdate'] ?? '') . ',' . $prefixedFields['ctrl']['requestUpdate'];
         }
 
         if (!$populateProcessedTca) {
-            // Prevent side-effects if we shouldn't modify the processedTca at this point
+            // Prevent side effects if we shouldn't modify the processedTca at this point
             $processedTca = [];
         }
     }

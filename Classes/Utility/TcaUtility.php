@@ -86,7 +86,7 @@ class TcaUtility
 
             foreach ($prefixedFields['types'] as &$typeInfo) {
                 $typeInfo['showitem'] = preg_replace(
-                    '/(^|[, ])' . preg_quote($field) . '([,; ]|$)/',
+                    '/(^|[, ])' . preg_quote($field, '/') . '([,; ]|$)/',
                     '$1' . $virtualField . '$2',
                     $typeInfo['showitem']
                 );
@@ -94,7 +94,7 @@ class TcaUtility
 
             foreach ($prefixedFields['palettes'] as &$paletteInfo) {
                 $paletteInfo['showitem'] = preg_replace(
-                    '/(^|[, ])' . preg_quote($field) . '([,; ]|$)/',
+                    '/(^|[, ])' . preg_quote($field, '/') . '([,; ]|$)/',
                     '$1' . $virtualField . '$2',
                     $paletteInfo['showitem']
                 );
@@ -102,7 +102,7 @@ class TcaUtility
 
             if (!empty($prefixedFields['ctrl']['requestUpdate'])) {
                 $prefixedFields['ctrl']['requestUpdate'] = preg_replace(
-                    '/(^|[, ])' . preg_quote($field) . '([,; ]|$)/',
+                    '/(^|[, ])' . preg_quote($field, '/') . '([,; ]|$)/',
                     '$1' . $virtualField . '$2',
                     $prefixedFields['ctrl']['requestUpdate']
                 );

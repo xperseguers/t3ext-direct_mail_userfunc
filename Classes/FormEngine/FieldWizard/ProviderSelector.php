@@ -70,10 +70,10 @@ class ProviderSelector extends AbstractNode
                 . ')'
                 . '.on('
                 . '"button.clicked",'
-                . ' function(e) { if (e.target.name == "ok" && TBE_EDITOR.checkSubmit(-1)) { TBE_EDITOR.submitForm() } top.TYPO3.Modal.dismiss(); }'
+                . ' function(e) { if (e.target.name == "ok") { $("button[name=\"_savedok\"]").click(); } top.TYPO3.Modal.dismiss(); }'
                 . ');';
         } else {
-            $alertMsgOnChange = 'if (TBE_EDITOR.checkSubmit(-1)){ TBE_EDITOR.submitForm();}';
+            $alertMsgOnChange = '$("button[name=\"_savedok\"]").click();';
         }
 
         $updateJS .= $alertMsgOnChange;

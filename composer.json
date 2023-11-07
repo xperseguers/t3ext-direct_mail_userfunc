@@ -23,10 +23,10 @@
   ],
   "license": "GPL-2.0-or-later",
   "require": {
-    "php": ">= 7.2.0, <= 8.2.99",
+    "php": ">= 7.4.0, <= 8.2.99",
     "ext-json": "*",
-    "typo3/cms-core": "^8.7 || ^9.5 || ^10 || ^11",
-    "directmailteam/direct-mail": "^5.2 || ^6.0 || ^7.0 || ^9.4"
+    "typo3/cms-core": "^10 || ^11",
+    "directmailteam/direct-mail": "^7.0 || ^9.4"
   },
   "autoload": {
     "psr-4": {

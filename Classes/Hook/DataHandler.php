@@ -103,6 +103,11 @@ class DataHandler
         // Result array
         $res = [];
 
+        if (!isset($GLOBALS['TCA'][$table]['columns'][$field]['config'])) {
+            // Happens when switching from a wizard-based TCA to another type of provider without wizard
+            return $res;
+        }
+
         // For our use $tscPID is always the real PID
         $tscPID = $realPid;
         // Getting config for the field

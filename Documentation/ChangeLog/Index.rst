@@ -20,6 +20,7 @@ The following is a very high level overview of the changes in this extension. Fo
 =======  ===========================================================================
 Version  Changes
 =======  ===========================================================================
+2.3      Support for TYPO3 v11
 2.2      Support for TYPO3 v10
 2.1      Support for TYPO3 v9
 2.0      - Support for TYPO3 v8

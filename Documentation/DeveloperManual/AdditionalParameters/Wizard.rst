@@ -22,44 +22,44 @@ whatever you may do with a TCA wizard of type "userFunc".
 Screenshot below shows an additional icon next to the parameter field:
 
 .. figure:: ../../Images/additional_parameters.png
-	:alt: Additional parameters
+   :alt: Additional parameters
 
 In order to display the parameter wizard icon (|wizard|), you have to write a method ``getWizard()`` in your class that
 returns either the JavaScript code to be executed when user clicks on the icon:
 
 .. |wizard| image:: ../../Images/wizard.png
-	:alt: Wizard available
+   :alt: Wizard available
 
 .. code-block:: php
 
-	public function getWizard(string $methodName, array &$PA, array $row, bool $checkOnly = false) : ?string
-	{
-		$js = null;
+   public function getWizard(string $methodName, array &$PA, array $row, bool $checkOnly = false) : ?string
+   {
+       $js = null;
 
-		if ($methodName === 'myRecipientList') {
-			if ($checkOnly) {
-				// We just need to return some non-empty string to show the wizard button
-				return 'ok';
-			}
+       if ($methodName === 'myRecipientList') {
+           if ($checkOnly) {
+               // We just need to return some non-empty string to show the wizard button
+               return 'ok';
+           }
 
-			$js = '
-				var params = $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val();
-				if (params == "") params = 2;
-			';
+           $js = '
+               var params = $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val();
+               if (params == "") params = 2;
+           ';
 
-			// Show a standard javascript prompt and assign result to the parameters field
-			// This information will be saved with form and available in myRecipientList
-			$js .= '
-				var r = prompt("How many items do you want in your list?", params);
-				if (r != null) {
-					$(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val(parseInt(r));'.
-					implode('', $PA['fieldChangeFunc']) .';
-				}
-			';
-		}
+           // Show a standard javascript prompt and assign result to the parameters field
+           // This information will be saved with form and available in myRecipientList
+           $js .= '
+               var r = prompt("How many items do you want in your list?", params);
+               if (r != null) {
+                   $(\'[data-formengine-input-name="' . $PA['itemFormElName'] . '"]\').val(parseInt(r));'.
+                   implode('', $PA['fieldChangeFunc']) .';
+               }
+           ';
+       }
 
-		return $js;
-	}
+       return $js;
+   }
 
 Parameters of the getWizard method are:
 
@@ -75,16 +75,18 @@ Parameters of the getWizard method are:
   is `false`.
 
 .. caution::
-	Make sure to always run JavaScript code stored in ``$PA['fieldChangeFunc']`` when updating the value as it takes
-	care of telling TCEforms that the value has been updated.
+
+   Make sure to always run JavaScript code stored in ``$PA['fieldChangeFunc']`` when updating the value as it takes
+   care of telling TCEforms that the value has been updated.
 
 .. tip::
-	Your code will effectively be embedded and run from a jQuery context and the jQuery object itself will be available
-	as the usual `$` variable.
+
+   Your code will effectively be embedded and run from a jQuery context and the jQuery object itself will be available
+   as the usual ``$`` variable.
 
 
 If you run code written in method ``getWizard()`` above, you will get a standard JavaScript prompt that asks you the
 number of recipients you want to get in your recipient list:
 
 .. figure:: ../../Images/alert_basic.png
-	:alt: Standard alert box
+   :alt: Standard alert box

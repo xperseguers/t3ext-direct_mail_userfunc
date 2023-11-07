@@ -15,18 +15,18 @@ When creating a recipient list from type external provider, you have the possibi
 that will be passed as a single string arguments to the provider. Let's suppose the user specify this recipient list:
 
 .. figure:: ../../Images/itemsprocfunc.png
-	:alt: Custom provider as an itemsProcFunc
+   :alt: Custom provider as an itemsProcFunc
 
 Method ``myRecipientList`` will get additional parameter "13" and will be able to process it the way it likes:
 
 .. code-block:: php
 
-	public function myRecipientList(array &$params, $pObj) {
-	    // Retrieve user parameters (will get "13")
-	    $sizeOfRecipientList = $params['userParams'];
+   public function myRecipientList(array &$params, $pObj) {
+       // Retrieve user parameters (will get "13")
+       $sizeOfRecipientList = $params['userParams'];
 
-	    // snip
-	}
+       // snip
+   }
 
 The next two sections describe how you may:
 

@@ -21,7 +21,7 @@ Fortunately there is an alternative. This extension lets you define custom TCA t
 Once defined, this custom TCA will *replace* the text area with any field you want:
 
 .. figure:: ../../Images/tca.png
-	:alt: TCA-based wizard
+   :alt: TCA-based wizard
 
 Upon saving, this extension will take care of automatically and transparently serializing your custom fields and their
 corresponding values into the standard ``tx_directmailuserfunc_params`` database field (the one that is mapped to the
@@ -32,36 +32,38 @@ of table configuration (TCA):
 
 .. code-block:: php
 
-	public static function getWizardFields(string $methodName) : ?array
-	{
-	    return [
-	        'columns' => [
-	            'field1' => [
-	                // snip
-	            ],
-	            'field2' => [
-	                // snip
-	            ],
-	        ],
-	        'types' => [
-	            '5' => [
-	                'showitem' => 'field1, field2, ...'
-	            ]
-	        ],
-	        // If needed:
-	        'palettes' => [
-	            // snip
-	        ],
-	    ];
-	}
+   public static function getWizardFields(string $methodName) : ?array
+   {
+       return [
+           'columns' => [
+               'field1' => [
+                   // snip
+               ],
+               'field2' => [
+                   // snip
+               ],
+           ],
+           'types' => [
+               '5' => [
+                   'showitem' => 'field1, field2, ...'
+               ]
+           ],
+           // If needed:
+           'palettes' => [
+               // snip
+           ],
+       ];
+   }
 
 Please refer to `['columns'] section in TCA reference <https://docs.typo3.org/typo3cms/TCAReference/Columns/Index.html>`__
 for information on how to define your custom fields.
 
 .. note::
-	Type number "5" corresponds to a list of recipients defined as an external provider, what we are dealing with here.
+
+   Type number "5" corresponds to a list of recipients defined as an external provider, what we are dealing with here.
 
 .. tip::
-	Method ``getWizardFields`` should return an empty array if no additional parameters are needed and ``NULL`` if the
-	standard additional parameters text area should be kept (useful when the user class is used for both TCA and non
-	TCA-based additional parameters).
+
+   Method ``getWizardFields`` should return an empty array if no additional parameters are needed and ``NULL`` if the
+   standard additional parameters text area should be kept (useful when the user class is used for both TCA and non
+   TCA-based additional parameters).

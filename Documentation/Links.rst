@@ -12,22 +12,22 @@ Links
 -----
 
 :TER:
-	https://extensions.typo3.org/extension/direct_mail_userfunc
+   https://extensions.typo3.org/extension/direct_mail_userfunc
 
 :Packagist:
-	https://packagist.org/packages/causal/direct_mail_userfunc
+   https://packagist.org/packages/causal/direct_mail_userfunc
 
 :Bug Tracker:
-	https://github.com/xperseguers/t3ext-direct_mail_userfunc/issues
+   https://github.com/xperseguers/t3ext-direct_mail_userfunc/issues
 
 :Git Repository:
-	https://github.com/xperseguers/t3ext-direct_mail_userfunc
+   https://github.com/xperseguers/t3ext-direct_mail_userfunc
 
 :Translation:
-	https://crowdin.com/project/typo3-extension-directmailuser
+   https://crowdin.com/project/typo3-extension-directmailuser
 
 :Contact:
-	`@xperseguers <https://twitter.com/xperseguers>`__
+   `@xperseguers <https://twitter.com/xperseguers>`__
 
 
 .. _links-how-to-contribute:
@@ -35,9 +35,9 @@ Links
 How to contribute
 ^^^^^^^^^^^^^^^^^
 
-This extension is using the same contribution workflow as for TYPO3 Core, but with GitHub PRs for the review
-process. Please read more about the workflow in the
-`TYPO3 wiki <https://wiki.typo3.org/Contribution_Walkthrough_Life_Of_A_Patch>`__.
+This extension is using the same contribution workflow as for TYPO3 Core, but
+with GitHub PRs for the review process. Please read more about the workflow in
+the `TYPO3 Contribution Guide <https://docs.typo3.org/typo3cms/ContributionWorkflowGuide/>`__.
 
 
 .. _links-how-to-contribute-rules:
@@ -51,10 +51,10 @@ Contribution rules
 - Unique logical change per patch [#]_
 
 .. _PSR-12: https://www.php-fig.org/psr/psr-12/
-.. _format used by TYPO3: https://wiki.typo3.org/CommitMessage_Format_(Git)
+.. _format used by TYPO3: https://docs.typo3.org/m/typo3/guide-contributionworkflow/master/en-us/Appendix/CommitMessage.html#commitmessage
 
 
 .. rubric:: Footnotes
 
-.. [#] The term "patch" is used in the sense of "patch set" in Gerrit, and may be the result of multiple
-   (amended) commits.
+.. [#] The term "patch" is used in the sense of "patch set" in Gerrit, and may
+   be the result of multiple (amended) commits.

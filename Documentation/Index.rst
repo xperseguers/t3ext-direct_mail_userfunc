@@ -14,53 +14,57 @@ External Providers for Direct Mail
 
 .. only:: html
 
-	:Classification:
-		direct_mail_userfunc
+   :Extension key:
+      direct_mail_userfunc
 
-	:Version:
-		|release|
+   :Package name:
+      causal/direct_mail_userfunc
 
-	:Language:
-		en
+   :Version:
+      |release|
 
-	:Description:
-		Adds support for external providers to Direct Mail. This extension extends the types of recipient lists handled
-		by Direct Mail with an entry for parameterized custom lists. These custom lists are prepared by user functions
-		and may easily reuse your own business logic.
+   :Language:
+      en
 
-	:Keywords:
-		direct_mail, dynamic list, user function, external provider
+   :Keywords:
+      direct_mail, dynamic list, user function, external provider
 
-	:Copyright:
-		2009-2022
+   :Copyright:
+      2009-2023
 
-	:Author:
-		Xavier Perseguers
+   :Author:
+      Xavier Perseguers
 
-	:Email:
-		xavier@causal.ch
+   :License:
+      This document is published under the
+      `Creative Commons BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`__
+      license.
 
-	:License:
-		This document is published under the Open Publication License
-		available from https://www.opencontent.org/openpub/
+   :Rendered:
+      |today|
 
-	:Rendered:
-		|today|
+   The content of this document is related to TYPO3,
+   a GNU/GPL CMS/Framework available from `www.typo3.org <https://typo3.org/>`__.
 
-	The content of this document is related to TYPO3,
-	a GNU/GPL CMS/Framework available from `www.typo3.org <https://typo3.org/>`__.
+----
 
+Adds support for external providers to Direct Mail. This extension extends the
+types of recipient lists handled by Direct Mail with an entry for parameterized
+custom lists. These custom lists are prepared by user functions and may easily
+reuse your own business logic.
 
-	**Table of Contents**
+----
+
+**Table of Contents:**
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 3
+   :titlesonly:
 
-	Introduction/Index
-	UsersManual/Index
-	DeveloperManual/Index
-	KnownProblems/Index
-	FurtherInformation/Index
-	ChangeLog/Index
-	Links
+   Introduction/Index
+   UsersManual/Index
+   DeveloperManual/Index
+   KnownProblems/Index
+   FurtherInformation/Index
+   ChangeLog/Index
+   Links

@@ -20,7 +20,7 @@ What does it do?
 This extension adds an entry "External provider" to the drop-down list of Direct Mail's recipient list definition:
 
 .. figure:: ../Images/type_userfunc.png
-	:alt: List of recipient prepared with a provider
+   :alt: List of recipient prepared with a provider
 
 This special type of recipient list lets you dynamically generate the list of recipients.
 
@@ -36,7 +36,7 @@ Screenshots
 -----------
 
 .. figure:: ../Images/userfunc_overview.png
-	:alt: Overview of the configuration of a dynamic list of recipients
+   :alt: Overview of the configuration of a dynamic list of recipients
 
 #. Icon |valid| confirms that the provider definition is valid (class ``\Causal\DirectMailUserfunc\Samples\TestList`` was
    found and method "myRecipientList" exists).
@@ -45,10 +45,10 @@ Screenshots
    invoke a user-generated script.
 
 .. |valid| image:: ../Images/valid.png
-	:alt: Valid user function
+   :alt: Valid user function
 
 .. |wizard| image:: ../Images/wizard.png
-	:alt: Wizard available
+   :alt: Wizard available
 
 In case either the class or the method was not found, an warning message is shown that explains what is wrong with the
 provider definition.
@@ -56,10 +56,10 @@ provider definition.
 User specified an invalid or not included class or a valid class but an invalid method:
 
 .. figure:: ../Images/invalid_class_method.png
-	:alt: Invalid or not loaded class or invalid method
-	:width: 711
+   :alt: Invalid or not loaded class or invalid method
+   :width: 711
 
 Providers may be registered to enhance the user experience:
 
 .. figure:: ../Images/registered_providers.png
-	:alt: Registered providers
+   :alt: Registered providers

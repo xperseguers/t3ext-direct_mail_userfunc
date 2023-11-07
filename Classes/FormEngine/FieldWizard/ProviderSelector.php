@@ -78,8 +78,9 @@ class ProviderSelector extends AbstractNode
 
         $updateJS .= $alertMsgOnChange;
 
+        // Class "form-control" is for sure useless in TYPO3 v11
         $selector = '
-            <select class="form-control" id="' . $providerElID . '" onchange="' . htmlspecialchars($updateJS) . '">
+            <select class="form-control form-select form-control-adapt" id="' . $providerElID . '" onchange="' . htmlspecialchars($updateJS) . '">
                 <option value=""></option>' .
             implode('', $options) . '
             </select>

@@ -95,7 +95,7 @@ class ProviderSelector extends AbstractNode
         $out[] =    '</label>';
         $out[] =    '<div class="form-control-wrap">';
         $out[] =        $selector;
-        $out[] =        ($hideInput ? '<div style="display:none">' : '') . $PA['item'] . ($hideInput ? '</div>' : '');
+        $out[] =        ($hideInput ? '<div style="display:none">' : '') . $this->data['parameterArray']['itemFormElValue'] . ($hideInput ? '</div>' : '');
         $out[] =    '</div>';
         $out[] = '</div>';
 

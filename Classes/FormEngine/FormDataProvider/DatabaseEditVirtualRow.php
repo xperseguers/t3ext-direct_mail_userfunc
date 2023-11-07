@@ -34,11 +34,11 @@ class DatabaseEditVirtualRow implements FormDataProviderInterface
             return $result;
         }
 
-        $wizardFields = null;
+        //$wizardFields = null;
         $itemsProcFunc = $result['databaseRow']['tx_directmailuserfunc_itemsprocfunc'];
 
         if ($itemsProcFunc !== null && ItemsProcFunc::hasWizardFields($itemsProcFunc)) {
-            $currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
+            //$currentValues = ItemsProcFunc::decodeUserParameters($result['databaseRow']);
             $wizardFields = ItemsProcFunc::callWizardFields($itemsProcFunc);
             TcaUtility::reconfigureTCA($wizardFields, $result['databaseRow'], $result['processedTca']);
         }

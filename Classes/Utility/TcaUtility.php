@@ -62,7 +62,7 @@ class TcaUtility
 
         if (!isset($fields['types']) || !isset($fields['types']['5'])) {
             // Without a definition for type "5", custom fields are not shown
-            // so we automatically create a basic configuration to show them
+            // so, we automatically create a basic configuration to show them
             $fields['types']['5'] = [
                 'showitem' => implode(', ', array_keys($fields['columns']))
             ];

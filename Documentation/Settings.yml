@@ -7,7 +7,7 @@ conf.py:
   copyright: 2009-2024
   project: External Providers for Direct Mail
   version: 2.3
-  release: 2.3.0
+  release: 2.3.1
   latex_documents:
   - - Index
     - direct_mail_userfunc.tex

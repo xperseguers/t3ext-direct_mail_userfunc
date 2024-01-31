@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Type\Bitmask\JsConfirmation;
  *
  * @category    FormEngine\FieldWizard
  * @author      Xavier Perseguers <xavier@causal.ch>
- * @copyright   2012-2023 Causal Sàrl
+ * @copyright   2012-2024 Causal Sàrl
  * @license     https://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class ProviderSelector extends AbstractNode

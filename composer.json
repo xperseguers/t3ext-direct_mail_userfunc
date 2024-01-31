@@ -26,7 +26,7 @@
     "php": ">= 7.4.0, <= 8.3.99",
     "ext-json": "*",
     "typo3/cms-core": "^10 || ^11",
-    "directmailteam/direct-mail": "^7.0 || ^9.4"
+    "directmailteam/direct-mail": "^7.0 || ^9.5"
   },
   "autoload": {
     "psr-4": {

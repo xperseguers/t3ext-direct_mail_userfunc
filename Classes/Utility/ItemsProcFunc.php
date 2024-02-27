@@ -33,7 +33,7 @@ class ItemsProcFunc
      */
     public static function hasWizard(string $itemsProcFunc): bool
     {
-        list($className, $methodName) = explode('->', $itemsProcFunc);
+        list($className,) = explode('->', $itemsProcFunc);
         $ret = false;
         if (!empty($itemsProcFunc) && static::isMethodValid($itemsProcFunc)) {
             $ret = method_exists($className, 'getWizard');
@@ -73,7 +73,7 @@ class ItemsProcFunc
      */
     public static function hasWizardFields(string $itemsProcFunc): bool
     {
-        list($className, $methodName) = explode('->', $itemsProcFunc);
+        list($className,) = explode('->', $itemsProcFunc);
         $ret = false;
         if (!empty($itemsProcFunc) && static::isMethodValid($itemsProcFunc)) {
             $ret = method_exists($className, 'getWizardFields');
@@ -110,7 +110,7 @@ class ItemsProcFunc
      */
     public static function isClassValid(string $itemsProcFunc): bool
     {
-        list($className, $methodName) = explode('->', $itemsProcFunc);
+        list($className,) = explode('->', $itemsProcFunc);
 
         if (!empty($className) && class_exists($className)) {
             return true;

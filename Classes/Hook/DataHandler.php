@@ -54,7 +54,7 @@ class DataHandler
         if (isset($incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'])) {
             $itemsProcFunc = $incomingFieldArray['tx_directmailuserfunc_itemsprocfunc'];
         } else {
-            $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'];
+            $itemsProcFunc = $row['tx_directmailuserfunc_itemsprocfunc'] ?? null;
         }
 
         if ($itemsProcFunc !== null && ItemsProcFunc::hasWizardFields($itemsProcFunc)) {

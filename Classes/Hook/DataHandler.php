@@ -114,7 +114,8 @@ class DataHandler
         $tcaFieldConf = $GLOBALS['TCA'][$table]['columns'][$field]['config'];
 
         // Perform processing:
-        $res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, [], $tscPID);
+        $recFID = '';
+        $res = $pObj->checkValue_SW($res, $value, $tcaFieldConf, $table, $id, $curValue, $status, $realPid, $recFID, $field, $tscPID, []);
         return $res;
     }
 }

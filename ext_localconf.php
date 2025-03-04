@@ -1,5 +1,4 @@
 <?php
-
 defined('TYPO3_MODE') || defined('TYPO3') || die();
 
 (static function () {

@@ -25,20 +25,17 @@
   "require": {
     "php": ">= 7.4.0, <= 8.3.99",
     "ext-json": "*",
-    "typo3/cms-core": "^10 || ^11",
-    "directmailteam/direct-mail": "^7.0 || ^9.5 || dev-master"
+    "typo3/cms-core": "^10 || ^11 || ^12",
+    "directmailteam/direct-mail": "^7.0 || ^9.5 || dev-master || 12.x-dev"
   },
   "autoload": {
     "psr-4": {
       "Causal\\DirectMailUserfunc\\": "Classes/"
     }
   },
-  "replace": {
-    "typo3-ter/direct-mail-userfunc": "self.version"
-  },
   "extra": {
     "branch-alias": {
-      "dev-master": "2.3.x-dev"
+      "dev-master": "2.4.x-dev"
     },
     "typo3/cms": {
       "extension-key": "direct_mail_userfunc"

@@ -12,12 +12,12 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'Causal Sàrl',
     'author_email' => 'xavier@causal.ch',
     'state' => 'stable',
-    'version' => '2.3.1',
+    'version' => '2.4.0-dev',
     'constraints' => [
         'depends' => [
             'php' => '7.4.0-8.3.99',
-            'typo3' => '10.4.0-11.5.99',
-            'direct_mail' => '7.0.0-9.5.99',
+            'typo3' => '10.4.0-12.4.99',
+            'direct_mail' => '7.0.0-10.0.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -21,13 +21,11 @@ Sample code to be added to your :file:`ext_tables.php` file:
 
 .. code-block:: php
 
-   if (TYPO3_MODE === 'BE') {
-       $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
-           'class'  => 'yourClass',
-           'method' => 'yourMethod',
-           'label'  => 'Some Label'
-       ];
-   }
+   $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['direct_mail_userfunc']['userFunc'][] = [
+       'class'  => 'yourClass',
+       'method' => 'yourMethod',
+       'label'  => 'Some Label'
+   ];
 
 This will add a new entry "Some Label" that fills in provider ``yourClass->yourMethod`` when selected:
 

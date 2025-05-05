@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="fr">
+    <header/>
+    <body>
+      <trans-unit id="config.makeEntriesUnique" approved="yes">
+        <source>Make entries unique: Makes sure entries with the same e-mail address will only appear once.</source>
+        <target state="final">Créer des entrées uniques: S'assure que les entrées avec la même adresse email n'apparaîtront qu'une seule fois.</target>
+      </trans-unit>
+      <trans-unit id="config.enableSamples" approved="yes">
+        <source>Enable samples: Provides sample user functions to show how it works.</source>
+        <target state="final">Activer les exemples: Fournit des fonctions utilisateur d'exemple pour démontrer comment l'extension fonctionne.</target>
+      </trans-unit>
+      <!--  Labels for sample user functions -->
+      <trans-unit id="userfunction.myRecipientList" approved="yes">
+        <source>[Sample] Recipient List</source>
+        <target state="final">[Exemple] Liste de destinataires</target>
+      </trans-unit>
+      <trans-unit id="userfunction.myRecipientListTca" approved="yes">
+        <source>[Sample] Recipient List (TCA wizard)</source>
+        <target state="final">[Exemple] Liste de destinataires (assistant TCA)</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

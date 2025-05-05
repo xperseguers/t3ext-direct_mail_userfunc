@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="fr">
+    <header/>
+    <body>
+      <trans-unit id="sys_dmail_group.type.I.5" approved="yes">
+        <source>External provider</source>
+        <target state="final">Fournisseur externe</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.valid">
+        <source>Valid class and method</source>
+        <target state="needs-translation">Valid class and method</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.invalidClass" approved="yes">
+        <source>Unknown class</source>
+        <target state="final">Classe inconnue</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.invalidMethod" approved="yes">
+        <source>Class is valid but method does not exist</source>
+        <target state="final">La classe est valide mais la méthode n'existe pas</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.providers" approved="yes">
+        <source>Registered providers:</source>
+        <target state="final">Fournisseurs disponibles :</target>
+      </trans-unit>
+      <trans-unit id="wizard.parameters.title" approved="yes">
+        <source>Click here to update user parameters</source>
+        <target state="final">Cliquez ici pour mettre à jour les paramètres utilisateur</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

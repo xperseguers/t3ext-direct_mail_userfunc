@@ -15,8 +15,6 @@ The following is a very high level overview of the changes in this extension. Fo
 `read the online log <https://github.com/xperseguers/t3ext-direct_mail_userfunc/commits/master>`_.
 
 
-.. tabularcolumns:: |r|p{13.7cm}|
-
 =======  ===========================================================================
 Version  Changes
 =======  ===========================================================================

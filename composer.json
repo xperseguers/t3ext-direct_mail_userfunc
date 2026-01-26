@@ -25,8 +25,8 @@
   "require": {
     "php": ">= 7.4.0, <= 8.3.99",
     "ext-json": "*",
-    "typo3/cms-core": "^10 || ^11 || ^12",
-    "directmailteam/direct-mail": "^7.0 || ^9.5 || dev-master || 12.x-dev"
+    "typo3/cms-core": "^10 || ^11 || ^11",
+    "directmailteam/direct-mail": "^7.0 || ^9.5 || dev-master"
   },
   "autoload": {
     "psr-4": {
@@ -35,7 +35,8 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "2.4.x-dev"
+      "dev-master": "2.4.x-dev",
+      "dev-TYPO3v11": "2.3.x-dev"
     },
     "typo3/cms": {
       "extension-key": "direct_mail_userfunc"

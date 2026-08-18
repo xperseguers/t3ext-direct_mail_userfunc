@@ -5,27 +5,27 @@
     <body>
       <trans-unit id="sys_dmail_group.type.I.5">
         <source>External provider</source>
-        <target state="needs-translation">External provider</target>
+        <target state="translated">Külső szolgáltató</target>
       </trans-unit>
       <trans-unit id="wizard.itemsProcFunc.valid">
         <source>Valid class and method</source>
-        <target state="needs-translation">Valid class and method</target>
+        <target state="translated">Érvényes osztály és metódus</target>
       </trans-unit>
       <trans-unit id="wizard.itemsProcFunc.invalidClass">
         <source>Unknown class</source>
-        <target state="needs-translation">Unknown class</target>
+        <target state="translated">Ismeretlen osztály</target>
       </trans-unit>
       <trans-unit id="wizard.itemsProcFunc.invalidMethod">
         <source>Class is valid but method does not exist</source>
-        <target state="needs-translation">Class is valid but method does not exist</target>
+        <target state="translated">Az osztály érvényes, de a metódus nem létezik</target>
       </trans-unit>
       <trans-unit id="wizard.itemsProcFunc.providers">
         <source>Registered providers:</source>
-        <target state="needs-translation">Registered providers:</target>
+        <target state="translated">Regisztrált szolgáltatók:</target>
       </trans-unit>
       <trans-unit id="wizard.parameters.title">
         <source>Click here to update user parameters</source>
-        <target state="needs-translation">Click here to update user parameters</target>
+        <target state="translated">Kattintson ide a felhasználói paraméterek frissítéséhez</target>
       </trans-unit>
     </body>
   </file>

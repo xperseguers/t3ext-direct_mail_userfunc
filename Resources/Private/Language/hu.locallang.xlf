@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="hu">
+    <header/>
+    <body>
+      <trans-unit id="config.makeEntriesUnique">
+        <source>Make entries unique: Makes sure entries with the same e-mail address will only appear once.</source>
+        <target state="translated">Bejegyzések egyedivé tétele: Biztosítja, hogy az azonos e-mail címmel rendelkező bejegyzések csak egyszer jelenjenek meg.</target>
+      </trans-unit>
+      <trans-unit id="config.enableSamples">
+        <source>Enable samples: Provides sample user functions to show how it works.</source>
+        <target state="translated">Minták engedélyezése: Példa felhasználói funkciókat biztosít a működés bemutatásához.</target>
+      </trans-unit>
+      <!--  Labels for sample user functions -->
+      <trans-unit id="userfunction.myRecipientList">
+        <source>[Sample] Recipient List</source>
+        <target state="translated">[Minta] Címzettlista</target>
+      </trans-unit>
+      <trans-unit id="userfunction.myRecipientListTca">
+        <source>[Sample] Recipient List (TCA wizard)</source>
+        <target state="translated">[Minta] Címzettlista (TCA-varázsló)</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

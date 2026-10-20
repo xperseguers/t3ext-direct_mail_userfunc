@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="sys_dmail_group.type.I.5">
+        <source>External provider</source>
+        <target>crwdns227795:0crwdne227795:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.valid">
+        <source>Valid class and method</source>
+        <target>crwdns227797:0crwdne227797:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.invalidClass">
+        <source>Unknown class</source>
+        <target>crwdns227799:0crwdne227799:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.invalidMethod">
+        <source>Class is valid but method does not exist</source>
+        <target>crwdns227801:0crwdne227801:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.itemsProcFunc.providers">
+        <source>Registered providers:</source>
+        <target>crwdns227803:0crwdne227803:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.parameters.title">
+        <source>Click here to update user parameters</source>
+        <target>crwdns227805:0crwdne227805:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

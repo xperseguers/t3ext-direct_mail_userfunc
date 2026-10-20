@@ -3,30 +3,30 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2013-10-04T10:30:07Z" product-name="direct_mail_userfunc" target-language="hu">
     <header/>
     <body>
-      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc">
+      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_itemsprocfunc" approved="yes">
         <source>Provider:</source>
-        <target state="translated">Szolgáltató:</target>
+        <target state="final">Szolgáltató:</target>
       </trans-unit>
-      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_params">
+      <trans-unit id="sys_dmail_group.tx_directmailuserfunc_params" approved="yes">
         <source>Additional parameters:</source>
-        <target state="translated">További paraméterek:</target>
+        <target state="final">További paraméterek:</target>
       </trans-unit>
       <!--  Labels for sample user functions -->
-      <trans-unit id="myRecipientListTca.size">
+      <trans-unit id="myRecipientListTca.size" approved="yes">
         <source>Size of the list:</source>
-        <target state="translated">A lista mérete:</target>
+        <target state="final">A lista mérete:</target>
       </trans-unit>
-      <trans-unit id="myRecipientListTca.name">
+      <trans-unit id="myRecipientListTca.name" approved="yes">
         <source>Name:</source>
-        <target state="translated">Név:</target>
+        <target state="final">Név:</target>
       </trans-unit>
-      <trans-unit id="myRecipientListTca.email">
+      <trans-unit id="myRecipientListTca.email" approved="yes">
         <source>E-mail:</source>
-        <target state="translated">E-mail:</target>
+        <target state="final">E-mail:</target>
       </trans-unit>
-      <trans-unit id="myRecipientListTca.palette.person">
+      <trans-unit id="myRecipientListTca.palette.person" approved="yes">
         <source>Person</source>
-        <target state="translated">Személy</target>
+        <target state="final">Személy</target>
       </trans-unit>
     </body>
   </file>
